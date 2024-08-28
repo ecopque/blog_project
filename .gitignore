@@ -2,7 +2,7 @@
 
 /djangoapp/static/
 /djangoapp/media/
-# Vamos deixar o media de fora mesmo? Vamos analisar!!!
+# Vamos deixar o media de fora mesmo? Vamos analisar!!!!
 /djangoapp/project/local_settings.py
 gunicorn-error-log
 __localcode
