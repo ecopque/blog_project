@@ -1,2 +1,3 @@
-# blog_project
-In progress
+# Blog Project
+
+In progress.
