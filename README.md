@@ -1,3 +1,3 @@
 # Blog Project
 
-In progress!!!
+The Blog Project is under construction. But i have already started the pushes.
