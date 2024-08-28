@@ -1,0 +1,11 @@
+{
+    "workbench.colorTheme": "OM Theme (Default Dracula Italic)",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.editor.enablePreview": false,
+    "editor.minimap.enabled": false,
+    "editor.fontSize": 15,
+    "git.openRepositoryInParentFolders": "never",
+    "explorer.confirmDelete": false,
+    "workbench.tree.enableStickyScroll": false,
+    "explorer.compactFolders": false,
+}
