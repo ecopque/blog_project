@@ -1,5 +1,6 @@
 # blog_project/.gitignore:
 
+/venv_blog
 /djangoapp/static/
 /djangoapp/media/
 # Vamos deixar o media de fora mesmo? Vamos analisar!!!
