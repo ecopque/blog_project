@@ -1,3 +1,5 @@
+# /blog_project/project/settings.py
+
 """
 Django settings for project project.
 
@@ -11,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os ##
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ahz)@^570ix)c19gv%7oid6dwj#032r3_65*zcv)^3wvf&agfg'
+SECRET_KEY = os.getenv('SECRET_KEY', 'change-me') ## #7:
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = bool(int(os.getenv('DEBUG', 0))) ## #5:
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = [h.strip() for h in os.getenv('ALLOWED_HOSTS', '').split(',') if h.strip()] ## #6:
 
 
 # Application definition
