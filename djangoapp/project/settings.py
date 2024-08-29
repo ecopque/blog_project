@@ -13,25 +13,25 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-import os ##
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = BASE_DIR.parent / 'data' / 'web' ## # /data/web/static | /data/web/media
+DATA_DIR = BASE_DIR.parent / 'data' / 'web' # /data/web/static | /data/web/media
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'change-me') ## #7: # /blog_project/dotenv_files/.env
+SECRET_KEY = os.getenv('SECRET_KEY', 'change-me') # /blog_project/dotenv_files/.env
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = bool(int(os.getenv('DEBUG', 0))) ## #5: # /blog_project/dotenv_files/.env
+DEBUG = bool(int(os.getenv('DEBUG', 0))) # /blog_project/dotenv_files/.env
 
 
-ALLOWED_HOSTS = [h.strip() for h in os.getenv('ALLOWED_HOSTS', '').split(',') if h.strip()] ## #6: # /blog_project/dotenv_files/.env
+ALLOWED_HOSTS = [h.strip() for h in os.getenv('ALLOWED_HOSTS', '').split(',') if h.strip()] # /blog_project/dotenv_files/.env
 
 
 # Application definition
@@ -132,10 +132,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/static/' ## # 'static/' | 
-STATIC_ROOT = DATA_DIR / 'static' ## # /data/web/static
-MEDIA_URL = '/media/' ##
-MEDIA_ROOT = DATA_DIR / 'media' ## # /data/web/media
+STATIC_URL = '/static/' # 'static/'
+STATIC_ROOT = DATA_DIR / 'static' # /data/web/static
+MEDIA_URL = '/media/'
+MEDIA_ROOT = DATA_DIR / 'media' # /data/web/media
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
