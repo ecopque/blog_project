@@ -1,3 +1,5 @@
+# /blog_project/project/urls.py
+
 """
 URL configuration for project project.
 
