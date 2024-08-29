@@ -1,5 +1,4 @@
 FROM python:3.11.3-alpine3.18
-<<<<<<< HEAD
 LABEL mantainer="ecop@disroot.org"
 
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -12,6 +11,7 @@ WORKDIR /djangoapp
 
 EXPOSE 8000
 
+#9: #Obs: Abaixo: ##
 RUN python -m venv /venv && \
   /venv/bin/pip install --upgrade pip && \
   /venv/bin/pip install -r /djangoapp/requirements.txt && \
@@ -25,12 +25,8 @@ RUN python -m venv /venv && \
   chmod -R 755 /data/web/media && \
   chmod -R +x /scripts
 
-
 ENV PATH="/scripts:/venv/bin:$PATH"
 
 USER duser
 
 CMD ["commands.sh"]
-=======
-LABEL mantainer="ecop@disroot.org"
->>>>>>> 65020528b58f9e715184ebed1cd450e29a81597a
