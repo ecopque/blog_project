@@ -1,4 +1,5 @@
 FROM python:3.11.3-alpine3.18
+<<<<<<< HEAD
 LABEL mantainer="ecop@disroot.org"
 
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -30,3 +31,6 @@ ENV PATH="/scripts:/venv/bin:$PATH"
 USER duser
 
 CMD ["commands.sh"]
+=======
+LABEL mantainer="ecop@disroot.org"
+>>>>>>> 65020528b58f9e715184ebed1cd450e29a81597a
