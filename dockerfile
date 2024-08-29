@@ -11,7 +11,6 @@ WORKDIR /djangoapp
 
 EXPOSE 8000
 
-#9: #Obs: Abaixo: ##
 RUN python -m venv /venv && \
   /venv/bin/pip install --upgrade pip && \
   /venv/bin/pip install -r /djangoapp/requirements.txt && \
