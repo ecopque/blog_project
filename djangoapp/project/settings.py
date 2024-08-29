@@ -23,14 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'change-me') ## #7: # /blog_project/dotenv_files/.env-example
+SECRET_KEY = os.getenv('SECRET_KEY', 'change-me') ## #7: # /blog_project/dotenv_files/.env
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = bool(int(os.getenv('DEBUG', 0))) ## #5: # /blog_project/dotenv_files/.env-example
+DEBUG = bool(int(os.getenv('DEBUG', 0))) ## #5: # /blog_project/dotenv_files/.env
 
 
-ALLOWED_HOSTS = [h.strip() for h in os.getenv('ALLOWED_HOSTS', '').split(',') if h.strip()] ## #6: # /blog_project/dotenv_files/.env-example
+ALLOWED_HOSTS = [h.strip() for h in os.getenv('ALLOWED_HOSTS', '').split(',') if h.strip()] ## #6: # /blog_project/dotenv_files/.env
 
 
 # Application definition
