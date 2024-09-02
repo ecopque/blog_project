@@ -16,8 +16,9 @@ services: ##
       - ./data/web/media:/data/web/media/ ##
     env_file:
       - ./dotenv_files/.env ## # /blog_project/dotenv_files/.env
-    depends_on:
-      - psql
+    depends_on: ##
+      - psql ##
+      
   psql: ##
     container_name: psql
     image: postgres:13-alpine ##
