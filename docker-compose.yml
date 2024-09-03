@@ -14,7 +14,7 @@ services:
       - ./data/web/static:/data/web/static/  
       - ./data/web/media:/data/web/media/  
     env_file:
-      - ./dotenv_files/.env   # /blog_project/dotenv_files/.env
+      - ./dotenv_files/.env
     depends_on:  
       - psql  
       
