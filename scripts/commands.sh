@@ -1,7 +1,6 @@
-# /blog_project/scripts/commands.sh
-
 #!/bin/sh
 
+# /blog_project/scripts/commands.sh
 
 set -e
 
