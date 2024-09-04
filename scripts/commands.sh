@@ -2,6 +2,7 @@
 
 # /blog_project/scripts/commands.sh
 
+echo '⚙️ Running commands.sh'
 set -e
 
 wait_psql.sh # /blog_project/scripts/wait_psql.sh
