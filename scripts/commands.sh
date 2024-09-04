@@ -1,4 +1,7 @@
+# /blog_project/scripts/commands.sh
+
 #!/bin/sh
+
 
 set -e
 
