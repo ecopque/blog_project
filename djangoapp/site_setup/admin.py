@@ -9,13 +9,13 @@ class MenuLinkAdmin(admin.ModelAdmin):
     list_display_links = 'id', 'text', 'url_or_path', # /blog_project/djangoapp/site_setup/models.py
     search_fields = 'id', 'text', 'url_or_path', # /blog_project/djangoapp/site_setup/models.py
 
-class MenuLinkInline(admin.TabularInline): ##
-    model = MenuLink ## # /blog_project/djangoapp/site_setup/models.py
+class MenuLinkInline(admin.TabularInline): #7: ##
+    model = MenuLink #7: ## # /blog_project/djangoapp/site_setup/models.py
+    extra = 1 #9: ##
 
 @admin.register(SiteSetup)
 class SiteSetupAdmin(admin.ModelAdmin):
     list_display = 'title', 'description', # /blog_project/djangoapp/site_setup/models.py
-
     inlines = MenuLinkInline, ##
 
     def has_add_permission(self, request):
