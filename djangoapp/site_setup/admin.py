@@ -9,8 +9,6 @@ class MenuLinkAdmin(admin.ModelAdmin):
     list_display_links = 'id', 'text', 'url_or_path', # /blog_project/djangoapp/site_setup/models.py
     search_fields = 'id', 'text', 'url_or_path', # /blog_project/djangoapp/site_setup/models.py
 
-@admin.register(SiteSetup)
-class SiteSetupAdmin(admin.ModelAdmin):
-    list_display = 'id', 'text', 'url_or_path', # /blog_project/djangoapp/site_setup/models.py
-    list_display_links = 'id', 'text', 'url_or_path', # /blog_project/djangoapp/site_setup/models.py
-    search_fields = 'id', 'text', 'url_or_path', # /blog_project/djangoapp/site_setup/models.py
+@admin.register(SiteSetup) ##
+class SiteSetupAdmin(admin.ModelAdmin): ##
+    list_display = 'title', 'description', # /blog_project/djangoapp/site_setup/models.py
