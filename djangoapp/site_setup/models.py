@@ -19,11 +19,11 @@ class SiteSetup(models.Model):
         verbose_name = 'Setup'
         verbose_name_plural = 'Setups'
 
-    title = models.CharField(max_length=65) ##
+    title = models.CharField(max_length=65) #2: ##
     description = models.CharField(max_length=255) ##
-    show_header = models.BooleanField(default=True) ##
-    show_search = models.BooleanField(default=True)
-    show_menu = models.BooleanField(default=True)
-    show_description = models.BooleanField(default=True)
-    show_pagination = models.BooleanField(default=True)
-    show_footer = models.BooleanField(default=True)
+    show_header = models.BooleanField(default=True) #3: ##
+    show_search = models.BooleanField(default=True) #3:
+    show_menu = models.BooleanField(default=True) #3:
+    show_description = models.BooleanField(default=True) #3:
+    show_pagination = models.BooleanField(default=True) #3:
+    show_footer = models.BooleanField(default=True) #3:
