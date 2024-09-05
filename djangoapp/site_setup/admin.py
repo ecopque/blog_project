@@ -14,5 +14,5 @@ class SiteSetupAdmin(admin.ModelAdmin):
     list_display = 'title', 'description', # /blog_project/djangoapp/site_setup/models.py
 
     def has_add_permission(self, request):
-        # return not SiteSetup.objects.exists()
-        return True #5:
+        return not SiteSetup.objects.exists()
+        # return True #5:
