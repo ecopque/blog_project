@@ -9,10 +9,15 @@ class MenuLinkAdmin(admin.ModelAdmin):
     list_display_links = 'id', 'text', 'url_or_path', # /blog_project/djangoapp/site_setup/models.py
     search_fields = 'id', 'text', 'url_or_path', # /blog_project/djangoapp/site_setup/models.py
 
+class MenuLinkInline(admin.TabularInline): ##
+    model = MenuLink ## # /blog_project/djangoapp/site_setup/models.py
+
 @admin.register(SiteSetup)
 class SiteSetupAdmin(admin.ModelAdmin):
     list_display = 'title', 'description', # /blog_project/djangoapp/site_setup/models.py
 
+    inlines = MenuLinkInline, ##
+
     def has_add_permission(self, request):
-        return not SiteSetup.objects.exists()
-        # return True #5:
+        # return not SiteSetup.objects.exists()
+        return True #5:
