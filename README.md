@@ -1,4 +1,4 @@
-# Blog Project
+# Blog Project (under construction)
 
 This is a blog project developed in Django, which allows the creation, editing and management of blog posts. The project was created to serve as a practical example of how to use Django to build a complete and functional web application.
 
