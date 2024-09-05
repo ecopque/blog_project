@@ -27,3 +27,6 @@ class SiteSetup(models.Model):
     show_description = models.BooleanField(default=True) #3:
     show_pagination = models.BooleanField(default=True) #3:
     show_footer = models.BooleanField(default=True) #3:
+
+    def __str__(self):
+        return self.text
