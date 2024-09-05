@@ -12,3 +12,6 @@ class MenuLinkAdmin(admin.ModelAdmin):
 @admin.register(SiteSetup) ##
 class SiteSetupAdmin(admin.ModelAdmin): ##
     list_display = 'title', 'description', # /blog_project/djangoapp/site_setup/models.py
+
+    def has_add_permission(self, request): ##
+        return not SiteSetup.objects.exists() #5: #6: ##
