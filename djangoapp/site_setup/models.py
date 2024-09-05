@@ -9,7 +9,7 @@ class MenuLink(models.Model):
 
     text = models.CharField(max_length=50) ##
     url_or_path = models.CharField(max_length=2048) ##
-    new_tab = models.BooleanField(default=False) ##
+    new_tab = models.BooleanField(default=False) #1: ##
 
     def __str__(self): ##
         return self.text ##
