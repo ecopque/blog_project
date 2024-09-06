@@ -1,7 +1,12 @@
 # /blog_project/djangoapp/site_setup/context_processors.py
 
+from site_setup.models import SiteSetup ##
+
 def context_processor_example(request): ##
     return {'example': 'EXAMPLE context_processors.py'} ##
 
 def site_setup(request): ##
+    
+    # /blog_project/djangoapp/site_setup/models.py:
+    setup = SiteSetup.objects.all() ##
     return {'site_setup': 'SITE_SETUP context_processors.py', 'title': 'Title'} ##
