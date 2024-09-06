@@ -72,14 +72,11 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 # /blog_project/djangoapp/site_setup/context_processors.py
+                # Call the function.
                 'site_setup.context_processors.context_processor_example', ##
 
                 # /blog_project/djangoapp/site_setup/context_processors.py
                 'site_setup.context_processors.site_setup', ##
-
-                # /blog_project/djangoapp/site_setup/context_processors.py
-                'site_setup.context_processors.site_setup2', ##
-
             ],
         },
     },
