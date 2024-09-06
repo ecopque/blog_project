@@ -1,4 +1,4 @@
-# /blog_project/project/settings.py
+# FILE: /blog_project/project/settings.py
 
 """
 Django settings for project project.
@@ -44,10 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # /blog_project/djangoapp/blog/apps.py
+    # LOCALE: /blog_project/djangoapp/blog/apps.py
     'blog',
 
-    # /blog_project/djangoapp/site_setup/apps.py
+    # lOCALE: /blog_project/djangoapp/site_setup/apps.py
     'site_setup',
 ]
 
