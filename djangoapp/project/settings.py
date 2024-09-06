@@ -77,10 +77,10 @@ TEMPLATES = [
 
                 # LOCALE: /blog_project/djangoapp/site_setup/context_processors.py
                 # Call the function.
-                'site_setup.context_processors.context_processor_example', ##
+                'site_setup.context_processors.context_processor_example',
 
                 # #LOCALE: /blog_project/djangoapp/site_setup/context_processors.py
-                'site_setup.context_processors.site_setup', ##
+                'site_setup.context_processors.site_setup',
             ],
         },
     },
