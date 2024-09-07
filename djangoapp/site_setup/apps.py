@@ -1,3 +1,5 @@
+# FILE: /blog_project/djangoapp/site_setup/apps.py
+
 from django.apps import AppConfig
 
 

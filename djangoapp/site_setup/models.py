@@ -49,11 +49,12 @@ class SiteSetup(models.Model):
     show_footer = models.BooleanField(default=True)
 
     # COMMENT⬇: Website favicon image.
+    # LOCALE⬇: /blog_project/data/web/media/assets/favicon/"year"/"month"
     favicon = models.ImageField(upload_to='assets/favicon/%Y/%m/', blank=True, default='') #1: ##
 
     def __str__(self):
         return self.title
     
     
-    
+
 #1: Estamos definindo onde as imagens serão armazenadas e de que forma (na pasta teremos o ano e mês). Ela ainda poderá enviar sem a imagem e se for assim o valor padrão será uma string.

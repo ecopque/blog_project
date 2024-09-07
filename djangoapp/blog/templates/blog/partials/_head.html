@@ -9,6 +9,10 @@
 <!-- # POINT⬇: /blog_project/djangoapp/blog/static/blog/css/style.css -->
 <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
 
-<link rel="shorcut icon" href="{{ site_setup.faveicon.url }}" type="image/png">
+<!-- # POINT⬇: 'site_setup' = INSTALLED_APPS (/blog_project/project/settings.py) -->
+<!-- # POINT2⬇: app 'site_setup' = name (/blog_project/djangoapp/site_setup/apps.py) -->
+<!-- # POINT3⬇: Find 'class SiteSetup()' in (/blog_project/djangoapp/site_setup/models.py) -->
+<!-- # POINT4⬇: 'favicon' = variable ( /blog_project/djangoapp/site_setup/models.py) -->
+<link rel="shortcut icon" href="{{ site_setup.favicon.url }}" type="image/png">
 
 <title>_HEAD.html</title>
