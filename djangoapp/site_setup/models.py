@@ -31,5 +31,8 @@ class SiteSetup(models.Model):
     show_pagination = models.BooleanField(default=True)
     show_footer = models.BooleanField(default=True)
 
+    # COMMENT: Website favicon image
+    favicon = models.ImageField(upload_to='assets/favicon/%Y/%m/', blank=True, default='') #2: ##
+
     def __str__(self):
         return self.title
