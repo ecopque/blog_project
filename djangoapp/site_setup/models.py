@@ -15,7 +15,7 @@ class MenuLink(models.Model):
     url_or_path = models.CharField(max_length=2048)
     new_tab = models.BooleanField(default=False)
 
-    # COMMENT⬇: Before: class SiteSetup(models.Model).
+    # COMMENT1⬇: Before: class SiteSetup(models.Model).
     # COMMENT2⬇: 'Sitesetup' can have multiple 'MenuLinks'. Otherwise it cannot.
     # COMMENT3⬇: class SiteSetup(models.Model).
     # POINT⬇: http://127.0.0.1:8000/admin/site_setup/sitesetup/add/
