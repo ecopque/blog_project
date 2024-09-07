@@ -55,4 +55,5 @@ class SiteSetup(models.Model):
         return self.title
     
     
+    
 #1: Estamos definindo onde as imagens serão armazenadas e de que forma (na pasta teremos o ano e mês). Ela ainda poderá enviar sem a imagem e se for assim o valor padrão será uma string.
