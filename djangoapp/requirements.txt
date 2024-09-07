@@ -1,4 +1,9 @@
+# FILE: /blog_project/djangoapp/requirements.txt
+
 asgiref==3.8.1
 Django==5.1
+
+# COMMENT: Inclusive, exclusive.
 psycopg2-binary>=2.9.6,<2.10
 sqlparse==0.5.1
+Pillow>=9.5.0,<9.6
