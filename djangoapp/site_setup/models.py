@@ -6,19 +6,16 @@ from django.db import models
 # URL⬇: http://127.0.0.1:8000/admin/site_setup/menulink/
 class MenuLink(models.Model): #12: #13:
     class Meta: #2:
-        # URL⬇: http://127.0.0.1:8000/admin/site_setup/menulink/
-        verbose_name = 'Menu Links'
+        # URL⬇: http://127.0.0.1:8000/admin/
+        verbose_name = 'Menu Link'
         verbose_name_plural = 'Menu Links'
-
     # URL⬇: http://127.0.0.1:8000/admin/site_setup/menulink/add/
     # IMPORT⬇: values/var from /blog_project/djangoapp/site_setup/admin.py
     text = models.CharField(max_length=50)
     url_or_path = models.CharField(max_length=2048)
     new_tab = models.BooleanField(default=False) #6:
-
     # URL3⬇: http://127.0.0.1:8000/admin/site_setup/sitesetup/add/
     site_setup = models.ForeignKey('SiteSetup', on_delete=models.CASCADE, blank=True, null=True, default=None,) #3: #4: #14:
-
     def __str__(self): #7:
         return self.text
 
@@ -55,15 +52,15 @@ class SiteSetup(models.Model): #15: #16:
 #3: 'Sitesetup' can have multiple 'MenuLinks'. Otherwise it cannot.
 #4: Is you delete the link from 'site_setup', it will delete all links.
 #5: Set metadata options.
-#6: Django default box.
+#6: Caixa de seleção do Django.
 #7: String representation.
 #8: Website title.
 #9: Description field.
 #10: Visible fields and if selected marked on Django Admin.
 #11: Website favicon image.
-#12: Define a classe MenuLink, que herda de models.Model, tornando-a um modelo Django. Este modelo representa um link de menu na aplicação.
+#12: Define a classe 'MenuLink', que herda de 'models.Model', tornando-a um modelo Django. Este modelo representa um link de menu na aplicação.
 #13: Cria o esquema de banco de dados para armazenar informações de links de menu.
-#14: Permite que vários MenuLinks sejam associados a um único SiteSetup. on_delete=models.CASCADE garante que quando um SiteSetup for excluído, todos os MenuLinks relacionados também sejam excluídos.
+#14: Permite que vários 'MenuLinks' sejam associados a um único 'SiteSetup'. 'on_delete=models.CASCADE' garante que quando um 'SiteSetup' for excluído, todos os 'MenuLinks' relacionados também sejam excluídos.
 #15: Define a classe SiteSetup, que herda de models.Model, tornando-a um modelo Django. Este modelo representa a configuração do site na aplicação.
 #16: Cria o esquema de banco de dados para armazenar informações de configuração do site.
 #17: Permite o upload de um favicon, definindo onde as imagens serão armazenadas (upload_to) e permitindo que o campo seja opcional (blank=True) com um valor padrão de uma string vazia (default='').
