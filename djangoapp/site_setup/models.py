@@ -4,7 +4,7 @@ from django.db import models
 
 # EXPORT⬇: /blog_project/djangoapp/site_setup/admin.py
 # URL⬇: http://127.0.0.1:8000/admin/site_setup/menulink/
-class MenuLink(models.Model): ##
+class MenuLink(models.Model): #12: #13:
     class Meta: #2:
         # URL⬇: http://127.0.0.1:8000/admin/site_setup/menulink/
         verbose_name = 'Menu Links'
@@ -17,14 +17,14 @@ class MenuLink(models.Model): ##
     new_tab = models.BooleanField(default=False) #6:
 
     # URL3⬇: http://127.0.0.1:8000/admin/site_setup/sitesetup/add/
-    site_setup = models.ForeignKey('SiteSetup', on_delete=models.CASCADE, blank=True, null=True, default=None,) #3: #4: ##
+    site_setup = models.ForeignKey('SiteSetup', on_delete=models.CASCADE, blank=True, null=True, default=None,) #3: #4: #14:
 
     def __str__(self): #7:
         return self.text
 
 # URL⬇: http://127.0.0.1:8000/admin/site_setup/sitesetup/
 # EXPORT⬇: /blog_project/djangoapp/site_setup/admin.py
-class SiteSetup(models.Model): ##
+class SiteSetup(models.Model): #15: #16:
     class Meta: #5:
         # URL⬇: http://127.0.0.1:8000/admin/site_setup/sitesetup/
         verbose_name = 'Setup'
@@ -42,7 +42,7 @@ class SiteSetup(models.Model): ##
 
     # URL⬇: http://127.0.0.1:8000/admin/site_setup/sitesetup/add/
     # EXPORT⬇: /blog_project/data/web/media/assets/favicon/"year"/"month"
-    favicon = models.ImageField(upload_to='assets/favicon/%Y/%m/', blank=True, default='') #1: #11: ##
+    favicon = models.ImageField(upload_to='assets/favicon/%Y/%m/', blank=True, default='') #1: #11: #17:
 
     def __str__(self):
         return self.title
@@ -62,3 +62,9 @@ class SiteSetup(models.Model): ##
 #9: Description field.
 #10: Visible fields and if selected marked on Django Admin.
 #11: Website favicon image.
+#12: Define a classe MenuLink, que herda de models.Model, tornando-a um modelo Django. Este modelo representa um link de menu na aplicação.
+#13: Cria o esquema de banco de dados para armazenar informações de links de menu.
+#14: Permite que vários MenuLinks sejam associados a um único SiteSetup. on_delete=models.CASCADE garante que quando um SiteSetup for excluído, todos os MenuLinks relacionados também sejam excluídos.
+#15: Define a classe SiteSetup, que herda de models.Model, tornando-a um modelo Django. Este modelo representa a configuração do site na aplicação.
+#16: Cria o esquema de banco de dados para armazenar informações de configuração do site.
+#17: Permite o upload de um favicon, definindo onde as imagens serão armazenadas (upload_to) e permitindo que o campo seja opcional (blank=True) com um valor padrão de uma string vazia (default='').
