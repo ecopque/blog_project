@@ -44,8 +44,8 @@ class SiteSetupAdmin(admin.ModelAdmin):
 #6: Nomes apresentados como se fossem colunas. Define quais campos de 'SiteSetup' serão exibidos como colunas na lista de administração no Django Admin.
 #7: Se 'return True', poderemos adicionar mais de um usuário em 'Setup'.
 #8: Se este 'return' estiver ativado, vamos poder adicionar apenas um usuário.
-#9: Esta classe é usada para personalizar como o modelo MenuLink será exibido e gerenciado na interface de administração do Django.
-#10: É registrada com o decorador @admin.register(MenuLink) para que o Django Admin reconheça e utilize essa configuração ao lidar com o modelo MenuLink.
+#9: Esta classe é usada para personalizar como o modelo 'MenuLink' será exibido e gerenciado na interface de administração do Django.
+#10: É registrada com o decorador '@admin.register(MenuLink)' para que o Django Admin reconheça e utilize essa configuração ao lidar com o modelo 'MenuLink'.
 #11: Esta classe permite que objetos MenuLink sejam exibidos e editados diretamente na página de administração de outro modelo, SiteSetup, ao qual estão relacionados. Fornece uma interface inline para adicionar ou editar MenuLinks diretamente na página de administração de SiteSetup.
 #12: Esta linha define que o modelo MenuLink será usado na classe MenuLinkInline como um modelo embutido (inline). Permite que o Django Admin saiba qual modelo está sendo usado para criar a interface inline. Garante que esses campos sejam visíveis e ordenáveis na interface de administração.
 #13: Adiciona o 'MenuLinkInline' à página de administração de 'SiteSetup', permitindo que 'MenuLinks' relacionados sejam adicionados ou editados diretamente ali. Facilita a administração de objetos 'MenuLink' associados a 'SiteSetup'.
