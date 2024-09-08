@@ -28,7 +28,7 @@ class SiteSetupAdmin(admin.ModelAdmin):
     def has_add_permission(self, request): #14: #15:
         # return not SiteSetup.objects.exists() #15:
         return True #15:
-    
+
 
 # IMPORT, EXPORT and URL.
 
