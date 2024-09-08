@@ -48,7 +48,6 @@ class SiteSetup(models.Model): #15: #16:
         return self.title
     
     
-
 # IMPORT, EXPORT and URL.
 
 #1: Estamos definindo onde as imagens serão armazenadas e de que forma (na pasta teremos o ano e mês). Ela ainda poderá enviar sem a imagem e se for assim o valor padrão será uma string.
