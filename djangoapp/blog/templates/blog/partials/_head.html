@@ -9,9 +9,8 @@
 <!-- # POINT⬇: /blog_project/djangoapp/blog/static/blog/css/style.css -->
 <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
 
-<!-- # POINT4⬇:  -->
 {% if site_setup.fiveicon %} <!-- #1: #2: #3: #4: -->
-    <link rel="shortcut icon" href="{{ site_setup.favicon.url }}" type="image/png">
+    <link rel="shortcut icon" href="{{ site_setup.favicon.url }}" type="image/png"> <!-- #5: -->
 {% endif %}
 
 <title>_HEAD.html</title>
@@ -19,4 +18,5 @@
 <!-- #1: 'site_setup' está em INSTALLED_APPS (/blog_project/project/settings.py). -->
 <!-- #2: app 'site_setup' = name (/blog_project/djangoapp/site_setup/apps.py). -->
 <!-- #3: 'class SiteSetup()' está em (/blog_project/djangoapp/site_setup/models.py). -->
- <!-- #4: 'favicon' como variable está em (/blog_project/djangoapp/site_setup/models.py). -->
+<!-- #4: 'favicon' como variable está em (/blog_project/djangoapp/site_setup/models.py). -->
+<!-- #5: ATENÇÃO: Até então, não consegui inserir o favicon. -->
