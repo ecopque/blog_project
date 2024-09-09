@@ -45,30 +45,38 @@ class SiteSetup(models.Model): #15:
 
     def save(self, *args, **kwargs): ## A:
         current_favicon_name = str(self.favicon.name) ##
-        print('current_favicon_name', current_favicon_name)
+        print('current_favicon_name', current_favicon_name) ##B:
         super().save(*args, **kwargs) ## A:
+        favicon_changed = False ##
 
+        if self.favicon: ##C:
+            favicon_changed = current_favicon_name != self.favicon.name ##
+        print('favicon_changed', favicon_changed) ##
 
     def __str__(self):
         return self.title
 
+#1: Estamos usando como 'validators=' a nossa função criada em 'model_validators.py';
+#5: 
+#11:
+#13:
+#16: 
+
+#A: Porque estamos sobrescrevendo o método save(), se ele já faz isto? Porque podemos executar algo antes e depois de salvar.
+#B: No terminal, vai aparecer o nome do arquivo que subiu. Se o arquivo for excluído, o print será vazio, sem o nome do arquivo.
+#C: Se favicon for alterado (ou diferente ou True), retorne o print com True ou False.
+
+# ------------------------------------------------------------------
 
 #2: Os atributos 'verbose_name' e 'verbose_name_plural' definem como o modelo deve ser exibido na interface de administração do Django, no singular e no plural, respectivamente.
 #3: 'Sitesetup' can have multiple 'MenuLinks'. Otherwise it cannot.
 #4: Is you delete the link from 'site_setup', it will delete all links.
-#5: ???
 #6: Caixa de seleção do Django.
 #7: String representation.
 #8: Website title.
 #9: Description field.
 #10: Visible fields and if selected marked on Django Admin.
-#11: ???
 #12: Define a classe 'MenuLink', que herda de 'models.Model', tornando-a um modelo Django. Este modelo representa um link de menu na aplicação.
-#13: ???
 #14: Permite que vários 'MenuLinks' sejam associados a um único 'SiteSetup'. 'on_delete=models.CASCADE' garante que quando um 'SiteSetup' for excluído, todos os 'MenuLinks' relacionados também sejam excluídos.
 #15: Define a classe 'SiteSetup', que herda de 'models.Model', tornando-a um modelo Django. Este modelo representa a configuração do site na aplicação.
-#16: ???
 #17: Permite o upload de um favicon, definindo onde as imagens serão armazenadas (upload_to) e permitindo que o campo seja opcional (blank=True) com um valor padrão de uma string vazia (default='').
-
-#1: Estamos usando como 'validators=' a nossa função criada em 'model_validators.py';
-#A: Porque estamos sobrescrevendo o método save(), se ele já faz isto? Porque podemos executar algo antes e depois de salvar.

@@ -22,4 +22,6 @@ def resize_image(image_django, new_width=800, optimize=True, quality=60): ##
     return new_image ##
 
 
+# ------------------------------------------------------------------
+
 #A: Se a imagem for menor que 'new_digth', então podemos cancelar o redimensionamento. Por isso, close().

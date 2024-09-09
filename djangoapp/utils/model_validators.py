@@ -8,4 +8,6 @@ def validate_png(image): ##
         raise ValidationError('Image must be PNG.') ##
  
 
+# ------------------------------------------------------------------
+
 #1: Criei um validador. Se não for '.png', vai imprimir a mensagem.
