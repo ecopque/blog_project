@@ -1,13 +1,13 @@
 <!-- # FILE: /blog_project/djangoapp/templates/blog/partials/_head.html -->
 
-{% load static %} <!-- ## -->
+{% load static %} <!-- #7: -->
 
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- # POINT⬇: /blog_project/djangoapp/blog/static/blog/css/style.css -->
-<link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'blog/css/style.css' %}"> <!-- #8: -->
 
 {% if site_setup.favicon %} <!-- #1: #2: #3: #4: -->
     <link rel="shortcut icon" href="{{site_setup.favicon.url}}" type="image/png"> <!-- #5: -->
@@ -20,3 +20,5 @@
 <!-- #3: 'class SiteSetup()' está em (/blog_project/djangoapp/site_setup/models.py). -->
 <!-- #4: 'favicon' como variable está em (/blog_project/djangoapp/site_setup/models.py). -->
 <!-- #5: ATENÇÃO: Até então, não consegui inserir o favicon. -->
+<!-- #7: A tag {% load static %} é usada para carregar a tag static do Django, que permite gerar URLs para arquivos estáticos (como CSS, JavaScript e imagens). Carregar o módulo static é obrigatório antes de usá-lo, pois o Django não carrega automaticamente todos os módulos. -->
+<!-- #8: Módulo Relacionado: A URL gerada faz referência ao módulo de arquivos estáticos de Django, configurado em settings.py com STATIC_URL e STATICFILES_DIRS ou STATIC_ROOT. -->
