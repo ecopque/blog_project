@@ -3,29 +3,33 @@
 
 /* CSS Remedy (link): https://github.com/jensimmons/cssremedy/blob/master/css/remedy.css #1: */
 
-:root { /* ##2: */
+:root { /* #2: */
     --clr-white: 213 100% 98%;
     --clr-black: 213 100% 5%;
     --clr-primary: 213 100% 50%;
     --clr-primary-base: 213 100% 50%;
-    --clr-primary-ltd: 213 100% 50% / 0.8; /* ##3: */
+    --clr-primary-ltd: 213 100% 50% / 0.8; /* #3: */
 }
 
 html {
-    font-size: 62.5%; /* ##7: */
+    font-size: 62.5%; /* #7: */
 }
 
 body {
-    background-color: hsl(var(--clr-white)); /*  ##4: #6: */
-    color: hsl(var(--clr-black)); /* ##5: */
-    font-size: 1.6rem; /* ##8: */
-    font-family:  system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* ##9: */
+    background-color: hsl(var(--clr-white)); /*  #4: #6: */
+    color: hsl(var(--clr-black)); /* #5: */
+    font-size: 1.6rem; /* #8: */
+    font-family:  system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* #9: */
 }
 
 
 /* # ------------------------------------------------------------------
 #1: É uma estratégia utilizada para resolver alguns problemas de inconsistência no estilo padrão dos navegadores, corrigindo comportamentos inesperados e aplicando estilos padrão mais previsíveis. É uma alternativa ao CSS Reset, que geralmente remove todos os estilos para padronizar a aparência entre navegadores. O CSS Remedy procura consertar os estilos padrões do navegador ao invés de apenas removê-los, mantendo certos padrões que fazem sentido e ajustando os que são problemáticos.
-#2: Aqui temos a variável 'root' que definiu a cor branca desta forma?
-
-
+#2: O seletor :root representa o elemento raiz de um documento, que no caso é o elemento <html>. Ele é usado aqui para definir variáveis CSS que podem ser usadas em todo o documento. As v
+#3: A variável --clr-primary-ltd está sendo definida como 213 100% 50% / 0.8, que é uma cor em HSL com um valor de opacidade de 0.8. A barra (/) no final especifica o canal alpha (opacidade), o que significa que essa cor será semi-transparente quando usada.
+#4: Define a cor de fundo do body utilizando a variável --clr-white que foi definida anteriormente. Isso facilita a alteração global da cor de fundo.
+#5: Define a cor do texto do body usando a variável --clr-black, proporcionando consistência e facilidade de manutenção.
 #6: Também poderia fazer direto no 'body'-> background-color: hsl(var(--clr-primary-base) / 0.5);.
+#7: O tamanho da fonte do elemento <html> é definido como 62.5%. Isso é uma técnica comum para facilitar o cálculo de tamanhos de fonte em rem. Como o tamanho padrão da fonte é 16px, definir 62.5% torna a base 10px (16 * 0.625 = 10). Assim, 1.6rem será igual a 16px, o que facilita o cálculo de proporções.
+#8: Define o tamanho da fonte do body como 1.6rem, que é equivalente a 16px com base na definição anterior de font-size do <html>. Isso mantém o tamanho do texto legível por padrão.
+#9: Define a família de fontes usando fontes de sistema (como system-ui e -apple-system), o que garante um bom desempenho e uma aparência consistente em diferentes sistemas operacionais e dispositivos.
