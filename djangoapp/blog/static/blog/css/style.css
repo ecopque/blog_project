@@ -2,7 +2,16 @@
 
 /* CSS Remedy (link): https://github.com/jensimmons/cssremedy/blob/master/css/remedy.css #1: */
 
+:root {
+    --clr-white: 213, 100%, 100%;
+    --clr-black: 213, 100%, 5%;
+    --clr-primary: 213, 100%, 50%;
+} /* ##2: */
 
+body {
+    background-color: hsl(var(--clr-primary));
+    color: hsl(var(--clr-black));
+}
 
 
 
@@ -17,3 +26,4 @@
 
 /* # ------------------------------------------------------------------
 #1: É uma estratégia utilizada para resolver alguns problemas de inconsistência no estilo padrão dos navegadores, corrigindo comportamentos inesperados e aplicando estilos padrão mais previsíveis. É uma alternativa ao CSS Reset, que geralmente remove todos os estilos para padronizar a aparência entre navegadores. O CSS Remedy procura consertar os estilos padrões do navegador ao invés de apenas removê-los, mantendo certos padrões que fazem sentido e ajustando os que são problemáticos.
+#2: Aqui temos a variável 'root' que definiu a cor branca desta forma?
