@@ -1,6 +1,6 @@
 <!-- # FILE: /blog_project/djangoapp/templates/blog/partials/_head.html -->
 
-{% load static %} <!-- # -->
+{% load static %} <!-- ## -->
 
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,8 +9,8 @@
 <!-- # POINT⬇: /blog_project/djangoapp/blog/static/blog/css/style.css -->
 <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
 
-{% if site_setup.fiveicon %} <!-- #1: #2: #3: #4: -->
-    <link rel="shortcut icon" href="{{ site_setup.favicon.url }}" type="image/png"> <!-- #5: -->
+{% if site_setup.favicon %} <!-- #1: #2: #3: #4: -->
+    <link rel="shortcut icon" href="{{site_setup.favicon.url}}" type="image/png"> <!-- #5: -->
 {% endif %}
 
 <title>_HEAD.html</title>
