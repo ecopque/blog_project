@@ -43,6 +43,12 @@ class SiteSetup(models.Model): #15:
     # IMPORT⬇: /blog_project/djangoapp/utils/model_validators.py
     favicon = models.ImageField(upload_to='assets/favicon/%Y/%m/', blank=True, default='', validators=[validate_png],) #17: ##1:
 
+    def save(self, *args, **kwargs): ## A:
+        current_favicon_name = str(self.favicon.name) ##
+        print('current_favicon_name', current_favicon_name)
+        super().save(*args, **kwargs) ## A:
+
+
     def __str__(self):
         return self.title
 
@@ -65,3 +71,4 @@ class SiteSetup(models.Model): #15:
 #17: Permite o upload de um favicon, definindo onde as imagens serão armazenadas (upload_to) e permitindo que o campo seja opcional (blank=True) com um valor padrão de uma string vazia (default='').
 
 #1: Estamos usando como 'validators=' a nossa função criada em 'model_validators.py';
+#A: Porque estamos sobrescrevendo o método save(), se ele já faz isto? Porque podemos executar algo antes e depois de salvar.
