@@ -19,7 +19,7 @@ def resize_image(image_django, new_width=800, optimize=True, quality=60): #3:
     new_image = image_pillow.resize((new_width, new_height), Image.LANCZOS) #12:
     new_image.save(image_path, optimize=optimize, quality=quality,) #13:
 
-    return new_image ##
+    return new_image
 
 
 # ------------------------------------------------------------------
