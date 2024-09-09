@@ -39,7 +39,7 @@ class SiteSetup(models.Model): #15:
 
     # URL⬇: http://127.0.0.1:8000/admin/site_setup/sitesetup/add/
     # EXPORT⬇: /blog_project/data/web/media/assets/favicon/"year"/"month"
-    favicon = models.ImageField(upload_to='assets/favicon/%Y/%m/', blank=True, default='') #17:
+    favicon = models.ImageField(upload_to='assets/favicon/%Y/%m/', blank=True, default='',) #17:
 
     def __str__(self):
         return self.title
