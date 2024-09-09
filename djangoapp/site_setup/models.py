@@ -1,6 +1,7 @@
 # FILE: /blog_project/djangoapp/site_setup/models.py
 
 from django.db import models
+from utils.model_validators import validate_png
 
 # EXPORT⬇: /blog_project/djangoapp/site_setup/admin.py
 # URL⬇: http://127.0.0.1:8000/admin/site_setup/menulink/
@@ -39,12 +40,11 @@ class SiteSetup(models.Model): #15:
 
     # URL⬇: http://127.0.0.1:8000/admin/site_setup/sitesetup/add/
     # EXPORT⬇: /blog_project/data/web/media/assets/favicon/"year"/"month"
-    favicon = models.ImageField(upload_to='assets/favicon/%Y/%m/', blank=True, default='',) #17:
+    favicon = models.ImageField(upload_to='assets/favicon/%Y/%m/', blank=True, default='', validators=[validate_png],) #17: ##1:
 
     def __str__(self):
         return self.title
-    
-#1: ???
+
 #2: Os atributos 'verbose_name' e 'verbose_name_plural' definem como o modelo deve ser exibido na interface de administração do Django, no singular e no plural, respectivamente.
 #3: 'Sitesetup' can have multiple 'MenuLinks'. Otherwise it cannot.
 #4: Is you delete the link from 'site_setup', it will delete all links.
@@ -61,3 +61,5 @@ class SiteSetup(models.Model): #15:
 #15: Define a classe 'SiteSetup', que herda de 'models.Model', tornando-a um modelo Django. Este modelo representa a configuração do site na aplicação.
 #16: ???
 #17: Permite o upload de um favicon, definindo onde as imagens serão armazenadas (upload_to) e permitindo que o campo seja opcional (blank=True) com um valor padrão de uma string vazia (default='').
+
+#1: ???
