@@ -1,5 +1,19 @@
 /* # FILE: /blog_project/djangoapp/blog/static/blog/css/style.css */
 
-body {
-    background-color: green;
-}
+/* CSS Remedy (link): https://chatgpt.com/c/66de338e-4f04-8007-ab15-1233b628582e #1: */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* # ------------------------------------------------------------------
+#1: É uma estratégia utilizada para resolver alguns problemas de inconsistência no estilo padrão dos navegadores, corrigindo comportamentos inesperados e aplicando estilos padrão mais previsíveis. É uma alternativa ao CSS Reset, que geralmente remove todos os estilos para padronizar a aparência entre navegadores. O CSS Remedy procura consertar os estilos padrões do navegador ao invés de apenas removê-los, mantendo certos padrões que fazem sentido e ajustando os que são problemáticos.
