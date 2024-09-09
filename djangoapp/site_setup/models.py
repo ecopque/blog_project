@@ -61,6 +61,7 @@ class SiteSetup(models.Model): #15:
     def __str__(self):
         return self.title
 
+# ------------------------------------------------------------------
 
 #1: Estamos usando como 'validators=' a nossa função criada em 'model_validators.py'. Usa o 'validador validate_png', importado do módulo /blog_project/djangoapp/utils/model_validators.py, para garantir que o arquivo de imagem seja um PNG.
 #5: Sobrescreve o método 'save' do modelo 'SiteSetup'. Customiza o comportamento de salvamento para adicionar uma lógica de verificação e manipulação da imagem de favicon. Permite executar código adicional antes e depois de salvar a instância no banco de dados.
