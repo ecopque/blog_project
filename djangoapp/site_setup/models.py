@@ -42,35 +42,40 @@ class SiteSetup(models.Model): #15:
     # URL⬇: http://127.0.0.1:8000/admin/site_setup/sitesetup/add/
     # EXPORT⬇: /blog_project/data/web/media/assets/favicon/"year"/"month"
     # IMPORT⬇: /blog_project/djangoapp/utils/model_validators.py
-    favicon = models.ImageField(upload_to='assets/favicon/%Y/%m/', blank=True, default='', validators=[validate_png],) #17: ##1:
+    favicon = models.ImageField(upload_to='assets/favicon/%Y/%m/', blank=True, default='', validators=[validate_png],) #17: #1:
 
-    def save(self, *args, **kwargs): ## A:
-        current_favicon_name = str(self.favicon.name) ##
-        print('current_favicon_name', current_favicon_name) ##B:
-        super().save(*args, **kwargs) ## A:
-        favicon_changed = False ##
+    def save(self, *args, **kwargs): #5: #11:
+        current_favicon_name = str(self.favicon.name) #13:
+        print('current_favicon_name', current_favicon_name) #16:
+        super().save(*args, **kwargs) #17:
+        favicon_changed = False #18:
 
-        if self.favicon: ##C:
-            favicon_changed = current_favicon_name != self.favicon.name ##
-        print('favicon_changed', favicon_changed) ##
+        if self.favicon: #19: #20:
+            favicon_changed = current_favicon_name != self.favicon.name #21: #22:
+        print('favicon_changed', favicon_changed)
 
         # IMPORT⬇: /blog_project/djangoapp/utils/images.py
-        if favicon_changed: ##
-            resize_image(self.favicon, 32) ##
+        if favicon_changed: #23:
+            resize_image(self.favicon, 32) #24:
 
     def __str__(self):
         return self.title
 
 
-#1: Estamos usando como 'validators=' a nossa função criada em 'model_validators.py';
-#5: 
-#11:
-#13:
-#16: 
+#1: Estamos usando como 'validators=' a nossa função criada em 'model_validators.py'. Usa o 'validador validate_png', importado do módulo /blog_project/djangoapp/utils/model_validators.py, para garantir que o arquivo de imagem seja um PNG.
+#5: Sobrescreve o método 'save' do modelo 'SiteSetup'. Customiza o comportamento de salvamento para adicionar uma lógica de verificação e manipulação da imagem de favicon. Permite executar código adicional antes e depois de salvar a instância no banco de dados.
+#11: Porque estamos sobrescrevendo o método 'save()', se ele já tem sua função? Porque podemos executar algo antes e depois de salvar.
+#13: Armazena o nome do arquivo favicon atual em uma variável 'current_favicon_name'.
+#16 No terminal, vai aparecer o nome do arquivo que subiu. Se o arquivo for excluído, o print será vazio, sem o nome do arquivo.
+#17: Precisamos que o nosos 'save()' agora atue como o 'save()' default.
+#18: Inicializa a variável 'favicon_changed' como False. Esta variável é usada para acompanhar se o favicon foi alterado após o salvamento.
+#19: Verifica se o campo favicon tem um valor (ou seja, se um favicon foi enviado). Se um favicon for fornecido, o código dentro do bloco if será executado.
+#20: Se favicon for alterado (ou diferente ou True), retorne o print com True ou False.
+#21: Verifica se o nome do favicon mudou após o salvamento. Atualiza a variável favicon_changed para True se o nome atual do favicon for diferente do nome armazenado antes do salvamento.
+#22: Perceba que 'current_favicon_name' vem antes do 'save()'. 
+#23: Verifica se o favicon foi alterado. Se 'favicon_changed' for True, o código dentro do bloco if será executado, iniciando o processo de redimensionamento da imagem.
+#24: Chama a função resize_image para redimensionar o favicon para uma largura de 32 pixels.
 
-#A: Porque estamos sobrescrevendo o método save(), se ele já faz isto? Porque podemos executar algo antes e depois de salvar.
-#B: No terminal, vai aparecer o nome do arquivo que subiu. Se o arquivo for excluído, o print será vazio, sem o nome do arquivo.
-#C: Se favicon for alterado (ou diferente ou True), retorne o print com True ou False.
 
 # ------------------------------------------------------------------
 
