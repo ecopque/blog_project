@@ -2,6 +2,7 @@
 
 from django.db import models
 from utils.model_validators import validate_png
+from utils.images import resize_image
 
 # EXPORT⬇: /blog_project/djangoapp/site_setup/admin.py
 # URL⬇: http://127.0.0.1:8000/admin/site_setup/menulink/
@@ -53,8 +54,13 @@ class SiteSetup(models.Model): #15:
             favicon_changed = current_favicon_name != self.favicon.name ##
         print('favicon_changed', favicon_changed) ##
 
+        # IMPORT⬇: /blog_project/djangoapp/utils/images.py
+        if favicon_changed: ##
+            resize_image(self.favicon, 32) ##
+
     def __str__(self):
         return self.title
+
 
 #1: Estamos usando como 'validators=' a nossa função criada em 'model_validators.py';
 #5: 
