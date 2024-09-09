@@ -23,6 +23,7 @@ def resize_image(image_django, new_width=800, optimize=True, quality=60): #3:
 
 
 # ------------------------------------------------------------------
+
 #1: 'settings' contém todas as configurações do projeto Django, como MEDIA_ROOT, que é usado para localizar onde os arquivos de mídia são armazenados no sistema de arquivos.
 #2: 'Pillow' é usada para abrir, manipular e salvar arquivos de imagem. Neste contexto, é usada para redimensionar imagens.
 #3: Esta função é usada para redimensionar imagens para uma nova largura (new_width), otimizá-las e ajustar sua qualidade. É útil para manter o tamanho do arquivo pequeno e a imagem com uma qualidade apropriada.
