@@ -1,0 +1,1 @@
+# FILE: /blog_project/djangoapp/utils/images.py
