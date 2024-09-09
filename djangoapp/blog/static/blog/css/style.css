@@ -1,6 +1,5 @@
 /* # FILE: /blog_project/djangoapp/blog/static/blog/css/style.css */
 
-
 /* CSS Remedy (link): https://github.com/jensimmons/cssremedy/blob/master/css/remedy.css #1: */
 
 :root { /* #2: */
@@ -24,6 +23,7 @@ body {
 
 
 /* # ------------------------------------------------------------------
+
 #1: É uma estratégia utilizada para resolver alguns problemas de inconsistência no estilo padrão dos navegadores, corrigindo comportamentos inesperados e aplicando estilos padrão mais previsíveis. É uma alternativa ao CSS Reset, que geralmente remove todos os estilos para padronizar a aparência entre navegadores. O CSS Remedy procura consertar os estilos padrões do navegador ao invés de apenas removê-los, mantendo certos padrões que fazem sentido e ajustando os que são problemáticos.
 #2: O seletor :root representa o elemento raiz de um documento, que no caso é o elemento <html>. Ele é usado aqui para definir variáveis CSS que podem ser usadas em todo o documento. As v
 #3: A variável --clr-primary-ltd está sendo definida como 213 100% 50% / 0.8, que é uma cor em HSL com um valor de opacidade de 0.8. A barra (/) no final especifica o canal alpha (opacidade), o que significa que essa cor será semi-transparente quando usada.
