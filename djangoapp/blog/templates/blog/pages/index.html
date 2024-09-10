@@ -3,6 +3,12 @@
 {# EXPORT⬇: /blog_project/djangoapp/templates/blog/partials/base.html #}
 {% extends 'blog/base.html' %} {# ## #}
 
-{% block content %} {# ## #}
-    <h1> Hello world - index.html </h1>
+{% block content %} {# ##1: #2: #}
+    <h1> File - index.html </h1>
 {% endblock content %}
+
+
+{# ------------------------------------------------------------------ #}
+
+{# ##1: Aparentemente, lançou este conteúdo para dentro de 'base.html' em ({% block content %}{% endblock content %}) #}
+{# #2: Sequência lógica é: 'urls.py' > 'views.py' > 'index.html' > 'base.html' e 'block content' = print <h1> ou 'File - index.html'. #}
