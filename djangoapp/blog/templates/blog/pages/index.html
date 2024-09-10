@@ -1,7 +1,7 @@
 {# FILE: /blog_project/djangoapp/templates/blog/pages/index.html #}
 
 {# EXPORT⬇: /blog_project/djangoapp/templates/blog/partials/base.html #}
-{% extends 'blog/base.html' %} {# ## #}
+{% extends 'blog/base.html' %} {#4: #5: #}
 
 {# URL⬇: http://127.0.0.1:8000/ #}
 {% block content %} {# #1: #2: #3: #}
@@ -20,6 +20,8 @@
     </main>
 {% endblock content %}
 
+{# #4: base.html: É o template base, a planta da casa. Ele define a estrutura geral, como o cabeçalho, rodapé e a disposição das seções. #}
+{#5: É o template que estende o 'base.html'. Ele herda toda a estrutura do 'base.html' e pode personalizar algumas seções, como o conteúdo principal. Herança: O index.html herda todos os elementos e blocos definidos em base.html. #}
 
 {# ------------------------------------------------------------------ #}
 
