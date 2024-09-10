@@ -1,18 +1,20 @@
 {# FILE: # /blog_project/djangoapp/templates/blog/partials/_pagination.html #}
 
-{% if page_obj and page_obj.has_other_pages %} {# ## #}
+{#IMPORT⬇: /blog_project/djangoapp/blog/views.py #}
+{% if page_obj and page_obj.has_other_pages %} {#1: #}
 
-<div class="separator"></div> {# ## #}
+{# IMPORT⬇: /blog_project/djangoapp/blog/static/blog/css/style.css #}
+<div class="separator"></div>
 
-<div class="pagination-wrapper section-wrapper"> {# ## #}
-  <div class="pagination-content section-content-wide"> {# ## #}
-    <div class="pagination-gap section-gap"> {# ## #}
+<div class="pagination-wrapper section-wrapper">
+  <div class="pagination-content section-content-wide">
+    <div class="pagination-gap section-gap">
 
       <nav class="pagination-links" aria-label="Pagination">
         <span class="step-links">
-            {% if page_obj.has_previous %} {# ## #}
-              <a title="Page 1" aria-label="Page 1" href="?page=1{{ search_url }}"> {# ## #}
-                  <i class="fa-solid fa-backward-fast"></i> {# ## #}
+            {% if page_obj.has_previous %}
+              <a title="Page 1" aria-label="Page 1" href="?page=1{{ search_url }}">
+                  <i class="fa-solid fa-backward-fast"></i>
               </a>
               <a title="Page {{ page_obj.previous_page_number }}" aria-label="Page {{ page_obj.previous_page_number }}" href="?page={{ page_obj.previous_page_number }}{{ search_url }}">
                 <i class="fa-solid fa-circle-chevron-left"></i>
@@ -47,3 +49,6 @@
 </div>
 
 {% endif %}
+
+
+{#1: Explicação: Esta linha é uma declaração condicional no template Django. Está verificando se a variável page_obj existe e se possui mais de uma página (has_other_pages é um método do objeto page_obj). Se for verdadeiro, o conteúdo dentro desse bloco será renderizado. Lógica: Esse trecho evita renderizar o HTML de paginação se não houver outras páginas para navegar. Ele depende de page_obj, que é fornecido pela view em Python que utiliza o módulo de paginação do Django (django.core.paginator). #}
