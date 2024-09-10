@@ -5,13 +5,14 @@
 
 {# URL⬇: http://127.0.0.1:8000/ #}
 {% block content %} {# #1: #2: #3: #}
-    <main class="main-content section-wrapper"> {# ## #}
-        <div class="section-content-wide"> {# ## #}
-        <div class="section-gap"> {# ## #}
+    {# IMPORT⬇: /blog_project/djangoapp/blog/static/blog/css/style.css #}
+    <main class="main-content section-wrapper"> {#6: #}
+        <div class="section-content-wide">
+        <div class="section-gap">
 
-            <div class="card-grid"> {# ## #}
-            {% for i in ""|ljust:"9" %} {# ## #}
-                {% include 'blog/partials/_post-card.html' with i=forloop.counter0 %} {# ## #}
+            <div class="card-grid">
+            {% for i in ""|ljust:"9" %} {#7: #8: #}
+                {% include 'blog/partials/_post-card.html' with i=forloop.counter0 %} {#9: #}
             {% endfor %}
             </div>
 
@@ -22,6 +23,10 @@
 
 {# #4: base.html: É o template base, a planta da casa. Ele define a estrutura geral, como o cabeçalho, rodapé e a disposição das seções. #}
 {#5: É o template que estende o 'base.html'. Ele herda toda a estrutura do 'base.html' e pode personalizar algumas seções, como o conteúdo principal. Herança: O index.html herda todos os elementos e blocos definidos em base.html. #}
+{#6: Define a estrutura principal do conteúdo da página. A classe 'main-content' provavelmente define estilos CSS específicos para a organização do conteúdo. #}
+{#7: Loop for que itera 9 vezes (pelo uso do filtro ljust:9), provavelmente para renderizar os 9 cards de posts em cada página. #}
+{#8: Agora sim, estamos definindo a quantidade de posts nas páginas. #}
+{#9: Inclui o template parcial '_post-card.html' para cada iteração do loop, passando o contador i como contexto para customização do conteúdo de cada card. #}
 
 {# ------------------------------------------------------------------ #}
 
