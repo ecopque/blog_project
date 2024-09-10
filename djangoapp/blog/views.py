@@ -1,9 +1,9 @@
 # FILE: /blog_project/djangoapp/blog/views.py
 
 from django.shortcuts import render
-from django.core.paginator import Paginator ##
+from django.core.paginator import Paginator #3:
 
-posts = list(range(1000)) ##
+posts = list(range(1000)) #4:
 
 # EXPORT⬇: /blog_project/djangoapp/blog/urls.py
 def index(request): #1:
@@ -31,7 +31,11 @@ def post(request):
     return render(request, 'blog/pages/post.html', {}) ##
 
 
-#Obs: Momento onde os códigos foram alterados totalmente sem acompanhamento.
+
+#3: A classe Paginator é usada para dividir um conjunto de dados em páginas menores e gerenciáveis. Neste código, Paginator é utilizado para paginar a lista de posts no blog.
+#4: Define uma lista chamada posts que contém 1000 números (de 0 a 999). Este é um exemplo de lista de objetos que será paginada usando a classe Paginator.
+
+
 
 # ------------------------------------------------------------------
 
