@@ -4,19 +4,26 @@
 <html lang="en">
 
 <head>
-  {% include 'blog/partials/_head.html' %} {# #1: #}
+  {% include 'blog/partials/_head.html' %} {#1: #}
 </head>
 
-<body class="dark-theme"> {# #2: #}
-  {% include 'blog/partials/_header.html' %}
-  {% block content %}{% endblock content %} {# #3: #}
+<body> 
+  <div class="blog-wrapper"> {#2: #3: #}
+    {% include 'blog/partials/_header.html' %}
 
-  {% include 'blog/partials/_pagination.html' %}
-  {% include 'blog/partials/_footer.html' %}
-  {% include 'blog/partials/_temp.html' %}
+    {% block content %}{% endblock content %} {#3: #}
+
+    {% include 'blog/partials/_pagination.html' %}
+    {% include 'blog/partials/_footer.html' %}
+  </div>
 </body>
 
 </html>
+
+
+{# ------------------------------------------------------------------ #}
+
+{#3: Alteramos de "dark-theme" para "blog-wrapper". #}
 
 {# ------------------------------------------------------------------ #}
 
