@@ -1,7 +1,7 @@
 # /blog_project/djangoapp/blog/urls.py
 
 from django.urls import path
-from blog.views import index, page, post # /blog_project/djangoapp/blog/views.py
+from blog.views import index, page, post
 
 app_name = 'blog' ##
 # IMPORT⬇: /blog_project/djangoapp/blog/views.py
