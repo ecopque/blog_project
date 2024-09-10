@@ -5,7 +5,19 @@
 
 {# URL⬇: http://127.0.0.1:8000/ #}
 {% block content %} {# #1: #2: #3: #}
-    <h1> File - index.html </h1>
+    <main class="main-content section-wrapper"> {# ## #}
+        <div class="section-content-wide"> {# ## #}
+        <div class="section-gap"> {# ## #}
+
+            <div class="card-grid"> {# ## #}
+            {% for i in ""|ljust:"9" %} {# ## #}
+                {% include 'blog/partials/_post-card.html' with i=forloop.counter0 %} {# ## #}
+            {% endfor %}
+            </div>
+
+        </div>
+        </div>
+    </main>
 {% endblock content %}
 
 
