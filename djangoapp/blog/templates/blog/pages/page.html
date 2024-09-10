@@ -5,9 +5,10 @@
 
 {# URL⬇: http://127.0.0.1:8000/page/ #}
 {% block content %}
-    <main class="main-content section-wrapper"> {# ## #}
-        <div class="section-content-narrow"> {# ## #}
-        <div class="section-gap"> {# ## #}
+    {# IMPORT⬇: /blog_project/djangoapp/blog/static/blog/css/style.css #}
+    <main class="main-content section-wrapper"> {#1: #}
+        <div class="section-content-narrow"> {#2: #}
+        <div class="section-gap">
             <h1 class="center">A page 😍</h1> {# ## #}
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium eaque placeat, optio architecto dignissimos est iure ipsum, iste doloribus dolorum nostrum veniam aspernatur adipisci eos et ab facilis, fugit labore!</p>
         </div>
@@ -16,4 +17,6 @@
 {% endblock content %}
 
 
-{# ------------------------------------------------------------------ #}
+
+{#1: Define a estrutura principal de conteúdo da página "page.html", utilizando a classe main-content para estilização.#}
+{#2: Um div usado para definir uma largura de conteúdo mais estreita em comparação ao section-content-wide. #}
