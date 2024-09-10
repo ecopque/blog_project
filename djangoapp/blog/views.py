@@ -42,7 +42,6 @@ def post(request):
 #10: O terceiro argumento é um dicionário que representa o contexto a ser passado para o template. page_obj é um objeto retornado pelo método 'paginator.get_page(page_number)'.
 #11: Renderiza o template page.html (importado de /blog_project/djangoapp/templates/blog/pages/page.html) passando um contexto vazio {}.
 
-
 # ------------------------------------------------------------------
 
 #1: Esta linha define uma função chamada index que recebe um parâmetro request. No Django, uma view (como essa) é uma função que recebe um pedido HTTP (request) e retorna uma resposta HTTP. Aqui, a função index será usada para processar o pedido quando o usuário acessa a URL associada a esta view.
