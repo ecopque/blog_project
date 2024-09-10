@@ -14,3 +14,6 @@ def page(request):
 def post(request):
     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/post.html
     return render(request, 'blog/pages/post.html')
+
+
+# ------------------------------------------------------------------

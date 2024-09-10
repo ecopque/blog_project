@@ -10,3 +10,6 @@ urlpatterns = [
     path('page/', page, name='page'),
     path('post/', post, name='post'),    
 ]
+
+
+# ------------------------------------------------------------------
