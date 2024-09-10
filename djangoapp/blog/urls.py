@@ -1,4 +1,4 @@
-# /blog_project/djangoapp/blog/urls.py
+# FILE: /blog_project/djangoapp/blog/urls.py
 
 from django.urls import path
 from blog.views import index, page, post
