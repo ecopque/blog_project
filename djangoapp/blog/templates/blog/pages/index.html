@@ -3,12 +3,14 @@
 {# EXPORT⬇: /blog_project/djangoapp/templates/blog/partials/base.html #}
 {% extends 'blog/base.html' %} {# ## #}
 
-{% block content %} {# ##1: #2: #}
+{# URL⬇: http://127.0.0.1:8000/ #}
+{% block content %} {# #1: #2: #3: #}
     <h1> File - index.html </h1>
 {% endblock content %}
 
 
 {# ------------------------------------------------------------------ #}
 
-{# ##1: Aparentemente, lançou este conteúdo para dentro de 'base.html' em ({% block content %}{% endblock content %}) #}
+{# ##1: Aparentemente, lançou este conteúdo para dentro de 'base.html' em ({% block content %}{% endblock content %}), pois estamos acessando o index.html. #}
 {# #2: Sequência lógica é: 'urls.py' > 'views.py' > 'index.html' > 'base.html' e 'block content' = print <h1> ou 'File - index.html'. #}
+{# #3: Se eu estivesse acessando de outra página (tipo post.html), o conteúdo apresentado seria do post.html, pois o acesso seria feito pela url de post. #}
