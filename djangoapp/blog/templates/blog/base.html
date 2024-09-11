@@ -9,13 +9,13 @@
 
 <body> 
   <div class="blog-wrapper"> {#2: #4: #}
-    {% if site_setup.show_header %} {# ## #}
+    {% if site_setup.show_header %} {#5: #}
       {% include 'blog/partials/_header.html' %}
     {% endif %}
 
     {% block content %}{% endblock content %} {#3: #}
 
-    {% if site_setup.show_pagination %} {# ## #}
+    {% if site_setup.show_pagination %} {#6: #}
       {% include 'blog/partials/_pagination.html' %},
     {% endif %}
 
@@ -28,9 +28,11 @@
 </html>
 
 
+{#5: Este bloco condicional verifica se o cabeçalho deve ser exibido. Se show_header estiver habilitado, o cabeçalho (_header.html) será incluído. #}
+{#6: Verifica se a paginação deve ser exibida. Se show_pagination estiver habilitado, o template _pagination.html será incluído. #}
 
 {# ------------------------------------------------------------------ #}
-{#3: Alteramos de "dark-theme" para "blog-wrapper". #}
+{#4: Alteramos de "dark-theme" para "blog-wrapper". #}
 {# ------------------------------------------------------------------ #}
 {#1: O template base.html inclui o conteúdo do arquivo de template parcial _head.html localizado no diretório blog/partials/. #}
 {#2: A classe dark-theme é usada para aplicar um tema escuro ao conteúdo da página. Essa classe provavelmente está definida em um arquivo CSS e altera as cores de fundo, texto, links e outros elementos para um esquema de cores mais escuras. #}
