@@ -8,18 +8,18 @@
         <h1 class="blog-title center pb-base">
           {# IMPORT⬇: /blog_project/djangoapp/site_setup/context_processors.py #}
           {# IMPORT⬇: /blog_project/djangoapp/site_setup/models.py #}
-          <a class="blog-link" href="/">{{site_setup.title}}</a> {# ## #}
+          <a class="blog-link" href="/">{{site_setup.title}}</a> {#3: #}
         </h1>
-        
-        {% if site_setup.show_description %} {# ## #}
+
+        {# IMPORT⬇: /blog_project/djangoapp/site_setup/context_processors.py #}
+        {# IMPORT⬇: /blog_project/djangoapp/site_setup/models.py #}
+        {% if site_setup.show_description %} {#4: #}
           <p class="blog-description pb-base center">
-            {# IMPORT⬇: /blog_project/djangoapp/site_setup/context_processors.py #}
-            {# IMPORT⬇: /blog_project/djangoapp/site_setup/models.py #}
-            {{site_setup.description}} {# ## #}
+            {{site_setup.description}} {#5: #}
           </p>
         {% endif %}
         
-        {% if site_setup.show_search %} {# ## #}
+        {% if site_setup.show_search %}
           <div class="search pb-base center">
             <form class="search-form" action="#" method="get">
               <div class="search-content">
@@ -40,20 +40,18 @@
           </div>
         {% endif %}
         
-        {% if site_setup.show_menu %} {# ## #}
+        {% if site_setup.show_menu %}
         <nav class="menu">
           <ul class="menu-items">
-            {# IMPORT⬇: /blog_project/djangoapp/site_setup/context_processors.py #}
-            {# IMPORT⬇: /blog_project/djangoapp/site_setup/models.py #}
-            {# {{site_setup.menulink_set.all}} #} {#2: ## #}
-            {% for link in site_setup.menulink_set.all %} {# ## #}
+            {# {{site_setup.menulink_set.all}} #} {#2: #6: #}
+            {% for link in site_setup.menulink_set.all %} {#7: #}
               <li class="menu-item">
-                {% if link.new_tab %} {# ## #}
-                  <a target="_blank" class="menu-link" href="{{link.url_or_path}}">{{link.text}} {# ## #}
+                {% if link.new_tab %} {#8: #}
+                  <a target="_blank" class="menu-link" href="{{link.url_or_path}}">{{link.text}} {#9: #}
                   </a>
 
                 {% else %}
-                  <a class="menu-link" href="{{link.url_or_path}}">{{link.text}} {# ## #}
+                  <a class="menu-link" href="{{link.url_or_path}}">{{link.text}}
                   </a>
                 
                 {% endif %}
@@ -72,6 +70,13 @@
 
 
 {#2: site_setup = 'setup = SiteSetup' e menulink = MenuLink(). #}
+{#3: Utiliza novamente o campo title do objeto site_setup para exibir o título do site dentro de um link HTML. #}
+{#4: Este bloco condicional do template verifica se a configuração 'show_description' do objeto 'site_setup' está habilitada (verdadeira). Se estiver habilitada, o conteúdo dentro do bloco if será renderizado, o que permite exibir a descrição do blog. #}
+{#5: Renderiza o campo description do objeto site_setup no HTML. Ele depende do condicional anterior para ser exibido. #}
+{#6: Este comentário está sugerindo a exibição de todos os objetos MenuLink relacionados ao site_setup. É apenas um comentário para lembrar o desenvolvedor de que isso é possível. #}
+{#7: Este loop for itera sobre todos os links relacionados ao objeto site_setup através do relacionamento menulink_set (provavelmente um related_name ou reverse relationship de uma ForeignKey ou ManyToManyField). O código dentro do loop renderiza cada link no menu. #}
+{#8: Bloco condicional que verifica se o link deve ser aberto em uma nova aba (link.new_tab). Se for verdadeiro, o atributo target="_blank" é adicionado ao link. #}
+{#9: Este é o link renderizado para abrir em uma nova aba, se new_tab for verdadeiro. O href é preenchido com a URL ou caminho de cada link, e o texto do link é exibido entre as tags <a>. #}
 
 
 {# ------------------------------------------------------------------ #}
