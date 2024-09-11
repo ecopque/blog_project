@@ -6,7 +6,6 @@ def context_processor_example(request):
     return {'example': 'EXAMPLE context_processors.py'} ##
 
 def site_setup(request):
-
     # IMPORT⬇: /blog_project/djangoapp/site_setup/models.py:
     setup = SiteSetup.objects.order_by('-id').first() #1: ##
     return {'site_setup': 'SITE_SETUP context_processors.py', 'title': 'Title', 'site_setup2': setup,} #2: #3:
