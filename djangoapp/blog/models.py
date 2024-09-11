@@ -1,3 +1,15 @@
+# FILE: /blog/project/djangoapp/blog/models.py
+
 from django.db import models
 
-# Create your models here.
+
+
+
+
+
+
+
+
+
+
+# https://linktr.ee/edsoncopque
