@@ -16,3 +16,6 @@ def site_setup(request):
 #1: Recupera o primeiro registro do modelo SiteSetup, ordenado por ID decrescente (o mais recente primeiro).
 #2: No dicionário retornado pela função site_setup, 'site_setup': 'Hi, context_processor.py' é apenas uma chave chamada 'site_setup' com um valor de string 'Hi, context_processor.py'. No contexto dos templates, você pode acessar isso usando a variável site_setup.
 #3: Da mesma forma, 'title': 'Title' é uma chave chamada 'title' com um valor de string 'Title'. Isso pode ser acessado nos templates usando a variável title.
+
+# ------------------------------------------------------------------
+# https://linktr.ee/edsoncopque
