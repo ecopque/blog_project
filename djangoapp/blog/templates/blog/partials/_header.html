@@ -6,7 +6,9 @@
       <div class="section-gap">
   
         <h1 class="blog-title center pb-base">
-          <a class="blog-link" href="/">Blog do Edson Copque</a>
+          {# IMPORT⬇: /blog_project/djangoapp/site_setup/context_processors.py #}
+          {# IMPORT⬇: /blog_project/djangoapp/site_setup/models.py #}
+          <a class="blog-link" href="/">{{site_setup.title}}</a> {##}
         </h1>
         
         <p class="blog-description pb-base center">
