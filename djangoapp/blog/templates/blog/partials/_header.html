@@ -43,7 +43,7 @@
             {# {{site_setup.menulink_set.all}} #} {#2: ## #}
             {% for link in site_setup.menulink_set.all %} {# ## #}
               <li class="menu-item">
-                {% if link.new_tab %}
+                {% if link.new_tab %} {# ## #}
                   <a target="_blank" class="menu-link" href="{{link.url_or_path}}">{{link.text}} {# ## #}
                   </a>
 
@@ -59,7 +59,7 @@
 
           </ul>
         </nav>
-        
+
       </div>
     </div>
   </header>
