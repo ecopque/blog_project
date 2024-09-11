@@ -8,13 +8,13 @@
         <h1 class="blog-title center pb-base">
           {# IMPORT⬇: /blog_project/djangoapp/site_setup/context_processors.py #}
           {# IMPORT⬇: /blog_project/djangoapp/site_setup/models.py #}
-          <a class="blog-link" href="/">{{site_setup.title}}</a> {##}
+          <a class="blog-link" href="/">{{site_setup.title}}</a> {# ## #}
         </h1>
         
         <p class="blog-description pb-base center">
           {# IMPORT⬇: /blog_project/djangoapp/site_setup/context_processors.py #}
           {# IMPORT⬇: /blog_project/djangoapp/site_setup/models.py #}
-          {{site_setup.description}}
+          {{site_setup.description}} {# ## #}
         </p>
   
         <div class="search pb-base center">
@@ -36,15 +36,16 @@
           </form>
         </div>
         
-        {# IMPORT⬇: /blog_project/djangoapp/site_setup/context_processors.py #}
-        {# IMPORT⬇: /blog_project/djangoapp/site_setup/models.py #}
-        {{site_setup.menulink_set.all}} {#2: ## #}
         <nav class="menu">
           <ul class="menu-items">
-
-            <li class="menu-item">
-              <a class="menu-link" href="/post/">Post</a>
-            </li>
+            {# IMPORT⬇: /blog_project/djangoapp/site_setup/context_processors.py #}
+            {# IMPORT⬇: /blog_project/djangoapp/site_setup/models.py #}
+            {# {{site_setup.menulink_set.all}} #} {#2: ## #}
+            {% for link in site_setup.menulink_set.all %} {# ## #}
+              <li class="menu-item">
+                <a class="menu-link" href="/post/">Post</a>
+              </li>
+            {% endfor %}
             <li class="menu-item">
               <a class="menu-link" href="/page/">Page</a>
             </li>
@@ -73,7 +74,6 @@
 
 
 {# ------------------------------------------------------------------ #}
-
 {#1: Um elemento <header> que envolve o conteúdo do cabeçalho da página com classes de estilo header e section-wrapper. #}
 
 {# https://linktr.ee/edsoncopque #}
