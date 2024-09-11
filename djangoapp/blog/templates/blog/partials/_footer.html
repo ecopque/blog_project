@@ -5,7 +5,9 @@
     <div class="section-content-wide">
       <div class="section-gap">
         <div class="center">
-          <a href="#"> © Blog do Edson Copque - Todos os direitos reservados. </a>
+          {# IMPORT⬇: /blog_project/djangoapp/site_setup/context_processors.py #}
+          {# IMPORT⬇: /blog_project/djangoapp/site_setup/models.py #}
+          <a href="#"> © {% now "Y" %} {{site_setup.title}} - Todos os direitos reservados (https://linktr.ee/edsoncopque) </a> {##}
         </div>
       </div>
     </div>
