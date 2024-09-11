@@ -22,5 +22,4 @@ class Tag(models.Model): ##
 
 #1: Se a pessoa não tiver enviado uma slug, vou gerar uma nova 'slug'.
 
-
 # https://linktr.ee/edsoncopque
