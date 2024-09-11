@@ -66,7 +66,6 @@ class SiteSetup(models.Model): #15:
 #25: Em meus testes, se eu apontar tipo '{{site_setup}}' em algum template, vou ter como resposta o 'title'. Isto é sensacional.
 
 # ------------------------------------------------------------------
-
 #1: Estamos usando como 'validators=' a nossa função criada em 'model_validators.py'. Usa o 'validador validate_png', importado do módulo /blog_project/djangoapp/utils/model_validators.py, para garantir que o arquivo de imagem seja um PNG.
 #5: Sobrescreve o método 'save' do modelo 'SiteSetup'. Customiza o comportamento de salvamento para adicionar uma lógica de verificação e manipulação da imagem de favicon. Permite executar código adicional antes e depois de salvar a instância no banco de dados.
 #11: Porque estamos sobrescrevendo o método 'save()', se ele já tem sua função? Porque podemos executar algo antes e depois de salvar.
@@ -80,10 +79,7 @@ class SiteSetup(models.Model): #15:
 #22: Perceba que 'current_favicon_name' vem antes do 'save()'. 
 #23: Verifica se o favicon foi alterado. Se 'favicon_changed' for True, o código dentro do bloco if será executado, iniciando o processo de redimensionamento da imagem.
 #24: Chama a função resize_image para redimensionar o favicon para uma largura de 32 pixels.
-
-
 # ------------------------------------------------------------------
-
 #2: Os atributos 'verbose_name' e 'verbose_name_plural' definem como o modelo deve ser exibido na interface de administração do Django, no singular e no plural, respectivamente.
 #3: 'Sitesetup' can have multiple 'MenuLinks'. Otherwise it cannot.
 #4: Is you delete the link from 'site_setup', it will delete all links.
