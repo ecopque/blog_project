@@ -63,8 +63,8 @@ class SiteSetup(models.Model): #15:
         return self.title #25:
 
 
-#25: Em meus testes, se eu apontar tipo '{{site_setup}}' em algum template, vou ter como resposta o 'title'. Isto é sensacional.
-
+# ------------------------------------------------------------------
+#25: Em meus testes, se eu apontar tipo '{{site_setup}}' em algum template, vou ter como resposta o 'title' que está em 'return self.title'. Isto é sensacional.
 # ------------------------------------------------------------------
 #1: Estamos usando como 'validators=' a nossa função criada em 'model_validators.py'. Usa o 'validador validate_png', importado do módulo /blog_project/djangoapp/utils/model_validators.py, para garantir que o arquivo de imagem seja um PNG.
 #5: Sobrescreve o método 'save' do modelo 'SiteSetup'. Customiza o comportamento de salvamento para adicionar uma lógica de verificação e manipulação da imagem de favicon. Permite executar código adicional antes e depois de salvar a instância no banco de dados.

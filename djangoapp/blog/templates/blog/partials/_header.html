@@ -69,6 +69,8 @@
   </header>
 
 
+
+{# ------------------------------------------------------------------ #}
 {#2: site_setup = 'setup = SiteSetup' e menulink = MenuLink(). #}
 {#3: Utiliza novamente o campo title do objeto site_setup para exibir o título do site dentro de um link HTML. #}
 {#4: Este bloco condicional do template verifica se a configuração 'show_description' do objeto 'site_setup' está habilitada (verdadeira). Se estiver habilitada, o conteúdo dentro do bloco if será renderizado, o que permite exibir a descrição do blog. #}
@@ -77,7 +79,6 @@
 {#7: Este loop for itera sobre todos os links relacionados ao objeto site_setup através do relacionamento menulink_set (provavelmente um related_name ou reverse relationship de uma ForeignKey ou ManyToManyField). O código dentro do loop renderiza cada link no menu. #}
 {#8: Bloco condicional que verifica se o link deve ser aberto em uma nova aba (link.new_tab). Se for verdadeiro, o atributo target="_blank" é adicionado ao link. #}
 {#9: Este é o link renderizado para abrir em uma nova aba, se new_tab for verdadeiro. O href é preenchido com a URL ou caminho de cada link, e o texto do link é exibido entre as tags <a>. #}
-
 {# ------------------------------------------------------------------ #}
 {#1: Um elemento <header> que envolve o conteúdo do cabeçalho da página com classes de estilo header e section-wrapper. #}
 
