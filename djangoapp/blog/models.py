@@ -8,7 +8,7 @@ class Tag(models.Model):
     class Meta:
         verbose_name = 'Tag'
         verbose_name_plural = 'Tags'
-
+    #URL⬇: http://127.0.0.1:8000/admin/blog/tag/add/
     name = models.CharField(max_length=15) #2:
     slug = models.SlugField(unique=True, default=None, null=True, blank=True, max_length=255,) #3:
 
