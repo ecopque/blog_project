@@ -8,7 +8,7 @@
 </head>
 
 <body> 
-  <div class="blog-wrapper"> {#2: #3: #}
+  <div class="blog-wrapper"> {#2: #4: #}
     {% if site_setup.show_header %} {# ## #}
       {% include 'blog/partials/_header.html' %}
     {% endif %}
@@ -32,8 +32,8 @@
 {# ------------------------------------------------------------------ #}
 {#3: Alteramos de "dark-theme" para "blog-wrapper". #}
 {# ------------------------------------------------------------------ #}
-{# #1: O template base.html inclui o conteúdo do arquivo de template parcial _head.html localizado no diretório blog/partials/. #}
-{# #2: A classe dark-theme é usada para aplicar um tema escuro ao conteúdo da página. Essa classe provavelmente está definida em um arquivo CSS e altera as cores de fundo, texto, links e outros elementos para um esquema de cores mais escuras. #}
-{# #3: Essa linha define um bloco de conteúdo que pode ser sobrescrito em templates que estendem 'base.html'. O Django permite que os templates sejam criados de maneira hierárquica usando a herança de templates. A tag {% block %} define um bloco chamado content, que pode ser preenchido ou substituído por outros templates que herdam de 'base.html' (extends). Tudo o que for colocado entre {% block content %} e {% endblock content %} pode ser sobrescrito para criar páginas únicas com estruturas semelhantes. #}
+{#1: O template base.html inclui o conteúdo do arquivo de template parcial _head.html localizado no diretório blog/partials/. #}
+{#2: A classe dark-theme é usada para aplicar um tema escuro ao conteúdo da página. Essa classe provavelmente está definida em um arquivo CSS e altera as cores de fundo, texto, links e outros elementos para um esquema de cores mais escuras. #}
+{#3: Essa linha define um bloco de conteúdo que pode ser sobrescrito em templates que estendem 'base.html'. O Django permite que os templates sejam criados de maneira hierárquica usando a herança de templates. A tag {% block %} define um bloco chamado content, que pode ser preenchido ou substituído por outros templates que herdam de 'base.html' (extends). Tudo o que for colocado entre {% block content %} e {% endblock content %} pode ser sobrescrito para criar páginas únicas com estruturas semelhantes. #}
 
 {# https://linktr.ee/edsoncopque #}
