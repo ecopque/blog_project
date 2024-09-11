@@ -43,7 +43,7 @@
             {# {{site_setup.menulink_set.all}} #} {#2: ## #}
             {% for link in site_setup.menulink_set.all %} {# ## #}
               <li class="menu-item">
-                <a class="menu-link" href="/post/">Post</a>
+                <a class="menu-link" href="{{url_or_path}}">Post</a>
               </li>
             {% endfor %}
             <li class="menu-item">

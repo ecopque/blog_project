@@ -14,6 +14,7 @@ class MenuLink(models.Model): #12:
     # URL⬇: http://127.0.0.1:8000/admin/site_setup/menulink/add/
     # IMPORT⬇: values/var from /blog_project/djangoapp/site_setup/admin.py
     text = models.CharField(max_length=50)
+    # EXPORT⬇: /blog_project/djangoapp/templates/blog/partials/_header.html
     url_or_path = models.CharField(max_length=2048)
     new_tab = models.BooleanField(default=False) #6:
     # URL3⬇: http://127.0.0.1:8000/admin/site_setup/sitesetup/add/
