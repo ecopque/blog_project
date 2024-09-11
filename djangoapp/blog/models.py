@@ -1,6 +1,7 @@
 # FILE: /blog/project/djangoapp/blog/models.py
 
 from django.db import models
+from utils.rands import slugify_new
 
 
 class Tag(models.Model): ##
@@ -13,7 +14,7 @@ class Tag(models.Model): ##
 
     def save(self, *args, **kwargs):
         if not self.slug: #1: ##
-            self.slug = 'new_slug'
+            self.slug = slugify_new(self.name) ##
         return super().save(*args, **kwargs) ##
 
 
