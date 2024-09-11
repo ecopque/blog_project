@@ -14,6 +14,7 @@ def slugify_new(text, k=5): #4:
 
 
 
+# ------------------------------------------------------------------
 #1: Resposta: va-vo-va-fi-fi-wni73;
 #2: Gera uma string de k caracteres aleatórios composta de letras e dígitos (alfanuméricos). O padrão é 5 caracteres (k=5);
 #3: Usa SystemRandom().choices() para escolher k caracteres aleatórios do conjunto de letras (ascii_letters) e dígitos (digits), e ''.join(...) para unir esses caracteres em uma string.

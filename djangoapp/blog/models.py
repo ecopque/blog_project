@@ -3,7 +3,6 @@
 from django.db import models
 from utils.rands import slugify_new
 
-
 class Tag(models.Model):
     class Meta:
         verbose_name = 'Tag'
@@ -19,6 +18,7 @@ class Tag(models.Model):
 
 
 
+# ------------------------------------------------------------------
 #1: Se a pessoa não tiver enviado uma slug, vou gerar uma nova 'slug'.
 #2: Esse campo é do tipo CharField, que armazena uma string com comprimento máximo de 15 caracteres. Este campo representará o nome da tag.
 #3: Define um campo chamado slug no modelo Tag. Este campo é do tipo SlugField, que armazena strings "slugificadas" (normalmente usadas em URLs). O campo slug é configurado como único (unique=True), o que significa que cada slug deve ser único no banco de dados. Também permite valores None (com null=True) e valores em branco (com blank=True), com comprimento máximo de 255 caracteres.

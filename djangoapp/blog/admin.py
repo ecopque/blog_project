@@ -16,6 +16,8 @@ class TagAdmin(admin.ModelAdmin): #4:
     prepopulated_fields = {"slug": ('name',),} #1:
 
 
+
+# ------------------------------------------------------------------
 #1: Configura o campo slug para ser pré-preenchido (prepopulado) com base no valor do campo name na interface de administração do Django. Isso significa que, ao adicionar uma nova Tag através da interface de administração, o campo slug será automaticamente preenchido conforme o usuário digita o nome (name).
 #2: Define os campos (id, name, slug) que serão exibidos na lista de objetos Tag na interface de administração. O campo id é o identificador padrão do Django para modelos, enquanto name e slug são os campos definidos no modelo Tag.
 #3: Um decorator que registra o modelo Tag com o site de administração do Django.
