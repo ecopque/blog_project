@@ -27,7 +27,7 @@
                 name="search"
                 id="search-input"
                 placeholder="Search"
-                value="Non risu potius quam oratione eiciendum? Quo pleb "
+                value="Search here! "
               >
               <button class="search-btn" type="submit" aria-labelledby="search-label">
                 <i class="fa fa-search"></i>
@@ -43,8 +43,18 @@
             {# {{site_setup.menulink_set.all}} #} {#2: ## #}
             {% for link in site_setup.menulink_set.all %} {# ## #}
               <li class="menu-item">
-                <a class="menu-link" href="{{link.url_or_path}}">{{link.text}}</a> {# ## #}
-              </li>
+                {% if link.new_tab %}
+                  <a target="_blank" class="menu-link" href="{{link.url_or_path}}">{{link.text}} {# ## #}
+                  </a>
+
+                {% else %}
+                  <a class="menu-link" href="{{link.url_or_path}}">{{link.text}} {# ## #}
+                  </a>
+                
+                {% endif %}
+
+                <li class="menu-item">                
+                </li>
             {% endfor %}
 
           </ul>
