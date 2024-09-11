@@ -95,3 +95,5 @@ class SiteSetup(models.Model): #15:
 #14: Permite que vários 'MenuLinks' sejam associados a um único 'SiteSetup'. 'on_delete=models.CASCADE' garante que quando um 'SiteSetup' for excluído, todos os 'MenuLinks' relacionados também sejam excluídos.
 #15: Define a classe 'SiteSetup', que herda de 'models.Model', tornando-a um modelo Django. Este modelo representa a configuração do site na aplicação.
 #17: Permite o upload de um favicon, definindo onde as imagens serão armazenadas (upload_to) e permitindo que o campo seja opcional (blank=True) com um valor padrão de uma string vazia (default='').
+
+# https://linktr.ee/edsoncopque
