@@ -13,6 +13,7 @@ def slugify_new(text, k=5):
 # print(slugify_new('Vá vô va fi Fi')) #1:
 
 
+
 #1: Resposta: va-vo-va-fi-fi-wni73;
 
 # https://linktr.ee/edsoncopque
