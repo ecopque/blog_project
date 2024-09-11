@@ -2,14 +2,18 @@
 
 from random import SystemRandom
 import string
+from django.utils.text import slugify
 
 def random_letters(k=5): ##
-    return SystemRandom().choices(string.ascii_letters + string.digits, k=k) ##
+    return ''.join(SystemRandom().choices(string.ascii_letters + string.digits, k=k)) ##
 
-print(random_letters())
+def slugify_new(text):
+    return slugify(text + random_letters(4))
+
+# print(slugify_new('Vá vô va fi Fi')) #1:
 
 
 
-
+#1: Resposta: va-vo-va-fi-firh0o;
 
 # https://linktr.ee/edsoncopque
