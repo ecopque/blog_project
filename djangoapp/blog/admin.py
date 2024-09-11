@@ -1,3 +1,11 @@
+# FILE: /blog/project/djangoapp/blog/admin.py
+
 from django.contrib import admin
 
-# Register your models here.
+
+
+
+
+
+
+# https://linktr.ee/edsoncopque
