@@ -59,7 +59,10 @@ class SiteSetup(models.Model): #15:
             resize_image(self.favicon, 32) #24:
 
     def __str__(self):
-        return self.title
+        return self.title #25:
+
+
+#25: Em meus testes, se eu apontar tipo '{{site_setup}}' em algum template, vou ter como resposta o 'title'. Isto é sensacional.
 
 # ------------------------------------------------------------------
 
