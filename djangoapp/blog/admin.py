@@ -13,7 +13,7 @@ class TagAdmin(admin.ModelAdmin): ##
     list_per_page = 10 ##
     ordering = '-id', ##
     # URL⬇: http://127.0.0.1:8000/admin/blog/tag/add/
-    prepopulated_fields = {"slug": ('name',),} #1:
+    prepopulated_fields = {"slug": ('name',),} #1: ##
 
 
 #1: Significa que o campo "slug" vai pegar o valor deste outro campo 'name', ou seja, vai permitir na url (admin/blog/tag/add/) quando digitar uma nova tag automaticamente uma nova tag será reescrita.
