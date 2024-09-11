@@ -7,14 +7,16 @@ from blog.models import Tag
 # URL⬇: http://127.0.0.1:8000/admin/blog/tag/
 @admin.register(Tag) ##
 class TagAdmin(admin.ModelAdmin): ##
-    list_display = 'id', 'name', 'slug', ##
+    list_display = 'id', 'name', 'slug', #2: ##
     list_display_links = 'name', ##
     search_fields = 'id', 'name', 'slug', ##
     list_per_page = 10 ##
     ordering = '-id', ##
+    # URL: http://127.0.0.1:8000/admin/blog/tag/add/
     prepopulated_fields = {"slug": ('name',),} #1:
 
 
 #1: Significa que o campo "slug" vai pegar o valor deste outro campo 'name', ou seja, vai permitir na url (admin/blog/tag/add/) quando digitar uma nova tag automaticamente uma nova tag será reescrita.
+#2: ID é default? 'name' e 'slug' são variáveis do 'models.py'?
 
 # https://linktr.ee/edsoncopque

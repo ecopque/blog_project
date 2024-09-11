@@ -31,6 +31,7 @@ class SiteSetup(models.Model): #15:
         verbose_name_plural = 'Setup'
     
     # URL⬇: http://127.0.0.1:8000/admin/site_setup/sitesetup/add/
+    # EXPORT⬇: /blog_project/djangoapp/templates/blog/partials/_header.html
     title = models.CharField(max_length=65) #8:
     description = models.CharField(max_length=255) #9:
     show_header = models.BooleanField(default=True) #10:
