@@ -4,9 +4,9 @@ from random import SystemRandom
 import string
 
 def random_letters(k=5): ##
-    return SystemRandom().choices(string.ascii_letters + string.digits, k=5) ##
+    return SystemRandom().choices(string.ascii_letters + string.digits, k=k) ##
 
-print(random_letters)
+print(random_letters())
 
 
 
