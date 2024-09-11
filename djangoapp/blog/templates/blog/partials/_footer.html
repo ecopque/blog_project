@@ -8,13 +8,14 @@
           {# IMPORT⬇: /blog_project/djangoapp/site_setup/context_processors.py #}
           {# IMPORT⬇: /blog_project/djangoapp/site_setup/models.py #}
           <a href="#"> © {% now "Y" %} {{site_setup.title}} - Todos os direitos reservados
-          </a> {##}
+          </a> {#2: #}
         </div>
       </div>
     </div>
   </footer>
 
 
+{#2: Esta linha HTML está utilizando o context processor site_setup para acessar o campo title do objeto site_setup. {{site_setup.title}} renderiza o título do site que foi definido na configuração do site (SiteSetup). O {% now "Y" %} é uma tag de template do Django que exibe o ano atual. #}
 
 {# ------------------------------------------------------------------ #}
 {#1: Define o rodapé da página usando a classe footer para estilização. #}
