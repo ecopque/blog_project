@@ -36,6 +36,9 @@ class Category(models.Model): #7:
         return self.name
 
 class Page(models.Model):
+    class Meta:
+        verbose_name = 'Page'
+        verbose_name_plural = 'Pages'
     # EXPORT⬇: /blog/project/djangoapp/blog/admin.py
     # URL⬇: http://127.0.0.1:8000/admin/blog/page/
     title = models.CharField(max_length=65,) #10:
