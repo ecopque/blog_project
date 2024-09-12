@@ -50,15 +50,16 @@ class Page(models.Model):
     
     def __str__(self) -> str:
         return self.title
+    
+    
 
-
+# ------------------------------------------------------------------
 #7: Após criar o 'Category()' e 'CategoryAdmin()' você precisa realizar o makemigrations. Melhor rodar o comando 'docker compose up --build --force-recreate'.
 #8: Se eu não inserir o 'def __str__()', na url (http://127.0.0.1:8000/admin/blog/category/1/change/) vai aparecer: 'Category object (1)' em vez de 'First Category'.
 #9: O método __str__ é um método especial do Python que retorna uma string que representa o objeto. Neste caso, para a classe Tag, ele retorna o valor do atributo name da instância. Isso é útil quando você deseja uma representação legível do objeto. Por exemplo, no Django Admin, ao listar objetos Tag, o nome da tag será mostrado ao invés de "Tag object (1)", etc.
 #10: Define o campo title da model Page como um CharField (campo de caracteres) com um comprimento máximo de 65 caracteres. Esse campo é necessário para armazenar o título da página.
 #11: Define o campo is_published como um BooleanField (campo booleano) que indica se a página deve ser exibida publicamente ou não. O valor padrão é False, o que significa que a página não está publicada até que este campo seja marcado como True. O argumento help_text fornece uma mensagem de ajuda que será exibida no Django Admin.
 #12: Define o campo content da model Page como um TextField, que é um campo de texto grande. Este campo é utilizado para armazenar o conteúdo da página. Essencial para armazenar o conteúdo da página, como artigos, textos de blog, conteúdo html, informações, etc.
-
 # ------------------------------------------------------------------
 #1: Se a pessoa não tiver enviado uma slug, vou gerar uma nova 'slug'.
 #2: Esse campo é do tipo CharField, que armazena uma string com comprimento máximo de 15 caracteres. Este campo representará o nome da tag.
