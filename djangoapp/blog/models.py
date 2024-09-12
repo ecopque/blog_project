@@ -10,10 +10,15 @@ class Tag(models.Model):
     #URL⬇: http://127.0.0.1:8000/admin/blog/tag/add/
     name = models.CharField(max_length=15) #2:
     slug = models.SlugField(unique=True, default=None, null=True, blank=True, max_length=255,) #3:
+    
     def save(self, *args, **kwargs):
         if not self.slug: #1: #4:
             self.slug = slugify_new(self.name, 4) #5:
         return super().save(*args, **kwargs) #6:
+    
+    #URL⬇: http://127.0.0.1:8000/admin/blog/tag/1/change/
+    def __str__(self) -> str: #8: ##
+        return self.name ##
 
 class Category(models.Model): #7:
     class Meta:
@@ -21,23 +26,32 @@ class Category(models.Model): #7:
         verbose_name_plural = 'Categories'
     name = models.CharField(max_length=15)
     slug = models.SlugField(unique=True, default=None, null=True, blank=True, max_length=255,)
+    
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify_new(self.name, 4)
         return super().save(*args, **kwargs)
+
+    def __str__(self) -> str:
+        return self.name
 
 class Page(models.Model):
     title = models.CharField(max_length=65,) ##
     slug = models.SlugField(unique=True, default="", null=False, blank=True, max_length=255,) ##
     is_published = models.BooleanField(default=False) ##
     content = models.TextField() ##
+    
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify_new(self.name, 4)
+            self.slug = slugify_new(self.title, 4)
         return super().save(*args, **kwargs)
+    
+    def __str__(self) -> str:
+        return self.title
 
 
 #7: Após criar o 'Category()' e 'CategoryAdmin()' você precisa realizar o makemigrations. Melhor rodar o comando 'docker compose up --build --force-recreate'.
+#8: Se eu não inserir o 'def __str__()', na url (http://127.0.0.1:8000/admin/blog/category/1/change/) vai aparecer: 'Category object (1)' em vez de 'First Category'.
 
 # ------------------------------------------------------------------
 #1: Se a pessoa não tiver enviado uma slug, vou gerar uma nova 'slug'.
