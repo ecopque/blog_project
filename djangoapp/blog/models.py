@@ -27,10 +27,10 @@ class Category(models.Model): #7:
         return super().save(*args, **kwargs)
 
 class Page(models.Model):
-    title = models.CharField(max_length=65,)
-    slug = models.SlugField(unique=True, default="", null=False, blank=True, max_length=255,)
-    is_published = models.BooleanField(default=False)
-    content = models.TextField()
+    title = models.CharField(max_length=65,) ##
+    slug = models.SlugField(unique=True, default="", null=False, blank=True, max_length=255,) ##
+    is_published = models.BooleanField(default=False) ##
+    content = models.TextField() ##
 
 
 #7: Após criar o 'Category()' e 'CategoryAdmin()' você precisa realizar o makemigrations. Melhor rodar o comando 'docker compose up --build --force-recreate'.
