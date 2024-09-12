@@ -36,9 +36,13 @@ class Category(models.Model): #7:
         return self.name
 
 class Page(models.Model):
+    #EXPORT⬇: /blog/project/djangoapp/blog/admin.py
+    #URL⬇: http://127.0.0.1:8000/admin/blog/page/
     title = models.CharField(max_length=65,) ##
     slug = models.SlugField(unique=True, default="", null=False, blank=True, max_length=255,) ##
-    is_published = models.BooleanField(default=False) ##
+    is_published = models.BooleanField(default=False, help_text=(
+            'This field must be checked for the page to be displayed publicly. Glu Glu, Yeh Yeh.'
+        ),) ##
     content = models.TextField() ##
     
     def save(self, *args, **kwargs):
