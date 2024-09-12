@@ -10,26 +10,21 @@ class Tag(models.Model):
     #URL⬇: http://127.0.0.1:8000/admin/blog/tag/add/
     name = models.CharField(max_length=15) #2:
     slug = models.SlugField(unique=True, default=None, null=True, blank=True, max_length=255,) #3:
-
     def save(self, *args, **kwargs):
         if not self.slug: #1: #4:
             self.slug = slugify_new(self.name, 4) #5:
         return super().save(*args, **kwargs) #6:
 
-
 class Category(models.Model): #9:
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
-
     name = models.CharField(max_length=15)
     slug = models.SlugField(unique=True, default=None, null=True, blank=True, max_length=255,)
-
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify_new(self.name, 4)
         return super().save(*args, **kwargs)
-
 
 class Page(models.Model):
     ...
