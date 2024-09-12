@@ -17,6 +17,22 @@ class Tag(models.Model):
         return super().save(*args, **kwargs) #6:
 
 
+class Category(models.Model): #9:
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
+    name = models.CharField(max_length=15)
+    slug = models.SlugField(unique=True, default=None, null=True, blank=True, max_length=255,)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify_new(self.name, 4)
+        return super().save(*args, **kwargs)
+
+
+
+#7: Após criar o 'Category()' e 'CategoryAdmin()' você precisa realizar o makemigrations. Melhor rodar o comando 'docker compose up --build --force-recreate'.
 
 # ------------------------------------------------------------------
 #1: Se a pessoa não tiver enviado uma slug, vou gerar uma nova 'slug'.
