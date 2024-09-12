@@ -1,7 +1,7 @@
 # FILE: /blog/project/djangoapp/blog/admin.py
 
 from django.contrib import admin
-from blog.models import Tag, Category
+from blog.models import Tag, Category, Page
 
 # IMPORT⬇: /blog/project/djangoapp/blog/models.py
 @admin.register(Tag) #3:
@@ -24,6 +24,17 @@ class CategoryAdmin(admin.ModelAdmin): #9:
     ordering = '-id',
     prepopulated_fields = {"slug": ('name',),}
 
+
+@admin.register(Page)
+class PageAdmin(admin.ModelAdmin): #9:
+    list_display = 'id', 'name', 'slug',
+    list_display_links = 'name',
+    search_fields = 'id', 'name', 'slug',
+    list_per_page = 10
+    ordering = '-id',
+    prepopulated_fields = {"slug": ('name',),}
+
+    
 
 #9: Após criar o 'Category()' e 'CategoryAdmin()' você precisa realizar o makemigrations. Melhor rodar o comando 'docker compose up --build --force-recreate'.
 
