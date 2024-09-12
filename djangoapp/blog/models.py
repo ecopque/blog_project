@@ -31,6 +31,9 @@ class Category(models.Model): #9:
         return super().save(*args, **kwargs)
 
 
+class Page(models.Model):
+    ...
+
 
 #7: Após criar o 'Category()' e 'CategoryAdmin()' você precisa realizar o makemigrations. Melhor rodar o comando 'docker compose up --build --force-recreate'.
 

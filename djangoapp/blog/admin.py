@@ -16,7 +16,7 @@ class TagAdmin(admin.ModelAdmin): #4:
     prepopulated_fields = {"slug": ('name',),} #1:
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin): #9:
     list_display = 'id', 'name', 'slug',
     list_display_links = 'name',
     search_fields = 'id', 'name', 'slug',
@@ -25,6 +25,7 @@ class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ('name',),}
 
 
+#9: Após criar o 'Category()' e 'CategoryAdmin()' você precisa realizar o makemigrations. Melhor rodar o comando 'docker compose up --build --force-recreate'.
 
 # ------------------------------------------------------------------
 #1: Configura o campo slug para ser pré-preenchido (prepopulado) com base no valor do campo name na interface de administração do Django. Isso significa que, ao adicionar uma nova Tag através da interface de administração, o campo slug será automaticamente preenchido conforme o usuário digita o nome (name).
