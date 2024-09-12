@@ -31,6 +31,10 @@ class Page(models.Model):
     slug = models.SlugField(unique=True, default="", null=False, blank=True, max_length=255,) ##
     is_published = models.BooleanField(default=False) ##
     content = models.TextField() ##
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify_new(self.name, 4)
+        return super().save(*args, **kwargs)
 
 
 #7: Após criar o 'Category()' e 'CategoryAdmin()' você precisa realizar o makemigrations. Melhor rodar o comando 'docker compose up --build --force-recreate'.
