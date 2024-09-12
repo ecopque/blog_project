@@ -7,7 +7,7 @@ class Tag(models.Model):
     class Meta:
         verbose_name = 'Tag'
         verbose_name_plural = 'Tags'
-    #URL⬇: http://127.0.0.1:8000/admin/blog/tag/add/
+    # URL⬇: http://127.0.0.1:8000/admin/blog/tag/add/
     name = models.CharField(max_length=15) #2:
     slug = models.SlugField(unique=True, default=None, null=True, blank=True, max_length=255,) #3:
     
@@ -16,7 +16,7 @@ class Tag(models.Model):
             self.slug = slugify_new(self.name, 4) #5:
         return super().save(*args, **kwargs) #6:
     
-    #URL⬇: http://127.0.0.1:8000/admin/blog/tag/1/change/
+    # URL⬇: http://127.0.0.1:8000/admin/blog/tag/1/change/
     def __str__(self) -> str: #8: #9:
         return self.name ##
 
@@ -36,8 +36,8 @@ class Category(models.Model): #7:
         return self.name
 
 class Page(models.Model):
-    #EXPORT⬇: /blog/project/djangoapp/blog/admin.py
-    #URL⬇: http://127.0.0.1:8000/admin/blog/page/
+    # EXPORT⬇: /blog/project/djangoapp/blog/admin.py
+    # URL⬇: http://127.0.0.1:8000/admin/blog/page/
     title = models.CharField(max_length=65,) #10:
     slug = models.SlugField(unique=True, default="", null=False, blank=True, max_length=255,)
     is_published = models.BooleanField(default=False, help_text=('This field must be checked for the page to be displayed publicly. Glu Glu, Yeh Yeh.'),) #11:
