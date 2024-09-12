@@ -17,27 +17,32 @@ class TagAdmin(admin.ModelAdmin): #4:
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin): #9:
+    # URL⬇: http://127.0.0.1:8000/admin/blog/category/
     list_display = 'id', 'name', 'slug',
     list_display_links = 'name',
     search_fields = 'id', 'name', 'slug',
     list_per_page = 10
     ordering = '-id',
+    # URL⬇: http://127.0.0.1:8000/admin/blog/category/add/
     prepopulated_fields = {"slug": ('name',),}
 
 @admin.register(Page)
 class PageAdmin(admin.ModelAdmin): #9:
+    # URL⬇: http://127.0.0.1:8000/admin/blog/page/
     list_display = 'id', 'title', 'is_published',
     list_display_links = 'title',
     search_fields = 'id', 'slug', 'title', 'content',
     list_per_page = 50
     list_filter = 'is_published',
-    list_editable = 'is_published', ##
+    list_editable = 'is_published', #10:
     ordering = '-id',
+    # URL⬇: http://127.0.0.1:8000/admin/blog/page/add/
     prepopulated_fields = {"slug": ('title',),}
 
     
 
 #9: Após criar o 'Category()' e 'CategoryAdmin()' você precisa realizar o makemigrations. Melhor rodar o comando 'docker compose up --build --force-recreate'.
+#10: O atributo list_editable na classe PageAdmin do Django Admin define quais campos na lista de objetos podem ser editados diretamente na interface de lista de objetos. Neste caso, o campo is_published da model Page pode ser editado diretamente.         Facilita a administração de múltiplas páginas, permitindo que o administrador altere o status de publicação diretamente na lista sem precisar acessar cada objeto individualmente.
 
 # ------------------------------------------------------------------
 #1: Configura o campo slug para ser pré-preenchido (prepopulado) com base no valor do campo name na interface de administração do Django. Isso significa que, ao adicionar uma nova Tag através da interface de administração, o campo slug será automaticamente preenchido conforme o usuário digita o nome (name).
