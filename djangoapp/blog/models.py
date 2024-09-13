@@ -104,7 +104,6 @@ class Post(models.Model):
 #26: Esta linha verifica se o campo cover contém uma imagem. Se uma imagem foi enviada ou já está associada ao post, o bloco de código a seguir será executado.
 #27: Esta linha compara o nome da imagem de capa antes do salvamento (current_cover_name) com o nome da imagem após o salvamento (self.cover.name). Se os nomes forem diferentes, significa que a imagem de capa foi alterada, e a variável cover_changed será definida como True.
 #28: Se a imagem de capa foi alterada, esta linha chama a função resize_image (importada de utils.images). A função resize_image redimensiona a imagem para uma largura de 900 pixels, mantendo a proporção original. O terceiro parâmetro (True) indica que o redimensionamento deve manter as proporções da imagem, e o quarto parâmetro (90) especifica a qualidade da imagem em 90%.
-
 # ------------------------------------------------------------------
 #13: Este camarada será o resumo do nosso post. Este campo armazena um resumo ou uma breve descrição de um post.
 #14: Este aqui será a capa do post. 'cover' é um campo do modelo Post definido como um ImageField, que é um campo específico para o upload de imagens. O parâmetro upload_to='post/%Y/%m/' indica o diretório dentro de MEDIA_ROOT onde as imagens enviadas serão armazenadas, organizadas por ano (%Y) e mês (%m). blank=True permite que este campo seja opcional e default='' define um valor padrão vazio.
