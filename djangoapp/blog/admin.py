@@ -57,12 +57,12 @@ class PostAdmin(admin.ModelAdmin):
 
 
 
+# ------------------------------------------------------------------
 #11: 'list_filter' é uma configuração da classe PostAdmin que define filtros no painel de administração do Django. Aqui, ele permite que o administrador filtre posts por category e is_published no painel de administração.
 #12: Permite a edição direta de campos listados na visualização de lista do Django Admin. Aqui, o campo is_published pode ser editado diretamente da lista de posts.
 #13: Define os campos que devem ser exibidos como somente leitura no formulário de administração do Django. Os campos created_at, updated_at, created_by, e updated_by são definidos como somente leitura para impedir alterações manuais.
 #14: É uma configuração da classe PostAdmin que especifica que o campo slug será automaticamente preenchido com base no campo title ao adicionar ou editar um post no painel de administração.
 #15: É uma configuração da classe PostAdmin que ativa o recurso de autocompletar para os campos tags e category no formulário de administração. Isso facilita a seleção de tags e categorias existentes.
-
 # ------------------------------------------------------------------
 #9: Após criar o 'Category()' e 'CategoryAdmin()' você precisa realizar o makemigrations. Melhor rodar o comando 'docker compose up --build --force-recreate'.
 #10: O atributo list_editable na classe PageAdmin do Django Admin define quais campos na lista de objetos podem ser editados diretamente na interface de lista de objetos. Neste caso, o campo is_published da model Page pode ser editado diretamente. Facilita a administração de múltiplas páginas, permitindo que o administrador altere o status de publicação diretamente na lista sem precisar acessar cada objeto individualmente.
