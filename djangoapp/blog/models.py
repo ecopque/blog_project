@@ -91,8 +91,9 @@ class Post(models.Model):
 
         # IMPORT⬇: /blog_project/djangoapp/utils/images.py
         if cover_changed:
-            resize_image(self.cover, 32)
-    
+            print('Cover changed.')
+            resize_image(self.cover, 900)
+
     def __str__(self):
         return self.title
     
