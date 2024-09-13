@@ -97,7 +97,9 @@ class Post(models.Model):
     def __str__(self):
         return self.title
     
-
+    
+    
+# ------------------------------------------------------------------
 #23: Esta linha armazena o nome atual da imagem de capa (self.cover.name) como uma string. Isso é feito antes de salvar o objeto para que o código possa verificar posteriormente se o nome da imagem foi alterado. A lógica é necessária para detectar mudanças na imagem e realizar ações com base nisso, como redimensionar a nova imagem.
 #24: Este comando chama o método save() da superclasse (models.Model), que lida com o salvamento efetivo do objeto no banco de dados. Isso é importante porque, mesmo que existam personalizações no método save, ainda é necessário garantir que o objeto seja salvo de acordo com o comportamento padrão do Django.
 #25: Aqui, a variável cover_changed é inicializada como False. Esta variável será usada para rastrear se a imagem de capa do post foi alterada durante o processo de salvamento.
