@@ -19,7 +19,7 @@ class Tag(models.Model):
     
     # URL⬇: http://127.0.0.1:8000/admin/blog/tag/1/change/
     def __str__(self) -> str: #8: #9:
-        return self.name ##
+        return self.name
 
 class Category(models.Model): #7:
     class Meta:
@@ -61,19 +61,19 @@ class Post(models.Model):
         verbose_name_plural = 'Posts'
     title = models.CharField(max_length=65,) #10:
     slug = models.SlugField(unique=True, default="", null=False, blank=True, max_length=255,)
-    excerpt = models.CharField(max_length=150) #13: ##
+    excerpt = models.CharField(max_length=150) #13:
     is_published = models.BooleanField(default=False, help_text=('This field must be checked for the post to be displayed publicly.'),)
 
-    content = models.TextField() ##
+    content = models.TextField() #22:
     #EXPORT⬇: /blog_project/data/web/media/posts/year/month/
-    cover = models.ImageField(upload_to='post/%Y/%m/', blank=True, default='') #14: ##
-    cover_in_post_content = models.BooleanField(default=True, help_text='Display the cover image also within the post content?') #15: ##
-    created_at = models.DateTimeField(auto_now_add=True) #16: ##
-    updated_at = models.DateTimeField(auto_now=True) #17: ##
-    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='post_created_by') #20: ##
-    updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='post_updated_by') #21: ##
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, default=None,) #18: ##
-    tags = models.ManyToManyField(Tag, blank=True, default='') #19: ##
+    cover = models.ImageField(upload_to='post/%Y/%m/', blank=True, default='') #14:
+    cover_in_post_content = models.BooleanField(default=True, help_text='Display the cover image also within the post content?') #15:
+    created_at = models.DateTimeField(auto_now_add=True) #16:
+    updated_at = models.DateTimeField(auto_now=True) #17:
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='post_created_by') #20:
+    updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='post_updated_by') #21:
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, default=None,) #18:
+    tags = models.ManyToManyField(Tag, blank=True, default='') #19:
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -84,15 +84,16 @@ class Post(models.Model):
         return self.title
     
 
-#13: Este camarada será o resumo do nosso post.
-#14: Este aqui será a capa do post.
-#15: Se marcado, vai exibir a imagem de capa dentro do post.
-#16: Este é o campo de data do post. Quando o post for salvo ele vai adicionar a data ao post.
-#17: Toda vez que salvar o post vai ser gerado uma nova data.
-#18: Terei muitos posts que poderão estar na mesma categoria, mas quando apagar uma categoria o post não será deletado.
-#19: 
-#20: user.post_created_by.all.
-#21: user.post_updated_by.all.
+#13: Este camarada será o resumo do nosso post. Este campo armazena um resumo ou uma breve descrição de um post.
+#14: Este aqui será a capa do post. 'cover' é um campo do modelo Post definido como um ImageField, que é um campo específico para o upload de imagens. O parâmetro upload_to='post/%Y/%m/' indica o diretório dentro de MEDIA_ROOT onde as imagens enviadas serão armazenadas, organizadas por ano (%Y) e mês (%m). blank=True permite que este campo seja opcional e default='' define um valor padrão vazio.
+#15: Se marcado, vai exibir a imagem de capa dentro do post. 'cover_in_post_content' é um campo booleano (BooleanField) que determina se a imagem de capa (cover) também será exibida dentro do conteúdo do post. default=True significa que, por padrão, a imagem será exibida no conteúdo do post, e help_text fornece uma dica para os usuários do painel de administração do Django.
+#16: Este é o campo de data do post. Quando o post for salvo ele vai adicionar a data ao post. 'created_at' é um campo do modelo Post definido como um DateTimeField. O parâmetro auto_now_add=True faz com que a data e hora atuais sejam automaticamente definidas quando o objeto é criado. Este campo geralmente é usado para rastrear quando um post foi criado.
+#17: Toda vez que salvar o post vai ser gerado uma nova data. 'updated_at' é um campo do modelo Post definido como um DateTimeField. O parâmetro auto_now=True faz com que a data e hora sejam automaticamente atualizadas sempre que o objeto for salvo. 
+#18: Terei muitos posts que poderão estar na mesma categoria, mas quando apagar uma categoria o post não será deletado. 'category' é um campo ForeignKey que cria um relacionamento entre o modelo Post e o modelo Category. on_delete=models.SET_NULL indica que, se a categoria associada for excluída, o valor deste campo será definido como NULL. null=True e blank=True permitem que este campo seja opcional, e default=None define o valor padrão como None.
+#19: 'tags' é um campo ManyToManyField que cria um relacionamento muitos-para-muitos entre o modelo Post e o modelo Tag. blank=True permite que este campo seja opcional, e default='' define o valor padrão como uma string vazia.
+#20: user.post_created_by.all. created_by é um campo ForeignKey que cria um relacionamento entre o modelo Post e o modelo User do Django (importado de django.contrib.auth.models). Este campo rastreia o usuário que criou o post. on_delete=models.SET_NULL define o valor como NULL se o usuário for excluído. blank=True e null=True permitem que o campo seja opcional, e related_name='post_created_by' define o nome para referenciar esse campo no relacionamento reverso.
+#21: user.post_updated_by.all. updated_by é semelhante ao campo created_by, mas rastreia o usuário que atualizou o post pela última vez. As opções on_delete=models.SET_NULL, blank=True, null=True, e related_name='post_updated_by' funcionam da mesma forma.
+#22: Diferentemente de CharField, TextField não tem limite de comprimento, sendo apropriado para o corpo principal de um post, onde o conteúdo é mais extenso.
 
 # ------------------------------------------------------------------
 #7: Após criar o 'Category()' e 'CategoryAdmin()' você precisa realizar o makemigrations. Melhor rodar o comando 'docker compose up --build --force-recreate'.
