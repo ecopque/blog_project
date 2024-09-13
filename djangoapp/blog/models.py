@@ -84,6 +84,8 @@ class Post(models.Model):
         return self.title
     
 
+    
+# ------------------------------------------------------------------
 #13: Este camarada será o resumo do nosso post. Este campo armazena um resumo ou uma breve descrição de um post.
 #14: Este aqui será a capa do post. 'cover' é um campo do modelo Post definido como um ImageField, que é um campo específico para o upload de imagens. O parâmetro upload_to='post/%Y/%m/' indica o diretório dentro de MEDIA_ROOT onde as imagens enviadas serão armazenadas, organizadas por ano (%Y) e mês (%m). blank=True permite que este campo seja opcional e default='' define um valor padrão vazio.
 #15: Se marcado, vai exibir a imagem de capa dentro do post. 'cover_in_post_content' é um campo booleano (BooleanField) que determina se a imagem de capa (cover) também será exibida dentro do conteúdo do post. default=True significa que, por padrão, a imagem será exibida no conteúdo do post, e help_text fornece uma dica para os usuários do painel de administração do Django.
@@ -94,7 +96,6 @@ class Post(models.Model):
 #20: user.post_created_by.all. created_by é um campo ForeignKey que cria um relacionamento entre o modelo Post e o modelo User do Django (importado de django.contrib.auth.models). Este campo rastreia o usuário que criou o post. on_delete=models.SET_NULL define o valor como NULL se o usuário for excluído. blank=True e null=True permitem que o campo seja opcional, e related_name='post_created_by' define o nome para referenciar esse campo no relacionamento reverso.
 #21: user.post_updated_by.all. updated_by é semelhante ao campo created_by, mas rastreia o usuário que atualizou o post pela última vez. As opções on_delete=models.SET_NULL, blank=True, null=True, e related_name='post_updated_by' funcionam da mesma forma.
 #22: Diferentemente de CharField, TextField não tem limite de comprimento, sendo apropriado para o corpo principal de um post, onde o conteúdo é mais extenso.
-
 # ------------------------------------------------------------------
 #7: Após criar o 'Category()' e 'CategoryAdmin()' você precisa realizar o makemigrations. Melhor rodar o comando 'docker compose up --build --force-recreate'.
 #8: Se eu não inserir o 'def __str__()', na url (http://127.0.0.1:8000/admin/blog/category/1/change/) vai aparecer: 'Category object (1)' em vez de 'First Category'.
