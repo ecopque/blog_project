@@ -1,7 +1,7 @@
 # FILE: /blog/project/djangoapp/blog/admin.py
 
 from django.contrib import admin
-from blog.models import Tag, Category, Page
+from blog.models import Tag, Category, Page, Post
 
 # IMPORT⬇: /blog/project/djangoapp/blog/models.py
 @admin.register(Tag) #3:
@@ -39,6 +39,10 @@ class PageAdmin(admin.ModelAdmin): #9:
     # URL⬇: http://127.0.0.1:8000/admin/blog/page/add/
     prepopulated_fields = {"slug": ('title',),}
 
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    ...
 
     
 # ------------------------------------------------------------------
