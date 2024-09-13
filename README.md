@@ -17,4 +17,4 @@ This is a blog project developed in Django, which allows the creation, editing a
 - PostgreSQL: Default database (replaceable as needed).
 - Docker: For containerization and an isolated development environment.
 
-Under construction
+Daily update!
