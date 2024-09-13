@@ -72,6 +72,11 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, default=None,) #18: ##
     tags = models.ManyToManyField(Tag, blank=True, default='') #19: ##
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify_new(self.title, 4)
+        return super().save(*args, **kwargs)
+    
     def __str__(self):
         return self.title
     
