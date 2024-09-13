@@ -70,6 +70,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) #16: ##
     updated_at = models.DateTimeField(auto_now=True) #17: ##
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, default=None,) #18: ##
+    tags = models.ManyToManyField(Tag, blank=True, default='') #19: ##
     
 
 #13: Este camarada será o resumo do nosso post.
@@ -77,7 +78,8 @@ class Post(models.Model):
 #15: Se marcado, vai exibir a imagem de capa dentro do post.
 #16: Este é o campo de data do post. Quando o post for salvo ele vai adicionar a data ao post.
 #17: Toda vez que salvar o post vai ser gerado uma nova data.
-#18: 
+#18: Terei muitos posts que poderão estar na mesma categoria, mas quando apagar uma categoria o post não será deletado.
+#19: 
 
 # ------------------------------------------------------------------
 #7: Após criar o 'Category()' e 'CategoryAdmin()' você precisa realizar o makemigrations. Melhor rodar o comando 'docker compose up --build --force-recreate'.
