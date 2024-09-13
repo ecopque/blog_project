@@ -41,7 +41,7 @@ class Page(models.Model):
         verbose_name = 'Page'
         verbose_name_plural = 'Pages'
     # EXPORT⬇: /blog/project/djangoapp/blog/admin.py
-    # URL⬇: http://127.0.0.1:8000/admin/blog/page/
+    # URL⬇: http://127.0.0.1:8000/admin/blog/page/add/
     title = models.CharField(max_length=65,) #10:
     slug = models.SlugField(unique=True, default="", null=False, blank=True, max_length=255,)
     is_published = models.BooleanField(default=False, help_text=('This field must be checked for the page to be displayed publicly. Glu Glu, Yeh Yeh.'),) #11:
@@ -59,6 +59,8 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
+    # EXPORT⬇: /blog/project/djangoapp/blog/admin.py
+    # URL⬇: http://127.0.0.1:8000/admin/blog/post/add/
     title = models.CharField(max_length=65,) #10:
     slug = models.SlugField(unique=True, default="", null=False, blank=True, max_length=255,)
     excerpt = models.CharField(max_length=150) #13:
@@ -84,7 +86,7 @@ class Post(models.Model):
         return self.title
     
 
-    
+
 # ------------------------------------------------------------------
 #13: Este camarada será o resumo do nosso post. Este campo armazena um resumo ou uma breve descrição de um post.
 #14: Este aqui será a capa do post. 'cover' é um campo do modelo Post definido como um ImageField, que é um campo específico para o upload de imagens. O parâmetro upload_to='post/%Y/%m/' indica o diretório dentro de MEDIA_ROOT onde as imagens enviadas serão armazenadas, organizadas por ano (%Y) e mês (%m). blank=True permite que este campo seja opcional e default='' define um valor padrão vazio.
