@@ -4,7 +4,8 @@ from pathlib import Path
 from django.conf import settings #1:
 from PIL import Image #2:
 
-#EXPORT⬇: /blog_project/djangoapp/site_setup/models.py
+# EXPORT⬇: /blog_project/djangoapp/site_setup/models.py
+# EXPORT⬇: /blog/project/djangoapp/blog/models.py
 def resize_image(image_django, new_width=800, optimize=True, quality=60): #3:
     # IMPORT⬇: /blog_project/project/settings.py
     image_path = Path(settings.MEDIA_ROOT / image_django.name).resolve() #4: #5:
