@@ -71,6 +71,9 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True) #17: ##
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, default=None,) #18: ##
     tags = models.ManyToManyField(Tag, blank=True, default='') #19: ##
+
+    def __str__(self):
+        return self.title
     
 
 #13: Este camarada será o resumo do nosso post.
