@@ -60,8 +60,15 @@ class Post(models.Model):
         verbose_name_plural = 'Posts'
     title = models.CharField(max_length=65,) #10:
     slug = models.SlugField(unique=True, default="", null=False, blank=True, max_length=255,)
-    excerpt = models.CharField(max_length=150) ##
+    excerpt = models.CharField(max_length=150) #13: ##
+    is_published = models.BooleanField(default=False, help_text=('This field must be checked for the post to be displayed publicly.'),)
+
+    content = models.TextField() ##
+    cover = models.ImageField(upload_to='post/%Y/%m/', blank=True, default='') ##
+    cover_in_post_content = models.BooleanField(default=True, help_text='Display the cover image also within the post content?') ##
     
+
+#13: Este camarada será o resumo do nosso post.
 
 # ------------------------------------------------------------------
 #7: Após criar o 'Category()' e 'CategoryAdmin()' você precisa realizar o makemigrations. Melhor rodar o comando 'docker compose up --build --force-recreate'.
