@@ -79,25 +79,31 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag, blank=True, default='') #19:
 
     def save(self, *args, **kwargs):
-        if not self.slug: ##
-            self.slug = slugify_new(self.title, 4) ##
+        if not self.slug:
+            self.slug = slugify_new(self.title, 4)
 
-        current_cover_name = str(self.cover.name) ##
-        super().save(*args, **kwargs) ##
-        cover_changed = False ##
+        current_cover_name = str(self.cover.name) #23:
+        super().save(*args, **kwargs) #24:
+        cover_changed = False #25:
 
-        if self.cover: ##
-            cover_changed = current_cover_name != self.cover.name ##
+        if self.cover: #26:
+            cover_changed = current_cover_name != self.cover.name #27:
 
         # IMPORT⬇: /blog_project/djangoapp/utils/images.py
         if cover_changed:
             print('Cover changed.')
-            resize_image(self.cover, 900, True, 90) ##
+            resize_image(self.cover, 900, True, 90) #28:
 
     def __str__(self):
         return self.title
     
 
+#23: Esta linha armazena o nome atual da imagem de capa (self.cover.name) como uma string. Isso é feito antes de salvar o objeto para que o código possa verificar posteriormente se o nome da imagem foi alterado. A lógica é necessária para detectar mudanças na imagem e realizar ações com base nisso, como redimensionar a nova imagem.
+#24: Este comando chama o método save() da superclasse (models.Model), que lida com o salvamento efetivo do objeto no banco de dados. Isso é importante porque, mesmo que existam personalizações no método save, ainda é necessário garantir que o objeto seja salvo de acordo com o comportamento padrão do Django.
+#25: Aqui, a variável cover_changed é inicializada como False. Esta variável será usada para rastrear se a imagem de capa do post foi alterada durante o processo de salvamento.
+#26: Esta linha verifica se o campo cover contém uma imagem. Se uma imagem foi enviada ou já está associada ao post, o bloco de código a seguir será executado.
+#27: Esta linha compara o nome da imagem de capa antes do salvamento (current_cover_name) com o nome da imagem após o salvamento (self.cover.name). Se os nomes forem diferentes, significa que a imagem de capa foi alterada, e a variável cover_changed será definida como True.
+#28: Se a imagem de capa foi alterada, esta linha chama a função resize_image (importada de utils.images). A função resize_image redimensiona a imagem para uma largura de 900 pixels, mantendo a proporção original. O terceiro parâmetro (True) indica que o redimensionamento deve manter as proporções da imagem, e o quarto parâmetro (90) especifica a qualidade da imagem em 90%.
 
 # ------------------------------------------------------------------
 #13: Este camarada será o resumo do nosso post. Este campo armazena um resumo ou uma breve descrição de um post.
