@@ -55,7 +55,11 @@ class PostAdmin(admin.ModelAdmin):
     autocomplete_fields = 'tags', 'category' #15:
 
     def save_model(self, request, obj, form, change): #16:
-        ...
+        if change:
+            obj.updated_by = request.user
+        else:
+            obj.created_by = request.user
+        obj.save()
 
 
 
