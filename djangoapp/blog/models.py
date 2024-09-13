@@ -79,20 +79,20 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag, blank=True, default='') #19:
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify_new(self.title, 4)
+        if not self.slug: ##
+            self.slug = slugify_new(self.title, 4) ##
 
-        current_cover_name = str(self.cover.name)
-        super().save(*args, **kwargs)
-        cover_changed = False
+        current_cover_name = str(self.cover.name) ##
+        super().save(*args, **kwargs) ##
+        cover_changed = False ##
 
-        if self.cover:
-            cover_changed = current_cover_name != self.cover.name
+        if self.cover: ##
+            cover_changed = current_cover_name != self.cover.name ##
 
         # IMPORT⬇: /blog_project/djangoapp/utils/images.py
         if cover_changed:
             print('Cover changed.')
-            resize_image(self.cover, 900)
+            resize_image(self.cover, 900) ##
 
     def __str__(self):
         return self.title
