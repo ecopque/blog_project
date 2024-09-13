@@ -54,7 +54,12 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ('title',),} #14:
     autocomplete_fields = 'tags', 'category' #15:
 
+    def save_model(self, request, obj, form, change): #16:
+        ...
 
+
+
+#16: Com 'change', se estiver alterando será True. Se estiver criando, será False. Fique esperto!
 
 # ------------------------------------------------------------------
 #11: 'list_filter' é uma configuração da classe PostAdmin que define filtros no painel de administração do Django. Aqui, ele permite que o administrador filtre posts por category e is_published no painel de administração.
