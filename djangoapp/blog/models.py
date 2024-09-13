@@ -2,6 +2,7 @@
 
 from django.db import models
 from utils.rands import slugify_new
+from django.contrib.auth.models import User
 
 class Tag(models.Model):
     class Meta:
@@ -69,6 +70,7 @@ class Post(models.Model):
     cover_in_post_content = models.BooleanField(default=True, help_text='Display the cover image also within the post content?') #15: ##
     created_at = models.DateTimeField(auto_now_add=True) #16: ##
     updated_at = models.DateTimeField(auto_now=True) #17: ##
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='page_created_by') #20: ##
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, default=None,) #18: ##
     tags = models.ManyToManyField(Tag, blank=True, default='') #19: ##
 
@@ -88,6 +90,7 @@ class Post(models.Model):
 #17: Toda vez que salvar o post vai ser gerado uma nova data.
 #18: Terei muitos posts que poderão estar na mesma categoria, mas quando apagar uma categoria o post não será deletado.
 #19: 
+#20: 
 
 # ------------------------------------------------------------------
 #7: Após criar o 'Category()' e 'CategoryAdmin()' você precisa realizar o makemigrations. Melhor rodar o comando 'docker compose up --build --force-recreate'.

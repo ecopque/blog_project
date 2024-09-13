@@ -54,7 +54,13 @@ class PostAdmin(admin.ModelAdmin):
     autocomplete_fields = 'tags', 'category' #15: ##
 
 
-    
+
+#11:
+#12:
+#13:
+#14:
+#15:
+
 # ------------------------------------------------------------------
 #9: Após criar o 'Category()' e 'CategoryAdmin()' você precisa realizar o makemigrations. Melhor rodar o comando 'docker compose up --build --force-recreate'.
 #10: O atributo list_editable na classe PageAdmin do Django Admin define quais campos na lista de objetos podem ser editados diretamente na interface de lista de objetos. Neste caso, o campo is_published da model Page pode ser editado diretamente. Facilita a administração de múltiplas páginas, permitindo que o administrador altere o status de publicação diretamente na lista sem precisar acessar cada objeto individualmente.
