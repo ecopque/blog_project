@@ -1,5 +1,3 @@
-# 'Text' marking.
-
 # IMPORT⬇:
 # EXPORT⬇:
 # URL⬇:
