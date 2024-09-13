@@ -64,13 +64,13 @@ class PostAdmin(admin.ModelAdmin):
 
 
 
+# ------------------------------------------------------------------
 #16: Com 'change', se estiver alterando será True. Se estiver criando, será False. Fique esperto!
 #17: Esta linha define o método save_model dentro da classe PostAdmin, que herda de admin.ModelAdmin. O método save_model é um método especial utilizado no Django Admin para salvar um objeto no banco de dados. Ele é sobrescrito aqui para adicionar lógica customizada ao salvar um objeto Post. O método recebe quatro parâmetros: self: refere-se à instância da classe PostAdmin. request: o objeto de solicitação HTTP atual. obj: o objeto que está sendo salvo (neste caso, uma instância de Post). form: o formulário que está sendo submetido. change: um booleano que indica se o objeto está sendo criado (False) ou atualizado (True).
 #18: Se change for True, significa que o objeto Post está sendo atualizado e não criado pela primeira vez. A lógica abaixo, então, executará o bloco de código correspondente para atualizar o campo updated_by.
 #19: Se o objeto Post estiver sendo atualizado (quando change é True), esta linha define o campo updated_by do objeto Post como o usuário atual (request.user) que está fazendo a solicitação. Esse campo updated_by é uma ForeignKey para o modelo User (importado de django.contrib.auth.models no arquivo models.py) e armazena o usuário que fez a última atualização no objeto Post.
 #20: Se o objeto Post está sendo criado pela primeira vez (quando change é False), esta linha define o campo created_by do objeto Post como o usuário atual (request.user). O campo created_by também é uma ForeignKey para o modelo User, e este campo armazenará o usuário que criou o objeto Post.
 #21: Esta linha chama o método save() no objeto obj (a instância de Post que está sendo salva) para persistir as alterações no banco de dados. Este método é crucial porque, depois de definir quem criou ou atualizou o post, ele garante que essas informações sejam armazenadas no banco de dados.
-
 # ------------------------------------------------------------------
 #11: 'list_filter' é uma configuração da classe PostAdmin que define filtros no painel de administração do Django. Aqui, ele permite que o administrador filtre posts por category e is_published no painel de administração.
 #12: Permite a edição direta de campos listados na visualização de lista do Django Admin. Aqui, o campo is_published pode ser editado diretamente da lista de posts.
