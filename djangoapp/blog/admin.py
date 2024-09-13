@@ -39,7 +39,6 @@ class PageAdmin(admin.ModelAdmin): #9:
     # URL⬇: http://127.0.0.1:8000/admin/blog/page/add/
     prepopulated_fields = {"slug": ('title',),}
 
-
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     # URL⬇: http://127.0.0.1:8000/admin/blog/post/
