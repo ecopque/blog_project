@@ -42,7 +42,17 @@ class PageAdmin(admin.ModelAdmin): #9:
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    ...
+    list_display = 'id', 'title', 'is_published', 'created_by',
+    list_display_links = 'title',
+    search_fields = 'id', 'slug', 'title', 'excerpt', 'content', 'cover',
+    list_per_page = 50
+    list_filter = 'category', 'is_published', #11: ##
+    list_editable = 'is_published', #12: ##
+    ordering = '-id',
+    readonly_fields = 'created_at', 'updated_at', 'updated_by', 'created_by', #13: ##
+    prepopulated_fields = {"slug": ('title',),} #14: ##
+    autocomplete_fields = 'tags', 'category' #15: ##
+
 
     
 # ------------------------------------------------------------------
