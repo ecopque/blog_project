@@ -45,7 +45,7 @@ class PageAdmin(admin.ModelAdmin): #9:
 class PostAdmin(SummernoteModelAdmin): ##
     # URL⬇: http://127.0.0.1:8000/admin/blog/post/
     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
-    summernote_fields = ('contente',) #22: ##
+    summernote_fields = ('content',) #22: ##
 
     list_display = 'id', 'title', 'is_published', 'created_by',
     list_display_links = 'title',

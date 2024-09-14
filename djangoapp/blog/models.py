@@ -67,8 +67,10 @@ class Post(models.Model):
     excerpt = models.CharField(max_length=150) #13:
     is_published = models.BooleanField(default=False, help_text=('This field must be checked for the post to be displayed publicly.'),)
 
+    # EXPORT⬇: /blog/project/djangoapp/blog/admin.py 
     content = models.TextField() #22:
-    #EXPORT⬇: /blog_project/data/web/media/posts/year/month/
+    
+    # EXPORT⬇: /blog_project/data/web/media/posts/year/month/
     cover = models.ImageField(upload_to='post/%Y/%m/', blank=True, default='') #14:
     cover_in_post_content = models.BooleanField(default=True, help_text='Display the cover image also within the post content?') #15:
     created_at = models.DateTimeField(auto_now_add=True) #16:
