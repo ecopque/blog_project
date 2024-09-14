@@ -43,12 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     # IMPORT⬇: /blog_project/djangoapp/blog/apps.py
     'blog',
-
     # IMPORT⬇: /blog_project/djangoapp/site_setup/apps.py
     'site_setup',
+    'django_summernote'
 ]
 
 MIDDLEWARE = [
