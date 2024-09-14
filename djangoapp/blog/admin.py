@@ -2,6 +2,7 @@
 
 from django.contrib import admin
 from blog.models import Tag, Category, Page, Post
+from django_summernote.admin import SummernoteModelAdmin
 
 # IMPORT⬇: /blog/project/djangoapp/blog/models.py
 @admin.register(Tag) #3:
@@ -40,8 +41,10 @@ class PageAdmin(admin.ModelAdmin): #9:
     prepopulated_fields = {"slug": ('title',),}
 
 @admin.register(Post)
-class PostAdmin(admin.ModelAdmin):
+# class PostAdmin(admin.ModelAdmin):
+class PostAdmin(SummernoteModelAdmin): ##
     # URL⬇: http://127.0.0.1:8000/admin/blog/post/
+    summernote_fields = ('contente',) #22: ##
     list_display = 'id', 'title', 'is_published', 'created_by',
     list_display_links = 'title',
     search_fields = 'id', 'slug', 'title', 'excerpt', 'content',
@@ -62,7 +65,7 @@ class PostAdmin(admin.ModelAdmin):
             obj.created_by = request.user #20:
         obj.save() #21:
 
-
+#22: Este é o 'contente' do Post() de /blog/project/djangoapp/blog/models.py.
 
 # ------------------------------------------------------------------
 #16: Com 'change', se estiver alterando será True. Se estiver criando, será False. Fique esperto!
