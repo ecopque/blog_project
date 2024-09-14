@@ -6,11 +6,25 @@ from django.contrib.auth.models import User
 from utils.images import resize_image
 from django_summernote.models import AbstractAttachment ## 
 
-class PostAttachment(AbstractAttachment):
+class PostAttachment(AbstractAttachment): ##
     def save(self, *args, **kwargs):
         if not self.name:
             self.name = self.file.name
+        
+        current_file_name = str(self.file.name)
         super().save(*args, **kwargs)
+        file_changed = False
+
+        if self.file:
+            file_changed = current_file_name != self.file.name
+
+        # IMPORT⬇: /blog_project/djangoapp/utils/images.py
+        if file_changed:
+            print('Image added.')
+            resize_image(self.cover, 900, True, 90)
+
+    def __str__(self):
+        return self.title
 
 
 class Tag(models.Model):
