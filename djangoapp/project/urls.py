@@ -1,4 +1,4 @@
-# /blog_project/project/urls.py
+# FILE: /blog_project/project/urls.py
 
 from django.contrib import admin
 from django.urls import path, include
@@ -7,7 +7,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('blog.urls')), ##
+    path('', include('blog.urls')),
+    path('summernote/', include('django_summernote.urls')), ##
 ]
 
 if settings.DEBUG:
