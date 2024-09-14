@@ -44,10 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # LOCALE: /blog_project/djangoapp/blog/apps.py
+    # IMPORT⬇: /blog_project/djangoapp/blog/apps.py
     'blog',
 
-    # lOCALE: /blog_project/djangoapp/site_setup/apps.py
+    # IMPORT⬇: /blog_project/djangoapp/site_setup/apps.py
     'site_setup',
 ]
 
