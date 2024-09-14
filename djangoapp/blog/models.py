@@ -4,6 +4,14 @@ from django.db import models
 from utils.rands import slugify_new
 from django.contrib.auth.models import User
 from utils.images import resize_image
+from django_summernote.models import AbstractAttachment ## 
+
+class PostAttachment(AbstractAttachment):
+    def save(self, *args, **kwargs):
+        if not self.name:
+            self.name = self.file.name
+        super().save(*args, **kwargs)
+
 
 class Tag(models.Model):
     class Meta:
