@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'blog',
     # IMPORT⬇: /blog_project/djangoapp/site_setup/apps.py
     'site_setup',
-    'django_summernote' ##
+    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -148,6 +148,8 @@ STATIC_URL = '/static/' # 'static/'
 STATIC_ROOT = DATA_DIR / 'static' # /data/web/static
 MEDIA_URL = '/media/'
 MEDIA_ROOT = DATA_DIR / 'media' # /data/web/media
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media/') # Teste summernote.
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

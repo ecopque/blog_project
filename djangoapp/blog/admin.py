@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 from blog.models import Tag, Category, Page, Post
-from django_summernote.admin import SummernoteModelAdmin
+from django_summernote.admin import SummernoteModelAdmin ##
 
 # IMPORT⬇: /blog/project/djangoapp/blog/models.py
 @admin.register(Tag) #3:
