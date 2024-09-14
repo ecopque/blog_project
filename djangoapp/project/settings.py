@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'blog',
     # IMPORT⬇: /blog_project/djangoapp/site_setup/apps.py
     'site_setup',
-    'django_summernote'
+    'django_summernote' ##
 ]
 
 MIDDLEWARE = [
