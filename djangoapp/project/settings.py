@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'blog',
     # IMPORT⬇: /blog_project/djangoapp/site_setup/apps.py
     'site_setup',
-    
+
     'django_summernote',
 ]
 
@@ -158,7 +158,7 @@ MEDIA_ROOT = DATA_DIR / 'media' # /data/web/media
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # django_summernote
-SUMMERNOTE_CONFIG = { ##
+SUMMERNOTE_CONFIG = { #1:
     'summernote': {
         # Toolbar customization
         # https://summernote.org/deep-dive/#custom-toolbar-popover
@@ -184,3 +184,7 @@ SUMMERNOTE_CONFIG = { ##
     'attachment_filesize_limit': 30 * 1024 * 1024,
     'attachment_model': 'blog.PostAttachment',
 }
+
+
+# ------------------------------------------------------------------
+#1: Este dicionário configura as opções específicas para o editor de texto Summernote, utilizado para criar e editar conteúdo rico no Django. Ele está relacionado ao pacote django-summernote, permitindo customizações como a configuração da toolbar, habilitação de temas para o editor, e definições sobre o comportamento do editor.
