@@ -188,3 +188,5 @@ SUMMERNOTE_CONFIG = { #1:
 
 # ------------------------------------------------------------------
 #1: Este dicionário configura as opções específicas para o editor de texto Summernote, utilizado para criar e editar conteúdo rico no Django. Ele está relacionado ao pacote django-summernote, permitindo customizações como a configuração da toolbar, habilitação de temas para o editor, e definições sobre o comportamento do editor.
+
+# https://linktr.ee/edsoncopque

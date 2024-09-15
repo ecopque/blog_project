@@ -16,3 +16,5 @@ django-summernote>=0.8.20.0,<0.8.21 #4:
 #1: Precisamos instalar o Pillow para usar o favicon. Mas não é interessante instalar pelo terminal ou usando o terminal/django. Precisamos usar o 'requirements.txt'.
 #2: Primeiro vamos no 'pypi.org' e pesquisaremos qual a versão atual do "pillow" para inserir no 'requirements.txt'.
 #3: <= e < significa: Inclusive, exclusive.
+
+# https://linktr.ee/edsoncopque
