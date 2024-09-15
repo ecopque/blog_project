@@ -37,6 +37,7 @@ def post(request):
 
 
 
+# ------------------------------------------------------------------
 #12: Esta linha está buscando todos os objetos do modelo Post (definido no módulo blog.models), filtrando-os para retornar apenas os que estão com a flag is_published=True. Ou seja, apenas os posts publicados serão incluídos. Em seguida, os resultados são ordenados pela chave primária (pk) em ordem decrescente ('-pk').
 # ------------------------------------------------------------------
 #3: A classe Paginator é usada para dividir um conjunto de dados em páginas menores e gerenciáveis. Neste código, Paginator é utilizado para paginar a lista de posts no blog.
@@ -51,3 +52,5 @@ def post(request):
 # ------------------------------------------------------------------
 #1: Esta linha define uma função chamada index que recebe um parâmetro request. No Django, uma view (como essa) é uma função que recebe um pedido HTTP (request) e retorna uma resposta HTTP. Aqui, a função index será usada para processar o pedido quando o usuário acessa a URL associada a esta view.
 #2: Esta linha utiliza a função render do Django para gerar uma resposta HTTP. A função render pega três parâmetros: o objeto request, o caminho para o template HTML que será renderizado ('blog/pages/index.html'), e opcionalmente um dicionário de contexto que pode ser passado para o template. O template 'blog/pages/index.html' será importado e renderizado como resposta quando a view index for chamada. Esse template está localizado no diretório /blog_project/djangoapp/templates/blog/pages/index.html.
+
+# https://linktr.ee/edsoncopque

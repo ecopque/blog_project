@@ -28,9 +28,9 @@
 
 
 
+{# ------------------------------------------------------------------ #}
 {#10: Este 'page_obj' é do 'index()': return render(request, 'blog/pages/index.html', {'page_obj': page_obj,}). #}
 {#11: Aqui está sendo feito um loop sobre o objeto page_obj que foi passado para o template a partir da view index. O page_obj é o resultado da paginação feita na view, contendo um conjunto de posts da página atual. A cada iteração, a variável post representará um post individual. #}
-
 {# ------------------------------------------------------------------ #}
 {#4: base.html: É o template base, a planta da casa. Ele define a estrutura geral, como o cabeçalho, rodapé e a disposição das seções. #}
 {#5: É o template que estende o 'base.html'. Ele herda toda a estrutura do 'base.html' e pode personalizar algumas seções, como o conteúdo principal. Herança: O index.html herda todos os elementos e blocos definidos em base.html. #}
@@ -42,3 +42,5 @@
 {# ##1: Aparentemente, lançou este conteúdo para dentro de 'base.html' em ({% block content %}{% endblock content %}), pois estamos acessando o index.html. #}
 {# #2: Sequência lógica é: 'urls.py' > 'views.py' > 'index.html' > 'base.html' e 'block content' = print <h1> ou 'File - index.html'. #}
 {# #3: Se eu estivesse acessando de outra página (tipo post.html), o conteúdo apresentado seria do post.html, pois o acesso seria feito pela url de post. #}
+
+{# https://linktr.ee/edsoncopque #}
