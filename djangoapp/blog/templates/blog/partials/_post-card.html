@@ -2,15 +2,15 @@
 
 {# IMPORT⬇: /blog_project/djangoapp/blog/static/blog/css/style.css #}
 <article class="card"> {#1: #}
-  {% if post.cover %} {% comment %} {# ## #} {% endcomment %}
+  {% if post.cover %} {% comment %} {# ## Quem é post? Quem é cover? Onde eles estão? #} {% endcomment %}
     <div class="card-cover-wrapper">
       <a href="#" class="card-cover-link">
         <img 
           class="card-cover"
           loading="lazy"
           {% comment %} src="https://picsum.photos/745/419/?rand=2{{ i }}"  {% endcomment %}
-          src="{{post.cover.url}}"
-          alt="Change me"
+          src="{{post.cover.url}}" {% comment %} {# ## #} {% endcomment %}
+          alt="Post cover {{post.title}}" {% comment %} {#2: ## #} {% endcomment %}
         >
       </a>
     </div>
@@ -42,4 +42,6 @@
 </article>
 
 
+{#2: Aqui vamos inserir um texto para as pessoas que não conseguem enxergar. #}
+{# ------------------------------------------------------------------ #}
 {#1: Um elemento article representando um card de post, estilizado pela classe card. #}
