@@ -4,7 +4,7 @@
 <article class="card"> {#1: #}
   {% if post.cover %} {% comment %} {# ## Quem é post? Quem é cover? Onde eles estão? #} {% endcomment %}
     <div class="card-cover-wrapper">
-      <a href="#" class="card-cover-link">
+      <a href="{% url 'blog:post' post.slug %}" class="card-cover-link"> {% comment %} {# ## Quem é post? Quem é slug? #} {% endcomment %}
         <img 
           class="card-cover"
           loading="lazy"
