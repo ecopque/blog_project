@@ -4,9 +4,9 @@ from django.db import models
 from utils.rands import slugify_new
 from django.contrib.auth.models import User
 from utils.images import resize_image
-from django_summernote.models import AbstractAttachment ##
+from django_summernote.models import AbstractAttachment #29:
 
-class PostAttachment(AbstractAttachment): ##
+class PostAttachment(AbstractAttachment): #30:
     def save(self, *args, **kwargs):
         if not self.name:
             self.name = self.file.name
@@ -23,7 +23,7 @@ class PostAttachment(AbstractAttachment): ##
             print('Image added.')
             resize_image(self.file, 900, True, 90)
 
-        return super_save ##
+        return super_save #31:
 
 class Tag(models.Model):
     class Meta:
@@ -123,6 +123,10 @@ class Post(models.Model):
     
     
     
+# ------------------------------------------------------------------
+#29: Importa a classe AbstractAttachment do pacote django_summernote, que é usada como uma classe base para modelos de anexos, facilitando o gerenciamento de arquivos e imagens no editor Summernote.
+#30: A classe PostAttachment herda de AbstractAttachment, o que permite que os arquivos anexados a um post sejam gerenciados de forma simplificada. O AbstractAttachment já contém as funcionalidades básicas para lidar com arquivos no contexto do Summernote.
+#31: Aqui, após salvar as modificações feitas no anexo (caso tenha ocorrido alguma alteração no arquivo), o método super_save retorna a chamada à implementação original de save() da classe pai (AbstractAttachment), garantindo que todas as operações padrões de salvamento de arquivo sejam concluídas.
 # ------------------------------------------------------------------
 #23: Esta linha armazena o nome atual da imagem de capa (self.cover.name) como uma string. Isso é feito antes de salvar o objeto para que o código possa verificar posteriormente se o nome da imagem foi alterado. A lógica é necessária para detectar mudanças na imagem e realizar ações com base nisso, como redimensionar a nova imagem.
 #24: Este comando chama o método save() da superclasse (models.Model), que lida com o salvamento efetivo do objeto no banco de dados. Isso é importante porque, mesmo que existam personalizações no método save, ainda é necessário garantir que o objeto seja salvo de acordo com o comportamento padrão do Django.
