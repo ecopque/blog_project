@@ -73,12 +73,14 @@ class PostAdmin(SummernoteModelAdmin): #26:
             obj.created_by = request.user #20:
         obj.save() #21:
 
+
+
+# ------------------------------------------------------------------
 #22: Este é o 'contente' do Post() de /blog/project/djangoapp/blog/models.py.
 #23: Importa a classe SummernoteModelAdmin do pacote django_summernote, que é uma extensão da classe ModelAdmin do Django. Essa classe facilita a integração do editor Summernote nos campos de texto dos modelos administrados.
 #24: A classe PageAdmin está sendo configurada para utilizar o editor de texto Summernote nos campos da página no Django admin. Ao herdar de SummernoteModelAdmin, ela habilita a edição de campos de texto longos (como o conteúdo da página) usando o Summernote.
 #25: Aqui, o campo content do modelo Page será editável usando o editor Summernote no painel de administração do Django. Esta linha especifica que o campo content do modelo deve usar o editor de texto enriquecido.
 #26: Assim como na classe PageAdmin, PostAdmin herda de SummernoteModelAdmin, tornando o editor Summernote disponível para os campos especificados dentro dessa classe.
-
 # ------------------------------------------------------------------
 #16: Com 'change', se estiver alterando será True. Se estiver criando, será False. Fique esperto!
 #17: Esta linha define o método save_model dentro da classe PostAdmin, que herda de admin.ModelAdmin. O método save_model é um método especial utilizado no Django Admin para salvar um objeto no banco de dados. Ele é sobrescrito aqui para adicionar lógica customizada ao salvar um objeto Post. O método recebe quatro parâmetros: self: refere-se à instância da classe PostAdmin. request: o objeto de solicitação HTTP atual. obj: o objeto que está sendo salvo (neste caso, uma instância de Post). form: o formulário que está sendo submetido. change: um booleano que indica se o objeto está sendo criado (False) ou atualizado (True).
