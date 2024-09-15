@@ -7,10 +7,10 @@ psycopg2-binary>=2.9.6,<2.10 #3:
 sqlparse==0.5.1
 Pillow>=9.5.0,<9.6 #1: #2:
 
-django-summernote>=0.8.20.0,<0.8.21 ##
+django-summernote>=0.8.20.0,<0.8.21 #4:
 
 
-
+#4: Esta linha indica que o pacote django-summernote deve ser instalado com uma versão maior ou igual a 0.8.20.0, mas menor que 0.8.21. O django-summernote é um editor de texto WYSIWYG (What You See Is What You Get) integrado ao Django, que permite a edição rica de conteúdos, especialmente útil para formulários e administrações.
 # ------------------------------------------------------------------
 #1: Precisamos instalar o Pillow para usar o favicon. Mas não é interessante instalar pelo terminal ou usando o terminal/django. Precisamos usar o 'requirements.txt'.
 #2: Primeiro vamos no 'pypi.org' e pesquisaremos qual a versão atual do "pillow" para inserir no 'requirements.txt'.
