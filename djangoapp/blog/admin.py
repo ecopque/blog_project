@@ -28,8 +28,13 @@ class CategoryAdmin(admin.ModelAdmin): #9:
     prepopulated_fields = {"slug": ('name',),}
 
 @admin.register(Page)
-class PageAdmin(admin.ModelAdmin): #9:
+# class PageAdmin(admin.ModelAdmin): #9:
+class PageAdmin(SummernoteModelAdmin): ##
     # URL⬇: http://127.0.0.1:8000/admin/blog/page/
+
+    # IMPORT⬇: /blog/project/djangoapp/blog/models.py
+    summernote_fields = ('content',) ##
+
     list_display = 'id', 'title', 'is_published',
     list_display_links = 'title',
     search_fields = 'id', 'slug', 'title', 'content',

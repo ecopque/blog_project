@@ -23,7 +23,7 @@ class PostAttachment(AbstractAttachment): ##
             print('Image added.')
             resize_image(self.file, 900, True, 90)
 
-        return super_save
+        return super_save ##
 
 class Tag(models.Model):
     class Meta:
