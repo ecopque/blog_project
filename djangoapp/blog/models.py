@@ -25,7 +25,6 @@ class PostAttachment(AbstractAttachment): ##
 
         return super_save
 
-
 class Tag(models.Model):
     class Meta:
         verbose_name = 'Tag'
