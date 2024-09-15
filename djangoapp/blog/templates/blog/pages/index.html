@@ -14,7 +14,7 @@
             <div class="card-grid">
             
             {# IMPORT⬇: /blog_project/djangoapp/blog/views.py #}
-            {# {% for i in ""|ljust:"9" %} {#7: #8: #} #}
+            {% comment %} {# {% for i in ""|ljust:"9" %} {#7: #8: #} #} {% endcomment %}
             {% for post in page_obj %} {#10: ## #}
                 {% include 'blog/partials/_post-card.html' with i=forloop.counter0 %} {#9: #}
             {% endfor %}

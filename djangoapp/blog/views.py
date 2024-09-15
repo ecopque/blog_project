@@ -8,8 +8,7 @@ posts = list(range(1000)) #4:
 
 # EXPORT⬇: /blog_project/djangoapp/blog/urls.py
 def index(request): #1:
-    posts = Post.objects.order_by('-pk')
-    
+    posts = Post.objects.order_by('-pk') ##
 
     paginator = Paginator(posts, 9) #5: #6!:
     # URL⬇: http://127.0.0.1:8000/?page=1
