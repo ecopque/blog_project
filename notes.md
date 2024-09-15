@@ -2,8 +2,8 @@
 # EXPORT⬇:
 # URL⬇:
 
-{# ## #}
-{% comment %} {# ## #} {% endcomment %}
+{# ## #} Inserir numeração ao lado dos códigos html.
+{% comment %} {# ## #} {% endcomment %} Comentar código html.
 
 # ------------------------------------------------------------------
 {# ------------------------------------------------------------------ #}

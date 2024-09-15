@@ -1,10 +1,11 @@
 {# FILE: /blog_project/djangoapp/templates/blog/pages/index.html #}
 
 {# IMPORT⬇: /blog_project/djangoapp/templates/blog/partials/base.html #}
+
 {% extends 'blog/base.html' %} {#4: #5: #}
 
 {# URL⬇: http://127.0.0.1:8000/ #}
-{% block content %} {# #1: #2: #3: #}
+{% block content %} {#1: #2: #3: #}
     {# IMPORT⬇: /blog_project/djangoapp/blog/static/blog/css/style.css #}
     <main class="main-content section-wrapper"> {#6: #}
         <div class="section-content-wide">
@@ -15,7 +16,7 @@
             
             {# IMPORT⬇: /blog_project/djangoapp/blog/views.py #}
             {% comment %} {# {% for i in ""|ljust:"9" %} {#7: #8: #} #} {% endcomment %}
-            {% for post in page_obj %} {#10: ## #}
+            {% for post in page_obj %}  {#10: #11: #}
                 {% include 'blog/partials/_post-card.html' with i=forloop.counter0 %} {#9: #}
             {% endfor %}
             </div>
@@ -28,6 +29,7 @@
 
 
 {#10: Este 'page_obj' é do 'index()': return render(request, 'blog/pages/index.html', {'page_obj': page_obj,}). #}
+{#11: Aqui está sendo feito um loop sobre o objeto page_obj que foi passado para o template a partir da view index. O page_obj é o resultado da paginação feita na view, contendo um conjunto de posts da página atual. A cada iteração, a variável post representará um post individual. #}
 
 {# ------------------------------------------------------------------ #}
 {#4: base.html: É o template base, a planta da casa. Ele define a estrutura geral, como o cabeçalho, rodapé e a disposição das seções. #}

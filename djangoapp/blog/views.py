@@ -4,13 +4,14 @@ from django.shortcuts import render
 from django.core.paginator import Paginator #3:
 from blog.models import Post
 
-posts = list(range(1000)) #4:
+# posts = list(range(1000)) #4:
+PER_PAGE = 9
 
 # EXPORT⬇: /blog_project/djangoapp/blog/urls.py
 def index(request): #1:
-    posts = Post.objects.order_by('-pk') ##
+    posts = Post.objects.filter(is_published=True).order_by('-pk') #12:
 
-    paginator = Paginator(posts, 9) #5: #6!:
+    paginator = Paginator(posts, PER_PAGE) #5: #6!:
     # URL⬇: http://127.0.0.1:8000/?page=1
     page_number = request.GET.get("page") #7: #9:
     page_obj = paginator.get_page(page_number) #8:
@@ -19,24 +20,24 @@ def index(request): #1:
     return render(request, 'blog/pages/index.html', {'page_obj': page_obj,}) #2: #10:
 
 def page(request):
-    paginator = Paginator(posts, 9)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
+    # paginator = Paginator(posts, 9)
+    # page_number = request.GET.get("page")
+    # page_obj = paginator.get_page(page_number)
 
     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/page.html
     return render(request, 'blog/pages/page.html', {}) #11:
 
 def post(request):
-    paginator = Paginator(posts, 9)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
+    # paginator = Paginator(posts, 9)
+    # page_number = request.GET.get("page")
+    # page_obj = paginator.get_page(page_number)
 
     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/post.html
     return render(request, 'blog/pages/post.html', {})
 
 
 
-
+#12: Esta linha está buscando todos os objetos do modelo Post (definido no módulo blog.models), filtrando-os para retornar apenas os que estão com a flag is_published=True. Ou seja, apenas os posts publicados serão incluídos. Em seguida, os resultados são ordenados pela chave primária (pk) em ordem decrescente ('-pk').
 # ------------------------------------------------------------------
 #3: A classe Paginator é usada para dividir um conjunto de dados em páginas menores e gerenciáveis. Neste código, Paginator é utilizado para paginar a lista de posts no blog.
 #4: Define uma lista chamada posts que contém 1000 números (de 0 a 999). Este é um exemplo de lista de objetos que será paginada usando a classe Paginator.
