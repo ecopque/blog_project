@@ -1,16 +1,18 @@
 {# FILE: /blog_project/djangoapp/templates/blog/partials/_post-card.html #}
 
 {# IMPORT⬇: /blog_project/djangoapp/blog/static/blog/css/style.css #}
-<article class="card"> {% comment %} {#1: #} {% endcomment %}
-  {% if post.cover %} {% comment %} {# ## Quem é post? Quem é cover? Onde eles estão? #} {% endcomment %}
+<article class="card"> {#1: #}
+  {# IMPORT⬇: /blog/project/djangoapp/blog/models.py #}
+  {% if post.cover %} {#3: #4: #}
     <div class="card-cover-wrapper">
-      <a href="{% url 'blog:post' post.slug %}" class="card-cover-link"> {% comment %} {# ## Quem é post? Quem é slug? De onde eles vêem? #} {% endcomment %}
+      {# IMPORT⬇: /blog_project/djangoapp/blog/urls.py #}
+      <a href="{% url 'blog:post' post.slug %}" class="card-cover-link"> {#5: #}
         <img 
           class="card-cover"
           loading="lazy"
-          {% comment %} src="https://picsum.photos/745/419/?rand=2{{ i }}"  {% endcomment %}
-          src="{{post.cover.url}}" {% comment %} {# ## #} {% endcomment %}
-          alt="Post cover {{post.title}}" {% comment %} {#2: ## #} {% endcomment %}
+          {% comment %}{# src="https://picsum.photos/745/419/?rand=2{{ i }}" #}{% endcomment %}
+          src="{{post.cover.url}}" {#6: #}
+          alt="Post cover {{post.title}}" {#7: #}
         >
       </a>
     </div>
@@ -19,19 +21,19 @@
   <div class="card-text-wrapper">
     <div class="card-title-wrapper">
       <h2 class="card-title">
-        <a href="{% url 'blog:post' post.slug %}" class="card-title-link"> {% comment %} {# ## #} {% endcomment %}
-          {{post.title}} {% comment %} {# ## #} {% endcomment %}
+        <a href="{% url 'blog:post' post.slug %}" class="card-title-link">
+          {{post.title}} {#8: #}
         </a>
       </h2>
     </div>
 
     <div class="card-content-wrapper">
       <p class="card-content">
-       {{post.excerpt}} {% comment %} {# ## #} {% endcomment %}
+       {{post.excerpt}} {#9: #}
       </p>
 
       <div class="card-actions">
-        <a class="card-action-link" href="{% url 'blog:post' post.slug %}"> {% comment %} {# ## #} {% endcomment %}
+        <a class="card-action-link" href="{% url 'blog:post' post.slug %}">
           <span>Read</span>
           <i class="fa-solid fa-circle-arrow-right"></i>
         </a>
@@ -43,5 +45,12 @@
 
 
 {#2: Aqui vamos inserir um texto para as pessoas que não conseguem enxergar. #}
+{#3: Nesta linha, o Django verifica se o post atual (obtido através do loop for post in page_obj) possui uma imagem associada no campo cover. O campo cover provavelmente está definido no modelo Post dentro de blog.models, representando a imagem de capa de cada post. #}
+{#4: Parece que 'post' é a classe e 'cover' a variável. #}
+{#5: Aqui, o template está criando um link para uma página específica do post. O valor post.slug refere-se ao campo slug do modelo Post, que geralmente é uma versão amigável da URL do título do post. O URL é gerado com base no nome da rota 'blog:post' definida em /blog_project/djangoapp/blog/urls.py. #}
+{#6: Esta linha está inserindo a URL da imagem de capa (cover) do post no atributo src de uma tag <img>. A propriedade post.cover.url é usada para acessar o caminho da imagem. #}
+{#7: Aqui, a tag <img> recebe o atributo alt (texto alternativo) que descreve a imagem, usando o título do post (post.title). Isso melhora a acessibilidade e o SEO do site. #}
+{#8: Esta linha insere o título do post no template HTML, utilizando a variável post.title que foi passada no contexto do template. #}
+{#9: Aqui, o campo excerpt do post (provavelmente um resumo ou trecho do post completo) é exibido no template. #}
 {# ------------------------------------------------------------------ #}
 {#1: Um elemento article representando um card de post, estilizado pela classe card. #}
