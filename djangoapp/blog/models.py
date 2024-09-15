@@ -4,7 +4,7 @@ from django.db import models
 from utils.rands import slugify_new
 from django.contrib.auth.models import User
 from utils.images import resize_image
-from django_summernote.models import AbstractAttachment ## 
+from django_summernote.models import AbstractAttachment ##
 
 class PostAttachment(AbstractAttachment): ##
     def save(self, *args, **kwargs):
@@ -12,7 +12,7 @@ class PostAttachment(AbstractAttachment): ##
             self.name = self.file.name
         
         current_file_name = str(self.file.name)
-        super().save(*args, **kwargs)
+        super_save = super().save(*args, **kwargs)
         file_changed = False
 
         if self.file:
@@ -21,10 +21,9 @@ class PostAttachment(AbstractAttachment): ##
         # IMPORT⬇: /blog_project/djangoapp/utils/images.py
         if file_changed:
             print('Image added.')
-            resize_image(self.cover, 900, True, 90)
+            resize_image(self.file, 900, True, 90)
 
-    def __str__(self):
-        return self.title
+        return super_save
 
 
 class Tag(models.Model):
@@ -107,7 +106,8 @@ class Post(models.Model):
             self.slug = slugify_new(self.title, 4)
 
         current_cover_name = str(self.cover.name) #23:
-        super().save(*args, **kwargs) #24:
+        # super().save(*args, **kwargs) #24:
+        super_save = super().save(*args, **kwargs)
         cover_changed = False #25:
 
         if self.cover: #26:
@@ -118,8 +118,9 @@ class Post(models.Model):
             print('Cover changed.')
             resize_image(self.cover, 900, True, 90) #28:
 
-    def __str__(self):
-        return self.title
+    # def __str__(self):
+    #     return self.title
+        return super_save
     
     
     
