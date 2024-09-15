@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 from blog.models import Tag, Category, Page, Post
-from django_summernote.admin import SummernoteModelAdmin ##
+from django_summernote.admin import SummernoteModelAdmin #23:
 
 # IMPORT⬇: /blog/project/djangoapp/blog/models.py
 @admin.register(Tag) #3:
@@ -29,11 +29,11 @@ class CategoryAdmin(admin.ModelAdmin): #9:
 
 @admin.register(Page)
 # class PageAdmin(admin.ModelAdmin): #9:
-class PageAdmin(SummernoteModelAdmin): ##
+class PageAdmin(SummernoteModelAdmin): #24:
     # URL⬇: http://127.0.0.1:8000/admin/blog/page/
 
     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
-    summernote_fields = ('content',) ##
+    summernote_fields = ('content',) #25:
 
     list_display = 'id', 'title', 'is_published',
     list_display_links = 'title',
@@ -47,10 +47,11 @@ class PageAdmin(SummernoteModelAdmin): ##
 
 @admin.register(Post)
 # class PostAdmin(admin.ModelAdmin):
-class PostAdmin(SummernoteModelAdmin): ##
+class PostAdmin(SummernoteModelAdmin): #26:
     # URL⬇: http://127.0.0.1:8000/admin/blog/post/
+
     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
-    summernote_fields = ('content',) #22: ##
+    summernote_fields = ('content',) #22:
 
     list_display = 'id', 'title', 'is_published', 'created_by',
     list_display_links = 'title',
@@ -73,6 +74,10 @@ class PostAdmin(SummernoteModelAdmin): ##
         obj.save() #21:
 
 #22: Este é o 'contente' do Post() de /blog/project/djangoapp/blog/models.py.
+#23: Importa a classe SummernoteModelAdmin do pacote django_summernote, que é uma extensão da classe ModelAdmin do Django. Essa classe facilita a integração do editor Summernote nos campos de texto dos modelos administrados.
+#24: A classe PageAdmin está sendo configurada para utilizar o editor de texto Summernote nos campos da página no Django admin. Ao herdar de SummernoteModelAdmin, ela habilita a edição de campos de texto longos (como o conteúdo da página) usando o Summernote.
+#25: Aqui, o campo content do modelo Page será editável usando o editor Summernote no painel de administração do Django. Esta linha especifica que o campo content do modelo deve usar o editor de texto enriquecido.
+#26: Assim como na classe PageAdmin, PostAdmin herda de SummernoteModelAdmin, tornando o editor Summernote disponível para os campos especificados dentro dessa classe.
 
 # ------------------------------------------------------------------
 #16: Com 'change', se estiver alterando será True. Se estiver criando, será False. Fique esperto!
