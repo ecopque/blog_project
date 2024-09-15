@@ -12,7 +12,10 @@
             {# IMPORT⬇: /blog_project/djangoapp/blog/static/blog/css/style.css #}
             {# IMPORT⬇: /blog_project/djangoapp/templates/blog/partials/_post-card.html #}
             <div class="card-grid">
-            {% for i in ""|ljust:"9" %} {#7: #8: #}
+            
+            {# IMPORT⬇: /blog_project/djangoapp/blog/views.py #}
+            {# {% for i in ""|ljust:"9" %} {#7: #8: #} #}
+            {% for post in page_obj %} {#10: ## #}
                 {% include 'blog/partials/_post-card.html' with i=forloop.counter0 %} {#9: #}
             {% endfor %}
             </div>
@@ -23,15 +26,17 @@
 {% endblock content %}
 
 
-{# #4: base.html: É o template base, a planta da casa. Ele define a estrutura geral, como o cabeçalho, rodapé e a disposição das seções. #}
+
+{#10: Este 'page_obj' é do 'index()': return render(request, 'blog/pages/index.html', {'page_obj': page_obj,}). #}
+
+{# ------------------------------------------------------------------ #}
+{#4: base.html: É o template base, a planta da casa. Ele define a estrutura geral, como o cabeçalho, rodapé e a disposição das seções. #}
 {#5: É o template que estende o 'base.html'. Ele herda toda a estrutura do 'base.html' e pode personalizar algumas seções, como o conteúdo principal. Herança: O index.html herda todos os elementos e blocos definidos em base.html. #}
 {#6: Define a estrutura principal do conteúdo da página. A classe 'main-content' provavelmente define estilos CSS específicos para a organização do conteúdo. #}
 {#7: Loop for que itera 9 vezes (pelo uso do filtro ljust:9), provavelmente para renderizar os 9 cards de posts em cada página. #}
 {#8: Agora sim, estamos definindo a quantidade de posts nas páginas. #}
 {#9: Inclui o template parcial '_post-card.html' para cada iteração do loop, passando o contador i como contexto para customização do conteúdo de cada card. #}
-
 {# ------------------------------------------------------------------ #}
-
 {# ##1: Aparentemente, lançou este conteúdo para dentro de 'base.html' em ({% block content %}{% endblock content %}), pois estamos acessando o index.html. #}
 {# #2: Sequência lógica é: 'urls.py' > 'views.py' > 'index.html' > 'base.html' e 'block content' = print <h1> ou 'File - index.html'. #}
 {# #3: Se eu estivesse acessando de outra página (tipo post.html), o conteúdo apresentado seria do post.html, pois o acesso seria feito pela url de post. #}
