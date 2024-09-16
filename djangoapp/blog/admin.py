@@ -73,7 +73,7 @@ class PostAdmin(SummernoteModelAdmin): #26:
         
         # IMPORT⬇: /blog_project/djangoapp/blog/urls.py
         url_post = reverse('blog:post', args=(obj.slug,)) #27: ##
-        safe_link = mark_safe(f'<a target="_blank" href="{url_post}">{obj.title}</a>') #28: ##
+        safe_link = mark_safe(f'<a target="_blank" href="{url_post}">View post</a>') #28: ##
         return  safe_link
 
     # IMPORT⬇: /blog/project/djangoapp/blog/models.py

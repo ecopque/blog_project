@@ -1,7 +1,6 @@
 {# FILE: /blog_project/djangoapp/templates/blog/pages/index.html #}
 
 {# IMPORT⬇: /blog_project/djangoapp/templates/blog/partials/base.html #}
-
 {% extends 'blog/base.html' %} {#4: #5: #}
 
 {# URL⬇: http://127.0.0.1:8000/ #}
@@ -10,22 +9,21 @@
     <main class="main-content section-wrapper"> {#6: #}
         <div class="section-content-wide">
         <div class="section-gap">
-            {# IMPORT⬇: /blog_project/djangoapp/blog/static/blog/css/style.css #}
-            {# IMPORT⬇: /blog_project/djangoapp/templates/blog/partials/_post-card.html #}
-            {% if page_obj %} {# ## #}
-                <div class="card-grid">
-                
-                {# IMPORT⬇: /blog_project/djangoapp/blog/views.py #}
+            
+            {# IMPORT⬇: /blog_project/djangoapp/blog/views.py #}
+            {% if page_obj %} {#13: #}
+                <div class="card-grid">                
                 {% comment %} {# {% for i in ""|ljust:"9" %} {#7: #8: #} #} {% endcomment %}
                     {% for post in page_obj %}  {#10: #11: #}
+                        {# IMPORT⬇: /blog_project/djangoapp/templates/blog/partials/_post-card.html #}
                         {% include 'blog/partials/_post-card.html' with i=forloop.counter0 %} {#9: #}
                     {% endfor %}
                 </div>
             {% else %}
-                <div class="not-found center"> {# ## #}
+                <div class="not-found center"> {#14: #}
                     <h1> Nothing found </h1>
                     <p> 
-                        Nothing found at this link. Please contact the administrator or return to the home page at <a href="{% url 'blog:index' %}">Home</a> {#12: ## #}
+                        Nothing found at this link. Please contact the administrator or return to the home page at <a href="{% url 'blog:index' %}">Home</a> {#12: #15: #}
                     </p>
             {% endif %}
 
@@ -37,6 +35,9 @@
 
 
 {#12: Este conteúdo/página será apresentado quando não houver nada na página inicial, ou seja, sem post algum. #}
+{#13: Esta linha está verificando se a variável page_obj existe e contém objetos (neste caso, posts). Essa variável é normalmente usada para a paginação de resultados em uma página de listagem, como posts de blog. #}
+{#14: Este bloco define uma div com a classe CSS not-found center. Caso page_obj esteja vazio (ou seja, não tenha posts), este bloco será exibido, mostrando uma mensagem de "nada encontrado". Ele é o conteúdo alternativo que será mostrado se a condição if page_obj for False. #}
+{#15: O nome da URL ('index') e o namespace ('blog') sugerem que a rota está definida no arquivo de urls.py do app de blog. #}
 {# ------------------------------------------------------------------ #}
 {#10: Este 'page_obj' é do 'index()': return render(request, 'blog/pages/index.html', {'page_obj': page_obj,}). #}
 {#11: Aqui está sendo feito um loop sobre o objeto page_obj que foi passado para o template a partir da view index. O page_obj é o resultado da paginação feita na view, contendo um conjunto de posts da página atual. A cada iteração, a variável post representará um post individual. #}
