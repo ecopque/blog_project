@@ -5,6 +5,7 @@ from utils.rands import slugify_new
 from django.contrib.auth.models import User
 from utils.images import resize_image
 from django_summernote.models import AbstractAttachment #29:
+from django.urls import reverse
 
 class PostAttachment(AbstractAttachment): #30:
     def save(self, *args, **kwargs):
@@ -107,6 +108,14 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, default=None,) #18:
     tags = models.ManyToManyField(Tag, blank=True, default='') #19:
 
+    def __str__(self):
+        return self.title
+    
+    def get_absolute_url(self): ##
+        if not self.is_published: ##
+            return reverse('blog:index') ##
+        return reverse('blog:post', args=(self.slug,)) #35: ##
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify_new(self.title, 4)
@@ -129,7 +138,8 @@ class Post(models.Model):
         return super_save
     
     
-    
+
+#35: Terminado esta função, você vai ver no django admin/posts que vai aparecer um botão no canto superior direito, algo como "Ver no Site".
 # ------------------------------------------------------------------
 #32: Esta linha define uma nova classe PostManager que herda de models.Manager. O Manager é a interface pela qual as consultas de banco de dados para um determinado modelo são feitas no Django. Definindo um Manager personalizado, é possível adicionar novos métodos de consulta personalizados para o modelo.
 #33: Este método é parte do PostManager. Ele retorna um queryset filtrado com base no campo is_published, ou seja, apenas os posts que estão publicados (is_published=True) são incluídos. A função order_by('-pk') garante que os posts retornados estejam em ordem decrescente, com base na chave primária (geralmente o ID).

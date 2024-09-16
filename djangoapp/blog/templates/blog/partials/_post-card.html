@@ -6,6 +6,7 @@
   {% if post.cover %} {#3: #4: #}
     <div class="card-cover-wrapper">
       {# IMPORT⬇: /blog_project/djangoapp/blog/urls.py #}
+      {% comment %} {#<a href="{{ post.get_absolute_url }}" class="card-cover-link">  #10: #} {% endcomment %}
       <a href="{% url 'blog:post' post.slug %}" class="card-cover-link"> {#5: #}
         <img 
           class="card-cover"
@@ -44,7 +45,7 @@
 </article>
 
 
-
+{#10: Na situação atual, alterei 'admin.py' e 'models.py' adicionando este método ( def get_absolute_url(self):) e sendo assim, poderia agora alterar esta linha utilizando meu novo método, mas decido manter como está. #}
 {# ------------------------------------------------------------------ #}
 {#2: Aqui vamos inserir um texto para as pessoas que não conseguem enxergar. #}
 {#3: Nesta linha, o Django verifica se o post atual (obtido através do loop for post in page_obj) possui uma imagem associada no campo cover. O campo cover provavelmente está definido no modelo Post dentro de blog.models, representando a imagem de capa de cada post. #}
