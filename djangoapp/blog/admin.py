@@ -3,6 +3,7 @@
 from django.contrib import admin
 from blog.models import Tag, Category, Page, Post
 from django_summernote.admin import SummernoteModelAdmin #23:
+from django.urls import reverse
 
 # IMPORT⬇: /blog/project/djangoapp/blog/models.py
 @admin.register(Tag) #3:
@@ -61,9 +62,17 @@ class PostAdmin(SummernoteModelAdmin): #26:
     list_editable = 'is_published', #12:
     ordering = '-id',
     # URL⬇: http://127.0.0.1:8000/admin/blog/post/add/
-    readonly_fields = 'created_at', 'updated_at', 'created_by', 'updated_by', #13:
+    readonly_fields = 'created_at', 'updated_at', 'created_by', 'updated_by', 'link', #13:
     prepopulated_fields = {"slug": ('title',),} #14:
     autocomplete_fields = 'tags', 'category' #15:
+
+    def link(self, obj):
+        if not obj.pk:
+            return '-'
+        
+        # IMPORT⬇: /blog_project/djangoapp/blog/urls.py
+        url_post = reverse('blog:post', args=(obj.slug,)) #27: ##
+        return url_post
 
     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
     def save_model(self, request, obj, form, change): #16: #17:
@@ -75,6 +84,7 @@ class PostAdmin(SummernoteModelAdmin): #26:
 
 
 
+#27: BLOG: é a namespace da URL definida nas rotas (URLs) do Django. Ele faz parte do reverse('blog:post', ...), que indica que existe um app chamado 'blog' e que dentro dele há uma URL com o nome 'post'. POST: refere-se ao nome de uma rota específica dentro do app 'blog'. Geralmente, este nome de rota aponta para a view que renderiza uma página de um post específico. SLUG: faz parte da URL do post. No código args=(obj.slug,), o slug é passado como argumento, o que indica que ele é um identificador único utilizado para formar a URL de um post específico. O slug é geralmente uma string legível, derivada do título do post, usada para criar URLs amigáveis.
 # ------------------------------------------------------------------
 #22: Este é o 'contente' do Post() de /blog/project/djangoapp/blog/models.py.
 #23: Importa a classe SummernoteModelAdmin do pacote django_summernote, que é uma extensão da classe ModelAdmin do Django. Essa classe facilita a integração do editor Summernote nos campos de texto dos modelos administrados.
