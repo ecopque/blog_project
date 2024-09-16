@@ -9,7 +9,8 @@ PER_PAGE = 9
 
 # EXPORT⬇: /blog_project/djangoapp/blog/urls.py
 def index(request): #1:
-    posts = Post.objects.filter(is_published=True).order_by('-pk') #12:
+    # posts = Post.objects.filter(is_published=True).order_by('-pk') #12:
+    posts = Post.objects.get_published()
 
     paginator = Paginator(posts, PER_PAGE) #5: #6!:
     # URL⬇: http://127.0.0.1:8000/?page=1
