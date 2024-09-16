@@ -29,7 +29,7 @@ def page(request):
     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/page.html
     return render(request, 'blog/pages/page.html', {}) #11:
 
-def post(request):
+def post(request, slug): #14:
     # paginator = Paginator(posts, 9)
     # page_number = request.GET.get("page")
     # page_obj = paginator.get_page(page_number)
@@ -39,6 +39,7 @@ def post(request):
 
 
 
+#14: Adicionamos o slug, que não tinha antes. Agora o post está funcionando (ex: http://127.0.0.1:8000/post/eneas-carneiro-d6cn/).
 # ------------------------------------------------------------------
 #13: Esta linha na função index chama o método get_published() definido na classe PostManager. Isso faz com que sejam recuperados do banco de dados apenas os posts que estão com o campo is_published=True e os ordena pela chave primária em ordem decrescente. O resultado será passado para o paginador logo abaixo.
 # ------------------------------------------------------------------
