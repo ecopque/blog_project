@@ -3,7 +3,8 @@
 from django.contrib import admin
 from blog.models import Tag, Category, Page, Post
 from django_summernote.admin import SummernoteModelAdmin #23:
-from django.urls import reverse
+from django.urls import reverse ##
+from django.utils.safestring import mark_safe ##
 
 # IMPORT⬇: /blog/project/djangoapp/blog/models.py
 @admin.register(Tag) #3:
@@ -72,7 +73,8 @@ class PostAdmin(SummernoteModelAdmin): #26:
         
         # IMPORT⬇: /blog_project/djangoapp/blog/urls.py
         url_post = reverse('blog:post', args=(obj.slug,)) #27: ##
-        return url_post
+        safe_link = mark_safe(f'<a target="_blank" href="{url_post}">{obj.title}</a>') #28: ##
+        return  safe_link
 
     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
     def save_model(self, request, obj, form, change): #16: #17:
@@ -85,6 +87,7 @@ class PostAdmin(SummernoteModelAdmin): #26:
 
 
 #27: BLOG: é a namespace da URL definida nas rotas (URLs) do Django. Ele faz parte do reverse('blog:post', ...), que indica que existe um app chamado 'blog' e que dentro dele há uma URL com o nome 'post'. POST: refere-se ao nome de uma rota específica dentro do app 'blog'. Geralmente, este nome de rota aponta para a view que renderiza uma página de um post específico. SLUG: faz parte da URL do post. No código args=(obj.slug,), o slug é passado como argumento, o que indica que ele é um identificador único utilizado para formar a URL de um post específico. O slug é geralmente uma string legível, derivada do título do post, usada para criar URLs amigáveis.
+#28: Quando você for renderizar html no Django, você precisará informar que é seguro, ou seja, usar 'mark_safe'.
 # ------------------------------------------------------------------
 #22: Este é o 'contente' do Post() de /blog/project/djangoapp/blog/models.py.
 #23: Importa a classe SummernoteModelAdmin do pacote django_summernote, que é uma extensão da classe ModelAdmin do Django. Essa classe facilita a integração do editor Summernote nos campos de texto dos modelos administrados.
