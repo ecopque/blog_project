@@ -10,7 +10,8 @@ PER_PAGE = 9
 # EXPORT⬇: /blog_project/djangoapp/blog/urls.py
 def index(request): #1:
     # posts = Post.objects.filter(is_published=True).order_by('-pk') #12:
-    posts = Post.objects.get_published()
+    # IMPORT⬇: /blog/project/djangoapp/blog/models.py
+    posts = Post.objects.get_published() #13:
 
     paginator = Paginator(posts, PER_PAGE) #5: #6!:
     # URL⬇: http://127.0.0.1:8000/?page=1
@@ -38,6 +39,7 @@ def post(request):
 
 
 
+#13: Esta linha na função index chama o método get_published() definido na classe PostManager. Isso faz com que sejam recuperados do banco de dados apenas os posts que estão com o campo is_published=True e os ordena pela chave primária em ordem decrescente. O resultado será passado para o paginador logo abaixo.
 # ------------------------------------------------------------------
 #12: Esta linha está buscando todos os objetos do modelo Post (definido no módulo blog.models), filtrando-os para retornar apenas os que estão com a flag is_published=True. Ou seja, apenas os posts publicados serão incluídos. Em seguida, os resultados são ordenados pela chave primária (pk) em ordem decrescente ('-pk').
 # ------------------------------------------------------------------

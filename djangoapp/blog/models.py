@@ -76,16 +76,16 @@ class Page(models.Model):
     def __str__(self) -> str:
         return self.title
     
-class PostManager(models.Manager): ##
-    def get_published(self): ##
-        return self.filter(is_published=True) ##
+class PostManager(models.Manager): #32:
+    def get_published(self): #33:
+        return self.filter(is_published=True).order_by('-pk') #33:
     
 class Post(models.Model):
     class Meta:
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
 
-    objects = PostManager() ##
+    objects = PostManager() #34:
 
     # EXPORT⬇: /blog/project/djangoapp/blog/admin.py
     # URL⬇: http://127.0.0.1:8000/admin/blog/post/add/
@@ -129,7 +129,10 @@ class Post(models.Model):
         return super_save
     
     
-    
+
+#32: Esta linha define uma nova classe PostManager que herda de models.Manager. O Manager é a interface pela qual as consultas de banco de dados para um determinado modelo são feitas no Django. Definindo um Manager personalizado, é possível adicionar novos métodos de consulta personalizados para o modelo.
+#33: Este método é parte do PostManager. Ele retorna um queryset filtrado com base no campo is_published, ou seja, apenas os posts que estão publicados (is_published=True) são incluídos. A função order_by('-pk') garante que os posts retornados estejam em ordem decrescente, com base na chave primária (geralmente o ID).
+#34: Esta linha associa o PostManager personalizado à classe Post. Isso significa que, ao realizar consultas para Post.objects, o Django usará o PostManager para gerenciar a consulta. Como o método get_published foi adicionado ao PostManager, agora é possível chamar Post.objects.get_published() para obter posts publicados.
 # ------------------------------------------------------------------
 #29: Importa a classe AbstractAttachment do pacote django_summernote, que é usada como uma classe base para modelos de anexos, facilitando o gerenciamento de arquivos e imagens no editor Summernote.
 #30: A classe PostAttachment herda de AbstractAttachment, o que permite que os arquivos anexados a um post sejam gerenciados de forma simplificada. O AbstractAttachment já contém as funcionalidades básicas para lidar com arquivos no contexto do Summernote.
