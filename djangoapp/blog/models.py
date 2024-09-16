@@ -129,7 +129,8 @@ class Post(models.Model):
         return super_save
     
     
-
+    
+# ------------------------------------------------------------------
 #32: Esta linha define uma nova classe PostManager que herda de models.Manager. O Manager é a interface pela qual as consultas de banco de dados para um determinado modelo são feitas no Django. Definindo um Manager personalizado, é possível adicionar novos métodos de consulta personalizados para o modelo.
 #33: Este método é parte do PostManager. Ele retorna um queryset filtrado com base no campo is_published, ou seja, apenas os posts que estão publicados (is_published=True) são incluídos. A função order_by('-pk') garante que os posts retornados estejam em ordem decrescente, com base na chave primária (geralmente o ID).
 #34: Esta linha associa o PostManager personalizado à classe Post. Isso significa que, ao realizar consultas para Post.objects, o Django usará o PostManager para gerenciar a consulta. Como o método get_published foi adicionado ao PostManager, agora é possível chamar Post.objects.get_published() para obter posts publicados.
