@@ -138,7 +138,8 @@ class Post(models.Model):
         return super_save
     
     
-
+    
+# ------------------------------------------------------------------
 #35: Terminado esta função, você vai ver no django admin/posts que vai aparecer um botão no canto superior direito, algo como "Ver no Site".
 # ------------------------------------------------------------------
 #32: Esta linha define uma nova classe PostManager que herda de models.Manager. O Manager é a interface pela qual as consultas de banco de dados para um determinado modelo são feitas no Django. Definindo um Manager personalizado, é possível adicionar novos métodos de consulta personalizados para o modelo.

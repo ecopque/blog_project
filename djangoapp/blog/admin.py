@@ -86,6 +86,7 @@ class PostAdmin(SummernoteModelAdmin): #26:
 
 
 
+# ------------------------------------------------------------------
 #27: BLOG: é a namespace da URL definida nas rotas (URLs) do Django. Ele faz parte do reverse('blog:post', ...), que indica que existe um app chamado 'blog' e que dentro dele há uma URL com o nome 'post'. POST: refere-se ao nome de uma rota específica dentro do app 'blog'. Geralmente, este nome de rota aponta para a view que renderiza uma página de um post específico. SLUG: faz parte da URL do post. No código args=(obj.slug,), o slug é passado como argumento, o que indica que ele é um identificador único utilizado para formar a URL de um post específico. O slug é geralmente uma string legível, derivada do título do post, usada para criar URLs amigáveis.
 #28: Quando você for renderizar html no Django, você precisará informar que é seguro, ou seja, usar 'mark_safe'.
 #29: O reverse é utilizado para gerar URLs dinâmicas baseadas em nomes de rotas. Neste código, ele será usado para construir o link para visualizar um post diretamente da página de administração.
