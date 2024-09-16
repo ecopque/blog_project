@@ -12,14 +12,20 @@
         <div class="section-gap">
             {# IMPORT⬇: /blog_project/djangoapp/blog/static/blog/css/style.css #}
             {# IMPORT⬇: /blog_project/djangoapp/templates/blog/partials/_post-card.html #}
-            <div class="card-grid">
-            
-            {# IMPORT⬇: /blog_project/djangoapp/blog/views.py #}
-            {% comment %} {# {% for i in ""|ljust:"9" %} {#7: #8: #} #} {% endcomment %}
-            {% for post in page_obj %}  {#10: #11: #}
-                {% include 'blog/partials/_post-card.html' with i=forloop.counter0 %} {#9: #}
-            {% endfor %}
-            </div>
+            {% if page_obj %} {# ## #}
+                <div class="card-grid">
+                
+                {# IMPORT⬇: /blog_project/djangoapp/blog/views.py #}
+                {% comment %} {# {% for i in ""|ljust:"9" %} {#7: #8: #} #} {% endcomment %}
+                    {% for post in page_obj %}  {#10: #11: #}
+                        {% include 'blog/partials/_post-card.html' with i=forloop.counter0 %} {#9: #}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="not-found"> {# ## #}
+                    <h1> Nothing found </h1>
+                    <p> Nothing found at this link. Please contact the administrator. </p>
+            {% endif %}
 
         </div>
         </div>
