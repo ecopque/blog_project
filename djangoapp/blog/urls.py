@@ -9,12 +9,14 @@ urlpatterns = [
     path('', index, name='index'), #2:
     path('page/<slug:slug>/', page, name='page'),
     path('post/<slug:slug>/', post, name='post'), #3:
-    path('created_by/<int:author_pk>/', created_by, name='created_by'), ##
-    path('category/<slug:slug>/', category, name='category'), ##
+    path('created_by/<int:author_pk>/', created_by, name='created_by'), #4:
+    path('category/<slug:slug>/', category, name='category'), #5:
 ]
 
 
 
+#4: Essa linha define a rota da URL para a página que mostra os posts criados por um autor específico. A URL aceita um parâmetro inteiro (author_pk), que representa a chave primária do autor. Quando o usuário acessa essa URL, a função created_by (definida em views.py) será chamada.
+#5: Define a rota para a visualização de posts por categoria. A URL aceita um parâmetro slug que identifica a categoria. A função category (em views.py) será chamada quando essa URL for acessada, e ela exibirá os posts pertencentes à categoria correspondente ao slug.
 # ------------------------------------------------------------------
 #3: Esta linha define uma rota na aplicação Django. Quando o usuário acessa uma URL que segue o padrão post/<slug:slug>/, a view post será chamada. O parâmetro slug na URL é passado para a view, e slug é um identificador amigável da URL (geralmente derivado do título do post).
 # ------------------------------------------------------------------
