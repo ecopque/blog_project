@@ -3,6 +3,7 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator #3:
 from blog.models import Post
+from django.db.models import Q ##
 
 # posts = list(range(1000)) #4:
 PER_PAGE = 9
@@ -57,6 +58,16 @@ def category(request, slug):
 def tag(request, slug):
     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
     posts = Post.objects.get_published().filter(tags__slug=slug) #20:
+    paginator = Paginator(posts, PER_PAGE)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'blog/pages/index.html', {'page_obj':page_obj,})
+
+def search(request):
+    # IMPORT⬇: /blog/project/djangoapp/blog/models.py
+    search_value = 'Yin Yang'
+    posts = Post.objects.get_published().filter(Q(title__icontains=search_value) | Q(excerpt__icontains=search_value) | Q(content__icontains=search_value)) ##
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
