@@ -1,7 +1,7 @@
 # FILE: /blog_project/djangoapp/blog/urls.py
 
 from django.urls import path
-from blog.views import index, page, post, created_by, category
+from blog.views import index, page, post, created_by, category, tag
 
 app_name = 'blog' #1:
 # IMPORT⬇: /blog_project/djangoapp/blog/views.py
@@ -11,7 +11,7 @@ urlpatterns = [
     path('post/<slug:slug>/', post, name='post'), #3:
     path('created_by/<int:author_pk>/', created_by, name='created_by'), #4:
     path('category/<slug:slug>/', category, name='category'), #5:
-    path('tag/<slug:slug>/', category, name='tag'), ##
+    path('tag/<slug:slug>/', tag, name='tag'), ##
 ]
 
 # ------------------------------------------------------------------
