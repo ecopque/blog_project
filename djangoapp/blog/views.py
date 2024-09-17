@@ -19,9 +19,9 @@ def index(request): #1:
     page_obj = paginator.get_page(page_number) #8:
 
     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/index.html
-    return render(request, 'blog/pages/index.html', {'page_obj': page_obj,}) #2: #10:
+    return render(request, 'blog/pages/index.html', {'page_obj':page_obj,}) #2: #10:
 
-def page(request):
+def page(request, slug):
     # paginator = Paginator(posts, 9)
     # page_number = request.GET.get("page")
     # page_obj = paginator.get_page(page_number)
@@ -37,6 +37,14 @@ def post(request, slug): #14:
 
     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/post.html
     return render(request, 'blog/pages/post.html', {'post':post,}) ##
+
+def created_by(request, author_id): ##
+    posts = Post.objects.get_published()
+    paginator = Paginator(posts, PER_PAGE)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'blog/pages/index.html', {'page_obj':page_obj,})
 
 
 

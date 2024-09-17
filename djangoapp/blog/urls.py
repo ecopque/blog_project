@@ -1,14 +1,15 @@
 # FILE: /blog_project/djangoapp/blog/urls.py
 
 from django.urls import path
-from blog.views import index, page, post
+from blog.views import index, page, post, created_by
 
 app_name = 'blog' #1:
 # IMPORT⬇: /blog_project/djangoapp/blog/views.py
 urlpatterns = [
     path('', index, name='index'), #2:
-    path('page/', page, name='page'),
+    path('page/<slug:slug>/', page, name='page'),
     path('post/<slug:slug>/', post, name='post'), #3:
+    path('created_by/<int:author_id>/', created_by, name='created_by'), ##
 ]
 
 
