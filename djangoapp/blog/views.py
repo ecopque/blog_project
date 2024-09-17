@@ -30,16 +30,16 @@ def page(request, slug):
     return render(request, 'blog/pages/page.html', {}) #11:
 
 def post(request, slug): #14:
-    post = (Post.objects.get_published().filter(slug=slug).first()) ##
+    post = (Post.objects.get_published().filter(slug=slug).first()) #16:
     # paginator = Paginator(posts, 9)
     # page_number = request.GET.get("page")
     # page_obj = paginator.get_page(page_number)
 
     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/post.html
-    return render(request, 'blog/pages/post.html', {'post':post,}) ##
+    return render(request, 'blog/pages/post.html', {'post':post,}) #17:
 
-def created_by(request, author_pk): ##
-    posts = Post.objects.get_published().filter(created_by__pk=author_pk) ##
+def created_by(request, author_pk):
+    posts = Post.objects.get_published().filter(created_by__pk=author_pk) #18:
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
@@ -47,7 +47,7 @@ def created_by(request, author_pk): ##
     return render(request, 'blog/pages/index.html', {'page_obj':page_obj,})
 
 def category(request, slug):
-    posts = Post.objects.get_published().filter(category__slug=slug) #15: ##
+    posts = Post.objects.get_published().filter(category__slug=slug) #15: #19:
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
@@ -58,6 +58,10 @@ def category(request, slug):
 
 #14: Adicionamos o slug, que não tinha antes. Agora o post está funcionando (ex: http://127.0.0.1:8000/post/eneas-carneiro-d6cn/).
 #15: 'category__slug' significa que estamos buscando o campo 'slug' da foreingkey 'category'.
+#16: Essa linha está buscando um post específico no banco de dados que corresponde ao slug fornecido. A função get_published() é um método personalizado no modelo Post (provavelmente em /blog/models.py), que retorna apenas posts que estão publicados. A função filter(slug=slug) restringe os resultados ao post cujo slug (parte da URL que identifica o post) corresponde ao valor passado pela URL. O first() retorna o primeiro objeto encontrado (ou None se nenhum for encontrado).
+#17: O dicionário {'post': post} passa o post encontrado para o template, onde ele será usado para exibir detalhes específicos do post.
+#18: Esta linha busca todos os posts publicados no banco de dados que foram criados por um autor específico. O filtro created_by__pk=author_pk utiliza a chave primária do autor (author_pk), que vem da URL, para selecionar os posts escritos por esse autor. A função get_published() retorna apenas os posts que estão publicados.
+#19: Essa linha busca todos os posts publicados que pertencem a uma categoria específica. O filtro category__slug=slug utiliza o slug da categoria, passado na URL, para selecionar os posts que estão associados a essa categoria. O get_published() retorna apenas os posts que estão publicados, provavelmente definidos no modelo Post.
 # ------------------------------------------------------------------
 #13: Esta linha na função index chama o método get_published() definido na classe PostManager. Isso faz com que sejam recuperados do banco de dados apenas os posts que estão com o campo is_published=True e os ordena pela chave primária em ordem decrescente. O resultado será passado para o paginador logo abaixo.
 # ------------------------------------------------------------------
