@@ -56,6 +56,7 @@ def category(request, slug):
 
 
 
+# ------------------------------------------------------------------
 #14: Adicionamos o slug, que não tinha antes. Agora o post está funcionando (ex: http://127.0.0.1:8000/post/eneas-carneiro-d6cn/).
 #15: 'category__slug' significa que estamos buscando o campo 'slug' da foreingkey 'category'.
 #16: Essa linha está buscando um post específico no banco de dados que corresponde ao slug fornecido. A função get_published() é um método personalizado no modelo Post (provavelmente em /blog/models.py), que retorna apenas posts que estão publicados. A função filter(slug=slug) restringe os resultados ao post cujo slug (parte da URL que identifica o post) corresponde ao valor passado pela URL. O first() retorna o primeiro objeto encontrado (ou None se nenhum for encontrado).
