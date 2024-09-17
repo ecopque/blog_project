@@ -71,6 +71,7 @@ def search(request):
 
     return render(request, 'blog/pages/index.html', {'page_obj':posts, 'search_value':search_value,}) #24:
 
+# ------------------------------------------------------------------
 #21: O Q é um módulo de Django que permite construir consultas complexas no banco de dados com operadores lógicos como OR (|) e AND (&). Ao utilizar o Q, você pode criar consultas dinâmicas que permitem combinar diferentes filtros de busca.
 #22: Esta linha pega o valor da string passada na URL através do parâmetro search (/search/?search=valor). O método GET.get('search', '') recupera o valor de busca inserido pelo usuário, ou retorna uma string vazia se o valor não for encontrado. O método .strip() remove quaisquer espaços em branco no início ou no final da string.
 #23: Aqui, a busca é realizada nos objetos Post. O método get_published() filtra apenas os posts publicados. Em seguida, o método filter() aplica uma pesquisa baseada no valor de search_value. Usando o Q, a busca procura posts cujo título (title), resumo (excerpt), ou conteúdo (content) contenham o valor de busca (icontains indica que a busca é insensível a maiúsculas e minúsculas). O resultado é então limitado aos primeiros 9 posts (0:PER_PAGE).
