@@ -21,7 +21,7 @@
         
         {% if site_setup.show_search %}
           <div class="search pb-base center">
-            <form class="search-form" action="{% url 'blog:search' %}" method="get"> {## #}
+            <form class="search-form" action="{% url 'blog:search' %}" method="get"> {#10: #}
               <div class="search-content">
                 <label class="sr-only" id="search-label" for="search-input">Search</label>
                 <input
@@ -30,7 +30,7 @@
                   name="search"
                   id="search-input"
                   placeholder="Search"
-                  value="{{search_value}}" {## #}
+                  value="{{search_value}}" {#11: #}
                 >
                 <button class="search-btn" type="submit" aria-labelledby="search-label">
                   <i class="fa fa-search"></i>
@@ -49,7 +49,6 @@
                 {% if link.new_tab %} {#8: #}
                   <a target="_blank" class="menu-link" href="{{link.url_or_path}}">{{link.text}} {#9: #}
                   </a>
-
                 {% else %}
                   <a class="menu-link" href="{{link.url_or_path}}">{{link.text}}
                   </a>
@@ -68,6 +67,8 @@
     </div>
   </header>
 
+{#10: Este formulário HTML permite que os usuários façam uma busca no site. O atributo action="{% url 'blog:search' %}" gera a URL para a rota de busca definida anteriormente (com o nome 'search'). O método get envia os dados de busca através da URL, permitindo que o valor de busca seja capturado pela função search em views.py. #}
+{#11: Este campo de input do tipo search exibe o valor atual de busca. O valor {{search_value}} vem do contexto passado pela função search em views.py. Isso permite que o campo de busca retenha o valor que o usuário digitou, facilitando a edição ou modificação da busca. #}
 {# ------------------------------------------------------------------ #}
 {#2: site_setup = 'setup = SiteSetup' e menulink = MenuLink(). #}
 {#3: Utiliza novamente o campo title do objeto site_setup para exibir o título do site dentro de um link HTML. #}
