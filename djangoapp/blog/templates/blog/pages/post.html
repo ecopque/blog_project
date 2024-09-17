@@ -38,7 +38,7 @@
             <span class="post-meta-link">
                 <i class="fa-solid fa-calendar-days"></i>
                 <span>
-                20/04/2023
+                    {{post.created_at | date:'Y/m/d \a\t H:i:s'}} {#8: #9: #}
                 </span>
             </a>
             </div>
@@ -106,6 +106,9 @@
 
 
 
+{#8: Apenas com '{{post.created_at}}' fica excelente, mas vamos mexer com 'date'. #}
+{#9: Esta linha formata a data e a hora de criação do post (post.created_at) para o formato 'Y/m/d \a\t H:i:s', onde Y representa o ano, m o mês, d o dia, H as horas, i os minutos, e s os segundos. O uso de \a\t é para exibir o texto literal "at" na saída. #}
+{#Link: https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#date #}
 {# ------------------------------------------------------------------ #}
 {#1: Essa linha no template verifica se o post possui uma imagem de capa (post.cover) e se essa imagem deve ser exibida no conteúdo do post (post.cover_in_post_content). Se ambas as condições forem verdadeiras, o bloco de código HTML que segue será renderizado. #}
 {#2: Essa linha exibe a imagem de capa do post no HTML, usando a URL da imagem (post.cover.url) e o título do post como atributo alternativo (alt) para acessibilidade. A opção loading="lazy" instrui o navegador a carregar a imagem apenas quando ela está prestes a entrar na visualização, melhorando o desempenho da página. #}
