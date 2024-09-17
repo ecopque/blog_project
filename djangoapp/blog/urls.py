@@ -11,9 +11,8 @@ urlpatterns = [
     path('post/<slug:slug>/', post, name='post'), #3:
     path('created_by/<int:author_pk>/', created_by, name='created_by'), #4:
     path('category/<slug:slug>/', category, name='category'), #5:
+    path('tag/<slug:slug>/', category, name='tag'), ##
 ]
-
-
 
 # ------------------------------------------------------------------
 #4: Essa linha define a rota da URL para a página que mostra os posts criados por um autor específico. A URL aceita um parâmetro inteiro (author_pk), que representa a chave primária do autor. Quando o usuário acessa essa URL, a função created_by (definida em views.py) será chamada.
