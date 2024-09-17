@@ -10,9 +10,9 @@
     <div class="single-post-content section-content-narrow">
         <div class="single-post-gap section-gap">
         
-        {% if post.cover and post.cover_in_post_content %} {# ## #}
+        {% if post.cover and post.cover_in_post_content %} {#1: #}
             <div class="single-post-cover pb-base">
-                <img loading="lazy" src="{{post.cover.url}}" alt="{{post.title}}"> {# ## #}
+                <img loading="lazy" src="{{post.cover.url}}" alt="{{post.title}}"> {#2: #}
             </div>
         {% endif %}
 
@@ -22,10 +22,10 @@
 
         <div class="post-meta pb-base">
             <div class="post-meta-item">
-            <a class="post-meta-link" href="{% url 'blog:created_by' post.created_by.pk %}"> {# ## #}
-                <i class="fa-solid fa-user"></i> {# ## #}
+            <a class="post-meta-link" href="{% url 'blog:created_by' post.created_by.pk %}"> {#3: #}
+                <i class="fa-solid fa-user"></i> {#4: #}
                 <span>
-                    {% if post.created_by.first_name %} {# ## #}
+                    {% if post.created_by.first_name %} {#5: #}
                         {{post.created_by.first_name}}
                         {{post.created_by.last_name}}
                     {% else %}
@@ -35,7 +35,7 @@
             </a>
             </div>
             <div class="post-meta-item">
-            <span class="post-meta-link"> {# ## #}
+            <span class="post-meta-link">
                 <i class="fa-solid fa-calendar-days"></i>
                 <span>
                 20/04/2023
@@ -43,9 +43,9 @@
             </a>
             </div>
             
-            {% if post.category %} {# ## #}
+            {% if post.category %} {#6: #}
                 <div class="post-meta-item">
-                    <a class="post-meta-link" href="{% url 'blog:category' post.category.slug %}"> {# ## #}
+                    <a class="post-meta-link" href="{% url 'blog:category' post.category.slug %}"> {#7: #}
                         <i class="fa-solid fa-tag"></i>
                         <span>
                             {{post.category.name}}
@@ -105,4 +105,11 @@
 {% endblock content %}
 
 
-{# ------------------------------------------------------------------ #}
+
+{#1: Essa linha no template verifica se o post possui uma imagem de capa (post.cover) e se essa imagem deve ser exibida no conteúdo do post (post.cover_in_post_content). Se ambas as condições forem verdadeiras, o bloco de código HTML que segue será renderizado. #}
+{#2: Essa linha exibe a imagem de capa do post no HTML, usando a URL da imagem (post.cover.url) e o título do post como atributo alternativo (alt) para acessibilidade. A opção loading="lazy" instrui o navegador a carregar a imagem apenas quando ela está prestes a entrar na visualização, melhorando o desempenho da página. #}
+{#3: Cria um link para a página que mostra os posts criados pelo autor do post atual. O URL é gerado dinamicamente, chamando a rota created_by e passando a chave primária do autor (post.created_by.pk). #}
+{#4: Essa linha renderiza um ícone de usuário usando o Font Awesome (fa-solid fa-user). O ícone é exibido ao lado do nome do autor do post. #}
+{#5: Verifica se o autor do post (post.created_by) tem um nome (first_name). Se tiver, exibe o nome e o sobrenome (last_name). Se não, exibe o nome de usuário (username). #}
+{#6: Verifica se o post pertence a alguma categoria. Se sim, renderiza as informações da categoria (nome e link). #}
+{#7: Cria um link para a página da categoria do post. A URL da categoria é gerada dinamicamente a partir do slug da categoria (post.category.slug). #}
