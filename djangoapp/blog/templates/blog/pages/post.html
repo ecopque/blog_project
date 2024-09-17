@@ -3,11 +3,10 @@
 {# IMPORT⬇: /blog_project/djangoapp/templates/blog/partials/base.html #}
 {% extends 'blog/base.html' %}
 
-{# EXPORT⬇: /blog_project/djangoapp/templates/blog/partials/_head.html #}
-{% block additional_head %} {# ## #}
+{# EXPORT⬇: /blog_project/djangoapp/templates/blog/partials/base.html #}
+{% block additional_head %} {#12: #}
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/codemirror.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/dracula.min.css">
-
     <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/codemirror.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/mode/python/python.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/mode/javascript/javascript.min.js"></script>
@@ -116,7 +115,7 @@
 {% endblock content %}
 
 
-
+{#12: Esta linha define um bloco de conteúdo chamado 'additional_head', que pode ser sobrescrito em templates que herdam deste. O objetivo é permitir que outros templates insiram conteúdo adicional no <head>, como links para arquivos CSS ou scripts. Neste caso, ele está sendo usado para importar arquivos da biblioteca CodeMirror (uma ferramenta para edição de código no browser). #}
 {# ------------------------------------------------------------------ #}
 {#10: Essa linha exibe o resumo do post (post.excerpt) e a utilização do filtro safe serve para garantir que o conteúdo HTML no resumo seja renderizado de forma segura (sem escapar as tags HTML). O post.excerpt provavelmente vem de um campo TextField no modelo do post. #}
 {#11: Esta linha exibe o conteúdo completo do post (post.content) também utilizando o filtro safe, que permite renderizar conteúdo HTML dentro do post.content sem que seja escapado. #}
