@@ -66,10 +66,10 @@ def tag(request, slug):
 
 def search(request):
     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
-    search_value = 'about' ##
+    search_value = request.GET.get('search', '') ##
     posts = Post.objects.get_published().filter(Q(title__icontains=search_value) | Q(excerpt__icontains=search_value) | Q(content__icontains=search_value))[0:PER_PAGE] ##
 
-    return render(request, 'blog/pages/index.html', {'page_obj':posts,})
+    return render(request, 'blog/pages/index.html', {'page_obj':posts, 'search_value':search_value,}) ##
 
 # ------------------------------------------------------------------
 #20: Essa linha filtra os posts que têm a tag com o slug fornecido na URL. O método filter(tags__slug=slug) procura por posts que possuem a tag com o slug especificado. A função get_published() faz parte do modelo Post e retorna apenas os posts que estão publicados.
