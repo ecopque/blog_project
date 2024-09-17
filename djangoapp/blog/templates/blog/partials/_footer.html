@@ -14,6 +14,39 @@
     </div>
   </footer>
 
+{#⬇ ## #}
+<script>
+  (function () {
+    if (typeof CodeMirror == 'undefined') return;
+
+    const codes = document.querySelectorAll('pre');
+
+    for (const code of codes) {
+      const language = code.dataset.language || null;
+      const text = code.textContent || code.innerText;
+
+      const config = {
+        value: text,
+        tabSize: 2,
+        mode: language,
+        theme: 'dracula',
+        lineNumbers: true,
+        styleActiveLine: true,
+        styleActiveSelected: true,
+        lineWrapping: false,
+        line: true,
+        readOnly: true,
+        viewportMargin: 50,
+        matchBrackets: true,
+      };
+
+      const editor = CodeMirror(function (node) {
+        code.parentNode.replaceChild(node, code);
+      }, config);
+    }
+  })();
+</script>
+
 
 {# ------------------------------------------------------------------ #}
 {#2: Esta linha HTML está utilizando o context processor site_setup para acessar o campo title do objeto site_setup. {{site_setup.title}} renderiza o título do site que foi definido na configuração do site (SiteSetup). O {% now "Y" %} é uma tag de template do Django que exibe o ano atual. #}
