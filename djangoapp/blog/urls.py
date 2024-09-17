@@ -11,9 +11,10 @@ urlpatterns = [
     path('post/<slug:slug>/', post, name='post'), #3:
     path('created_by/<int:author_pk>/', created_by, name='created_by'), #4:
     path('category/<slug:slug>/', category, name='category'), #5:
-    path('tag/<slug:slug>/', tag, name='tag'), ##
+    path('tag/<slug:slug>/', tag, name='tag'), #6:
 ]
 
+#6: Define a rota para acessar posts associados a uma tag específica. O slug da tag é passado como argumento, e a view tag é chamada para processar a requisição. Essa view está no arquivo views.py.
 # ------------------------------------------------------------------
 #4: Essa linha define a rota da URL para a página que mostra os posts criados por um autor específico. A URL aceita um parâmetro inteiro (author_pk), que representa a chave primária do autor. Quando o usuário acessa essa URL, a função created_by (definida em views.py) será chamada.
 #5: Define a rota para a visualização de posts por categoria. A URL aceita um parâmetro slug que identifica a categoria. A função category (em views.py) será chamada quando essa URL for acessada, e ela exibirá os posts pertencentes à categoria correspondente ao slug.

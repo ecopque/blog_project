@@ -77,13 +77,13 @@
             {% comment %} {% include 'blog/partials/_temp.html' %}  {% endcomment %}
             {{post.content | safe}} {#11: #}
 
-            {% if post.tags.exists %} {# ## #}
+            {% if post.tags.exists %} {#13: #14: #}
                 <div class="post-tags">
                 <span>Tags: </span>
-                    {% for tag in post.tags.all %} {# ## #}
-                        <a class="post-tag-link" href="{% url 'blog:tag' tag.slug %}"> {# ## #}
+                    {% for tag in post.tags.all %} {#15: #}
+                        <a class="post-tag-link" href="{% url 'blog:tag' tag.slug %}"> {#16: #}
                             <i class="fa-solid fa-link"></i>
-                            <span>{{tag.name}}</span> {# ## #}
+                            <span>{{tag.name}}</span> {#17: #}
                         </a>
                     {% endfor %}
                 </div>
@@ -96,6 +96,11 @@
     </main>
 {% endblock content %}
 
+{#13: Esta linha verifica se o post possui tags associadas. O método .exists() é utilizado para checar se a consulta retorna resultados. Caso o post tenha tags, o bloco de código seguinte será executado, exibindo as tags. Aqui, a comunicação ocorre com o modelo Post através do campo tags. #}
+{#14: Parece ser: Classe Post(), variável tag e recurso exists. #}
+{#15: Esta linha inicia um loop sobre todas as tags associadas ao post. O método .all() retorna todos os objetos relacionados a tags que estão conectados ao post. Esse loop exibe cada tag associada ao post, chamando o modelo Post novamente. #}
+{#16: Aqui, uma URL é gerada para cada tag, utilizando o nome da view 'tag', definida em urls.py como path('tag/<slug:slug>/', tag, name='tag'). O parâmetro slug da tag é passado para a URL, redirecionando para a página associada a essa tag. A view responsável está no arquivo views.py. #}
+{#17: Esta linha exibe o nome de cada tag no template. O valor tag.name faz referência ao campo name no modelo de tag, exibindo o nome textual da tag. #}
 {# ------------------------------------------------------------------ #}
 {#12: Esta linha define um bloco de conteúdo chamado 'additional_head', que pode ser sobrescrito em templates que herdam deste. O objetivo é permitir que outros templates insiram conteúdo adicional no <head>, como links para arquivos CSS ou scripts. Neste caso, ele está sendo usado para importar arquivos da biblioteca CodeMirror (uma ferramenta para edição de código no browser). #}
 {# ------------------------------------------------------------------ #}
