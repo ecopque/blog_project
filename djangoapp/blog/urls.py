@@ -15,6 +15,7 @@ urlpatterns = [
 
 
 
+# ------------------------------------------------------------------
 #4: Essa linha define a rota da URL para a página que mostra os posts criados por um autor específico. A URL aceita um parâmetro inteiro (author_pk), que representa a chave primária do autor. Quando o usuário acessa essa URL, a função created_by (definida em views.py) será chamada.
 #5: Define a rota para a visualização de posts por categoria. A URL aceita um parâmetro slug que identifica a categoria. A função category (em views.py) será chamada quando essa URL for acessada, e ela exibirá os posts pertencentes à categoria correspondente ao slug.
 # ------------------------------------------------------------------
