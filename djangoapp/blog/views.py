@@ -63,6 +63,7 @@ def tag(request, slug):
 
     return render(request, 'blog/pages/index.html', {'page_obj':page_obj,})
 
+# ------------------------------------------------------------------
 #20: Essa linha filtra os posts que têm a tag com o slug fornecido na URL. O método filter(tags__slug=slug) procura por posts que possuem a tag com o slug especificado. A função get_published() faz parte do modelo Post e retorna apenas os posts que estão publicados.
 # ------------------------------------------------------------------
 #14: Adicionamos o slug, que não tinha antes. Agora o post está funcionando (ex: http://127.0.0.1:8000/post/eneas-carneiro-d6cn/).

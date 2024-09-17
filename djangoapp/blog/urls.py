@@ -14,6 +14,7 @@ urlpatterns = [
     path('tag/<slug:slug>/', tag, name='tag'), #6:
 ]
 
+# ------------------------------------------------------------------
 #6: Define a rota para acessar posts associados a uma tag específica. O slug da tag é passado como argumento, e a view tag é chamada para processar a requisição. Essa view está no arquivo views.py.
 # ------------------------------------------------------------------
 #4: Essa linha define a rota da URL para a página que mostra os posts criados por um autor específico. A URL aceita um parâmetro inteiro (author_pk), que representa a chave primária do autor. Quando o usuário acessa essa URL, a função created_by (definida em views.py) será chamada.
