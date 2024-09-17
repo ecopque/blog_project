@@ -57,14 +57,13 @@
         </div>
 
         <p class="single-post-excerpt pb-base">
-            {{post.excerpt | safe}} {# ## #}
+            {{post.excerpt | safe}} {#10: #}
         </p>
 
         <div class="separator"></div>
-
         <div class="single-post-content">
             {% comment %} {% include 'blog/partials/_temp.html' %}  {% endcomment %}
-            {{post.content | safe}} {# ## #}
+            {{post.content | safe}} {#11: #}
 
             <div class="post-tags">
             <span>Tags: </span>
@@ -105,6 +104,8 @@
 
 
 
+{#10: Essa linha exibe o resumo do post (post.excerpt) e a utilização do filtro safe serve para garantir que o conteúdo HTML no resumo seja renderizado de forma segura (sem escapar as tags HTML). O post.excerpt provavelmente vem de um campo TextField no modelo do post. #}
+{#11: Esta linha exibe o conteúdo completo do post (post.content) também utilizando o filtro safe, que permite renderizar conteúdo HTML dentro do post.content sem que seja escapado. #}
 {# ------------------------------------------------------------------ #}
 {#8: Apenas com '{{post.created_at}}' fica excelente, mas vamos mexer com 'date'. #}
 {#9: Esta linha formata a data e a hora de criação do post (post.created_at) para o formato 'Y/m/d \a\t H:i:s', onde Y representa o ano, m o mês, d o dia, H as horas, i os minutos, e s os segundos. O uso de \a\t é para exibir o texto literal "at" na saída. #}
