@@ -106,6 +106,7 @@ class Post(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='post_created_by') #20:
     updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='post_updated_by') #21:
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, default=None,) #18:
+    # EXPORT⬇: /blog_project/djangoapp/blog/views.py 
     tags = models.ManyToManyField(Tag, blank=True, default='') #19:
 
     def __str__(self):
