@@ -38,8 +38,16 @@ def post(request, slug): #14:
     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/post.html
     return render(request, 'blog/pages/post.html', {'post':post,}) ##
 
-def created_by(request, author_id): ##
-    posts = Post.objects.get_published()
+def created_by(request, author_pk): ##
+    posts = Post.objects.get_published().filter(created_by__pk=author_pk) ##
+    paginator = Paginator(posts, PER_PAGE)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'blog/pages/index.html', {'page_obj':page_obj,})
+
+def category(request, slug):
+    posts = Post.objects.get_published().filter(category__slug=slug) #15: ##
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
@@ -49,6 +57,7 @@ def created_by(request, author_id): ##
 
 
 #14: Adicionamos o slug, que não tinha antes. Agora o post está funcionando (ex: http://127.0.0.1:8000/post/eneas-carneiro-d6cn/).
+#15: 'category__slug' significa que estamos buscando o campo 'slug' da foreingkey 'category'.
 # ------------------------------------------------------------------
 #13: Esta linha na função index chama o método get_published() definido na classe PostManager. Isso faz com que sejam recuperados do banco de dados apenas os posts que estão com o campo is_published=True e os ordena pela chave primária em ordem decrescente. O resultado será passado para o paginador logo abaixo.
 # ------------------------------------------------------------------
