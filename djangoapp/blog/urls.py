@@ -15,6 +15,7 @@ urlpatterns = [
     path('search/', search, name='search') #7:
 ]
 
+# ------------------------------------------------------------------
 #7: Esta linha define uma URL específica para a rota de pesquisa. Quando a URL /search/ for acessada, a função search definida em views.py será chamada. O name='search' permite que essa URL seja referenciada facilmente em outras partes do código, como em templates ou redirecionamentos.
 # ------------------------------------------------------------------
 #6: Define a rota para acessar posts associados a uma tag específica. O slug da tag é passado como argumento, e a view tag é chamada para processar a requisição. Essa view está no arquivo views.py.
