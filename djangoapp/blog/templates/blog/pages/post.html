@@ -57,14 +57,15 @@
         </div>
 
         <p class="single-post-excerpt pb-base">
-            {{post.excerpt}}
+            {{post.excerpt | safe}} {# ## #}
         </p>
 
         <div class="separator"></div>
 
         <div class="single-post-content">
-            {% include 'blog/partials/_temp.html' %} 
-        
+            {% comment %} {% include 'blog/partials/_temp.html' %}  {% endcomment %}
+            {{post.content | safe}} {# ## #}
+
             <div class="post-tags">
             <span>Tags: </span>
 
