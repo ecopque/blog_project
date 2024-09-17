@@ -3,7 +3,7 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator #3:
 from blog.models import Post
-from django.db.models import Q ##
+from django.db.models import Q #21:
 
 # posts = list(range(1000)) #4:
 PER_PAGE = 9
@@ -66,11 +66,15 @@ def tag(request, slug):
 
 def search(request):
     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
-    search_value = request.GET.get('search', '') ##
-    posts = Post.objects.get_published().filter(Q(title__icontains=search_value) | Q(excerpt__icontains=search_value) | Q(content__icontains=search_value))[0:PER_PAGE] ##
+    search_value = request.GET.get('search', '').strip() #22:
+    posts = Post.objects.get_published().filter(Q(title__icontains=search_value) | Q(excerpt__icontains=search_value) | Q(content__icontains=search_value))[0:PER_PAGE] #23:
 
-    return render(request, 'blog/pages/index.html', {'page_obj':posts, 'search_value':search_value,}) ##
+    return render(request, 'blog/pages/index.html', {'page_obj':posts, 'search_value':search_value,}) #24:
 
+#21: O Q é um módulo de Django que permite construir consultas complexas no banco de dados com operadores lógicos como OR (|) e AND (&). Ao utilizar o Q, você pode criar consultas dinâmicas que permitem combinar diferentes filtros de busca.
+#22: Esta linha pega o valor da string passada na URL através do parâmetro search (/search/?search=valor). O método GET.get('search', '') recupera o valor de busca inserido pelo usuário, ou retorna uma string vazia se o valor não for encontrado. O método .strip() remove quaisquer espaços em branco no início ou no final da string.
+#23: Aqui, a busca é realizada nos objetos Post. O método get_published() filtra apenas os posts publicados. Em seguida, o método filter() aplica uma pesquisa baseada no valor de search_value. Usando o Q, a busca procura posts cujo título (title), resumo (excerpt), ou conteúdo (content) contenham o valor de busca (icontains indica que a busca é insensível a maiúsculas e minúsculas). O resultado é então limitado aos primeiros 9 posts (0:PER_PAGE).
+#24: Esta linha renderiza o template 'blog/pages/index.html' e passa dois parâmetros para o template: posts, contendo os resultados da busca, e search_value, contendo o termo que foi buscado. Estes dados serão utilizados na interface do usuário para exibir os posts e mostrar o valor de busca no campo de pesquisa.
 # ------------------------------------------------------------------
 #20: Essa linha filtra os posts que têm a tag com o slug fornecido na URL. O método filter(tags__slug=slug) procura por posts que possuem a tag com o slug especificado. A função get_published() faz parte do modelo Post e retorna apenas os posts que estão publicados.
 # ------------------------------------------------------------------
