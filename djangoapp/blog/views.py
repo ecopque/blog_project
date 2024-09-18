@@ -79,16 +79,23 @@ def search(request):
     return render(request, 'blog/pages/index.html', {'page_obj':posts, 'search_value':search_value, 'page_title':page_title,}) #24: ##
 
 def page(request, slug):
-    page = (Page.objects.filter(is_published=True).filter(slug=slug).first())
-    return render(request,'blog/pages/page.html',{'page': page,}) #25:
+    page_obj = (Page.objects.filter(is_published=True).filter(slug=slug).first())
+
+    if page_obj is None: ##
+        raise Http404
+    page_title = f'{page_obj.title} - Page - '
+    return render(request,'blog/pages/page.html',{'page': page_obj, 'page_title': page_title}) #25: ##
 
 def post(request, slug): #14:
-    post = (Post.objects.get_published().filter(slug=slug).first()) #16:
+    post_obj = (Post.objects.get_published().filter(slug=slug).first()) #16:
     # paginator = Paginator(posts, 9)
     # page_number = request.GET.get("page")
     # page_obj = paginator.get_page(page_number)
     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/post.html
-    return render(request, 'blog/pages/post.html', {'post':post,}) #17:
+    if post_obj is None:
+        raise Http404
+    page_title = f'{post_obj.title} - Post - ' ##
+    return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17: ##
 
 # ------------------------------------------------------------------
 #25: Essa linha faz o render da página usando o template page.html, passando o objeto page para o contexto. O template page.html vai exibir os dados da página (como title e content), usando o objeto page.
