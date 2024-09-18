@@ -70,10 +70,10 @@ class Page(models.Model):
     content = models.TextField() #12:
 
     # URL⬇: http://127.0.0.1:8000/page/new-era/
-    def get_absolute_url(self): ##
-        if not self.is_published: ##
-            return reverse('blog:index') ##
-        return reverse('blog:page', args=(self.slug,)) ##
+    def get_absolute_url(self): #36:
+        if not self.is_published: #37:
+            return reverse('blog:index') #38:
+        return reverse('blog:page', args=(self.slug,)) #39:
     
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -118,10 +118,10 @@ class Post(models.Model):
     def __str__(self):
         return self.title
     
-    def get_absolute_url(self): ##
-        if not self.is_published: ##
-            return reverse('blog:index') ##
-        return reverse('blog:post', args=(self.slug,)) #35: ##
+    def get_absolute_url(self):
+        if not self.is_published:
+            return reverse('blog:index')
+        return reverse('blog:post', args=(self.slug,)) #35:
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -144,6 +144,10 @@ class Post(models.Model):
     #     return self.title
         return super_save
 
+#36: O método get_absolute_url é responsável por fornecer a URL absoluta de uma página com base em suas condições de publicação. Este método verifica se a página deve ou não ser exibida publicamente, retornando a URL apropriada.
+#37: Checa se a página ainda não está publicada. Se for True, ela redireciona para o índice do blog.
+#38: Usa a função reverse do Django para gerar a URL correspondente ao nome da view 'blog (a página principal do blog).
+#39: Se a página estiver publicada, retorna a URL da página específica, usando o slug para identificá-la.
 # ------------------------------------------------------------------
 #35: Terminado esta função, você vai ver no django admin/posts que vai aparecer um botão no canto superior direito, algo como "Ver no Site".
 # ------------------------------------------------------------------
