@@ -67,6 +67,7 @@ def page(request, slug):
     page = (Page.objects.filter(is_published=True).filter(slug=slug).first())
     return render(request,'blog/pages/page.html',{'page': page,}) #25:
 
+# ------------------------------------------------------------------
 #25: Essa linha faz o render da página usando o template page.html, passando o objeto page para o contexto. O template page.html vai exibir os dados da página (como title e content), usando o objeto page.
 # ------------------------------------------------------------------
 #21: O Q é um módulo de Django que permite construir consultas complexas no banco de dados com operadores lógicos como OR (|) e AND (&). Ao utilizar o Q, você pode criar consultas dinâmicas que permitem combinar diferentes filtros de busca.

@@ -144,6 +144,7 @@ class Post(models.Model):
     #     return self.title
         return super_save
 
+# ------------------------------------------------------------------
 #36: O método get_absolute_url é responsável por fornecer a URL absoluta de uma página com base em suas condições de publicação. Este método verifica se a página deve ou não ser exibida publicamente, retornando a URL apropriada.
 #37: Checa se a página ainda não está publicada. Se for True, ela redireciona para o índice do blog.
 #38: Usa a função reverse do Django para gerar a URL correspondente ao nome da view 'blog (a página principal do blog).
