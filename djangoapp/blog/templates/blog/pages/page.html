@@ -9,13 +9,15 @@
     <main class="main-content section-wrapper"> {#1: #}
         <div class="section-content-narrow"> {#2: #}
         <div class="section-gap">
-            <h1 class="center">{{page.title}}</h1> {# ##}
-            {{page.content | safe}} {# ##}
+            <h1 class="center">{{page.title}}</h1> {#3: #}
+            {{page.content | safe}} {#4: #}
         </div>
         </div>
     </main>
 {% endblock content %}
 
+{#4: xibe o conteúdo da página, garantindo que o conteúdo seja renderizado como HTML sem ser escapado (graças ao filtro | safe). #}
+{#3: Exibe o título da página (page.title) dentro de um elemento <h1>. Isso acessa o campo title do modelo Page. #}
 {# ------------------------------------------------------------------ #}
 {#1: Define a estrutura principal de conteúdo da página "page.html", utilizando a classe main-content para estilização.#}
 {#2: Um div usado para definir uma largura de conteúdo mais estreita em comparação ao section-content-wide. #}
