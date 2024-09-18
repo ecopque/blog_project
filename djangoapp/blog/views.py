@@ -4,6 +4,8 @@ from django.shortcuts import render
 from django.core.paginator import Paginator #3:
 from blog.models import Post, Page
 from django.db.models import Q #21:
+from django.contrib.auth.models import User ##
+from django.http import Http404
 
 # posts = list(range(1000)) #4:
 PER_PAGE = 9
@@ -18,7 +20,7 @@ def index(request): #1:
     page_number = request.GET.get("page") #7: #9:
     page_obj = paginator.get_page(page_number) #8:
     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/index.html
-    return render(request, 'blog/pages/index.html', {'page_obj':page_obj,}) #2: #10:
+    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': 'Home - '}) #2: #10: ##
 
 # def page(request, slug): # Original
 #     # paginator = Paginator(posts, 9)
@@ -36,11 +38,21 @@ def post(request, slug): #14:
     return render(request, 'blog/pages/post.html', {'post':post,}) #17:
 
 def created_by(request, author_pk):
+    user = User.objects.filter(pk=author_pk).first() ##
+    if user is None: ##
+        raise Http404() ##
+
     posts = Post.objects.get_published().filter(created_by__pk=author_pk) #18:
+    
+    user_full_name = user.username ##
+    if user.first_name:
+        user_full_name = f'{user.first_name} {user.last_name}' ##
+    page_title = user_full_name + ' posts - ' ##
+
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request, 'blog/pages/index.html', {'page_obj':page_obj,})
+    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': page_title})
 
 def category(request, slug):
     posts = Post.objects.get_published().filter(category__slug=slug) #15: #19:
