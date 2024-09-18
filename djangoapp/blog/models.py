@@ -68,6 +68,12 @@ class Page(models.Model):
     slug = models.SlugField(unique=True, default="", null=False, blank=True, max_length=255,)
     is_published = models.BooleanField(default=False, help_text=('This field must be checked for the page to be displayed publicly. Glu Glu, Yeh Yeh.'),) #11:
     content = models.TextField() #12:
+
+    # URL⬇: http://127.0.0.1:8000/page/new-era/
+    def get_absolute_url(self): ##
+        if not self.is_published: ##
+            return reverse('blog:index') ##
+        return reverse('blog:page', args=(self.slug,)) ##
     
     def save(self, *args, **kwargs):
         if not self.slug:
