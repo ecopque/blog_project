@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.core.paginator import Paginator #3:
 from blog.models import Post, Page
 from django.db.models import Q #21:
-from django.contrib.auth.models import User ##
+from django.contrib.auth.models import User #26:
 from django.http import Http404
 
 # posts = list(range(1000)) #4:
@@ -20,7 +20,7 @@ def index(request): #1:
     page_number = request.GET.get("page") #7: #9:
     page_obj = paginator.get_page(page_number) #8:
     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/index.html
-    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': 'Home - '}) #2: #10: ##
+    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': 'Home - '}) #2: #10: #27:
 
 # def page(request, slug): # Original
 #     # paginator = Paginator(posts, 9)
@@ -30,21 +30,21 @@ def index(request): #1:
 #     return render(request, 'blog/pages/page.html', {}) #11:
 
 def created_by(request, author_pk):
-    user = User.objects.filter(pk=author_pk).first() ##
-    if user is None: ##
-        raise Http404() ##
+    user = User.objects.filter(pk=author_pk).first() #28:
+    if user is None: #29:
+        raise Http404() #30:
     
     posts = Post.objects.get_published().filter(created_by__pk=author_pk) #18:
     
-    user_full_name = user.username ##
+    user_full_name = user.username
     if user.first_name:
-        user_full_name = f'{user.first_name} {user.last_name}' ##
+        user_full_name = f'{user.first_name} {user.last_name}' #31:
     
-    page_title = 'Posts by ' + user_full_name + ' - ' ##
+    page_title = 'Posts by ' + user_full_name + ' - ' #32:
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': page_title}) ##
+    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': page_title}) #33:
 
 def category(request, slug):
     posts = Post.objects.get_published().filter(category__slug=slug) #15: #19:
@@ -53,10 +53,10 @@ def category(request, slug):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
-    if len(posts) == 0: ##
-        raise Http404() ##
-    page_title = f'{page_obj[0].category.name} Category - ' ##
-    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': page_title,}) ##
+    if len(posts) == 0:
+        raise Http404()
+    page_title = f'{page_obj[0].category.name} Category - ' #34:
+    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': page_title,})
 
 def tag(request, slug):
     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
@@ -67,8 +67,8 @@ def tag(request, slug):
 
     if len(page_obj) == 0:
         raise Http404
-    page_title = f'{page_obj[0].tags.first().name} - Tags - ' ##
-    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title':page_title,}) ##
+    page_title = f'{page_obj[0].tags.first().name} - Tags - '
+    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title':page_title,})
 
 def search(request):
     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
@@ -97,6 +97,16 @@ def post(request, slug): #14:
     page_title = f'{post_obj.title} - Post - ' ##
     return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17: ##
 
+
+#26: O modelo User é usado para representar usuários no sistema de autenticação do Django.
+#27: Este comando utiliza o método render() do Django para renderizar a página HTML index.html, passando como contexto os objetos page_obj e page_title.
+#28: Aqui, o sistema está filtrando o modelo User para encontrar o usuário com o primary key (chave primária) igual a author_pk. O método first() retorna o primeiro resultado encontrado ou None se não houver correspondência.
+#29: Verifica se o usuário encontrado no código anterior é None, ou seja, se não existe um usuário com o primary key fornecido.
+#30: Levanta uma exceção Http404, indicando que o recurso solicitado não foi encontrado, resultando na página "404 Not Found".
+#31: Se o first_name do usuário estiver preenchido, concatena first_name e last_name para formar o nome completo do usuário.
+#32: Gera um título de página dinâmico com base no nome completo do usuário, como Posts by John Doe - .
+#33: Renderiza o template index.html e passa o contexto contendo page_obj e o título dinâmico page_title.
+#34: Gera o título da página com base no nome da categoria do primeiro post (page_obj[0]) encontrado. Este título será algo como Technology Category - .
 # ------------------------------------------------------------------
 #25: Essa linha faz o render da página usando o template page.html, passando o objeto page para o contexto. O template page.html vai exibir os dados da página (como title e content), usando o objeto page.
 # ------------------------------------------------------------------
@@ -122,7 +132,7 @@ def post(request, slug): #14:
 #4: Define uma lista chamada posts que contém 1000 números (de 0 a 999). Este é um exemplo de lista de objetos que será paginada usando a classe Paginator.
 #5: Cria uma instância de Paginator, passando dois argumentos: posts (a lista a ser paginada) e 9 (o número de itens por página). Isso divide a lista de posts em páginas de 9 itens cada.
 #6: Foi dito que o segundo argumento é o número de posts por página. Em meus testes, mudando o número não houve diferença alguma. Mas veja no 'index.html', lá você consegue definir o número de posts por página.
-#7: Obtém o número da página da requisição HTTP GET. request.GET.get("page") extrai o parâmetro de query page da URL, que indica qual página deve ser exibida. Se o parâmetro não for passado na URL, o valor será None. Se o parâmetro "page" estiver presente na URL, ele retornará o valor dele; caso contrário, retornará None.
+#7: Obtém o número da página da requisição HTTP GET. 'request.GET.get("page")' extrai o parâmetro de query page da URL, que indica qual página deve ser exibida. Se o parâmetro não for passado na URL, o valor será None. Se o parâmetro "page" estiver presente na URL, ele retornará o valor dele; caso contrário, retornará None.
 #8: Utiliza o método get_page() do Paginator para obter o objeto da página correspondente ao número da página (page_number). Se page_number for None ou inválido, ele retornará a primeira página.
 #9: Exemplo: http://127.0.0.1:8000/?page=1.
 #10: O terceiro argumento é um dicionário que representa o contexto a ser passado para o template. page_obj é um objeto retornado pelo método 'paginator.get_page(page_number)'.
