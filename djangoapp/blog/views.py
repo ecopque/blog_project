@@ -64,7 +64,7 @@ def category(request, slug):
     if len(posts) == 0: ##
         raise Http404() ##
 
-    page_title = f'{page_obj[0].title} - ' ##
+    page_title = f'{page_obj[0].category.name} Category - ' ##
 
     return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': page_title,}) ##
 
