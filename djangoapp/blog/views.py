@@ -47,15 +47,19 @@ def created_by(request, author_pk):
     user_full_name = user.username ##
     if user.first_name:
         user_full_name = f'{user.first_name} {user.last_name}' ##
-    page_title = user_full_name + ' posts - ' ##
+    page_title = 'Posts by ' + user_full_name + ' - ' ##
 
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': page_title})
+    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': page_title}) ##
 
 def category(request, slug):
     posts = Post.objects.get_published().filter(category__slug=slug) #15: #19:
+
+    if len(posts) == 0: ##
+        raise Http404() ##
+
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
