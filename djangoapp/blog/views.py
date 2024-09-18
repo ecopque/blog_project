@@ -57,13 +57,16 @@ def created_by(request, author_pk):
 def category(request, slug):
     posts = Post.objects.get_published().filter(category__slug=slug) #15: #19:
 
-    if len(posts) == 0: ##
-        raise Http404() ##
-
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request, 'blog/pages/index.html', {'page_obj':page_obj,})
+
+    if len(posts) == 0: ##
+        raise Http404() ##
+
+    page_title = f'{page_obj[0].title} - ' ##
+
+    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': page_title,}) ##
 
 def tag(request, slug):
     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
