@@ -137,9 +137,7 @@ class Post(models.Model):
     # def __str__(self):
     #     return self.title
         return super_save
-    
-    
-    
+
 # ------------------------------------------------------------------
 #35: Terminado esta função, você vai ver no django admin/posts que vai aparecer um botão no canto superior direito, algo como "Ver no Site".
 # ------------------------------------------------------------------
