@@ -2,7 +2,7 @@
 
 from django.shortcuts import render
 from django.core.paginator import Paginator #3:
-from blog.models import Post
+from blog.models import Post, Page
 from django.db.models import Q #21:
 
 # posts = list(range(1000)) #4:
@@ -13,29 +13,25 @@ def index(request): #1:
     # posts = Post.objects.filter(is_published=True).order_by('-pk') #12:
     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
     posts = Post.objects.get_published() #13:
-
     paginator = Paginator(posts, PER_PAGE) #5: #6!:
     # URL⬇: http://127.0.0.1:8000/?page=1
     page_number = request.GET.get("page") #7: #9:
     page_obj = paginator.get_page(page_number) #8:
-
     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/index.html
     return render(request, 'blog/pages/index.html', {'page_obj':page_obj,}) #2: #10:
 
-def page(request, slug):
-    # paginator = Paginator(posts, 9)
-    # page_number = request.GET.get("page")
-    # page_obj = paginator.get_page(page_number)
-
-    # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/page.html
-    return render(request, 'blog/pages/page.html', {}) #11:
+# def page(request, slug): # Original
+#     # paginator = Paginator(posts, 9)
+#     # page_number = request.GET.get("page")
+#     # page_obj = paginator.get_page(page_number)
+#     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/page.html
+#     return render(request, 'blog/pages/page.html', {}) #11:
 
 def post(request, slug): #14:
     post = (Post.objects.get_published().filter(slug=slug).first()) #16:
     # paginator = Paginator(posts, 9)
     # page_number = request.GET.get("page")
     # page_obj = paginator.get_page(page_number)
-
     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/post.html
     return render(request, 'blog/pages/post.html', {'post':post,}) #17:
 
@@ -44,7 +40,6 @@ def created_by(request, author_pk):
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-
     return render(request, 'blog/pages/index.html', {'page_obj':page_obj,})
 
 def category(request, slug):
@@ -52,7 +47,6 @@ def category(request, slug):
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-
     return render(request, 'blog/pages/index.html', {'page_obj':page_obj,})
 
 def tag(request, slug):
@@ -61,15 +55,18 @@ def tag(request, slug):
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-
     return render(request, 'blog/pages/index.html', {'page_obj':page_obj,})
 
 def search(request):
     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
     search_value = request.GET.get('search', '').strip() #22:
     posts = Post.objects.get_published().filter(Q(title__icontains=search_value) | Q(excerpt__icontains=search_value) | Q(content__icontains=search_value))[0:PER_PAGE] #23:
-
     return render(request, 'blog/pages/index.html', {'page_obj':posts, 'search_value':search_value,}) #24:
+
+def page(request, slug):
+    page = (Page.objects.filter(is_published=True).filter(slug=slug).first())
+    return render(request,'blog/pages/page.html',{'page': page,}) ##
+
 
 # ------------------------------------------------------------------
 #21: O Q é um módulo de Django que permite construir consultas complexas no banco de dados com operadores lógicos como OR (|) e AND (&). Ao utilizar o Q, você pode criar consultas dinâmicas que permitem combinar diferentes filtros de busca.
