@@ -75,16 +75,16 @@ def search(request):
     search_value = request.GET.get('search', '').strip() #22:
     posts = Post.objects.get_published().filter(Q(title__icontains=search_value) | Q(excerpt__icontains=search_value) | Q(content__icontains=search_value))[0:PER_PAGE] #23:
 
-    page_title = f'{search_value[:30]} - Search - ' ##
-    return render(request, 'blog/pages/index.html', {'page_obj':posts, 'search_value':search_value, 'page_title':page_title,}) #24: ##
+    page_title = f'{search_value[:30]} - Search - '
+    return render(request, 'blog/pages/index.html', {'page_obj':posts, 'search_value':search_value, 'page_title':page_title,}) #24:
 
 def page(request, slug):
     page_obj = (Page.objects.filter(is_published=True).filter(slug=slug).first())
 
-    if page_obj is None: ##
+    if page_obj is None:
         raise Http404
     page_title = f'{page_obj.title} - Page - '
-    return render(request,'blog/pages/page.html',{'page': page_obj, 'page_title': page_title}) #25: ##
+    return render(request,'blog/pages/page.html',{'page': page_obj, 'page_title': page_title}) #25:
 
 def post(request, slug): #14:
     post_obj = (Post.objects.get_published().filter(slug=slug).first()) #16:
@@ -94,8 +94,8 @@ def post(request, slug): #14:
     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/post.html
     if post_obj is None:
         raise Http404
-    page_title = f'{post_obj.title} - Post - ' ##
-    return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17: ##
+    page_title = f'{post_obj.title} - Post - '
+    return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17:
 
 
 #26: O modelo User é usado para representar usuários no sistema de autenticação do Django.
