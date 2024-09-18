@@ -97,7 +97,7 @@ def post(request, slug): #14:
     page_title = f'{post_obj.title} - Post - '
     return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17:
 
-
+# ------------------------------------------------------------------
 #26: O modelo User é usado para representar usuários no sistema de autenticação do Django.
 #27: Este comando utiliza o método render() do Django para renderizar a página HTML index.html, passando como contexto os objetos page_obj e page_title.
 #28: Aqui, o sistema está filtrando o modelo User para encontrar o usuário com o primary key (chave primária) igual a author_pk. O método first() retorna o primeiro resultado encontrado ou None se não houver correspondência.
