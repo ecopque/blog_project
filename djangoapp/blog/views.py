@@ -32,7 +32,7 @@ class PostListView(ListView): #35:
         context.update({'page_title': 'Home - ',}) #46:
         return context
     
-#####: Substituído por class PostListView(ListView):
+#####: Substituído por 'class PostListView(ListView)':
 # EXPORT⬇: /blog_project/djangoapp/blog/urls.py
 # def index(request): #1:
 #     # posts = Post.objects.filter(is_published=True).order_by('-pk') #12:
