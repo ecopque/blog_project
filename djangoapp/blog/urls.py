@@ -7,7 +7,7 @@ app_name = 'blog' #1:
 # IMPORT⬇: /blog_project/djangoapp/blog/views.py
 urlpatterns = [
     # path('', index, name='index'), #2:
-    path('', PostListView, name='index'), #:8 ##
+    path('', PostListView.as_view(), name='index'), #:8 ##
     path('page/<slug:slug>/', page, name='page'),
     path('post/<slug:slug>/', post, name='post'), #3:
     path('created_by/<int:author_pk>/', created_by, name='created_by'), #4:

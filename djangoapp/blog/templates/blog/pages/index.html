@@ -11,7 +11,8 @@
         <div class="section-gap">
             
             {# IMPORT⬇: /blog_project/djangoapp/blog/views.py #}
-            {% if page_obj %} {#13: #}
+            {% comment %} {% if page_obj %} {#13: #} {% endcomment %}
+                {% if posts %} {#16: ##}
                 <div class="card-grid">                
                 {% comment %} {# {% for i in ""|ljust:"9" %} {#7: #8: #} #} {% endcomment %}
                     {% for post in page_obj %}  {#10: #11: #}
@@ -33,7 +34,7 @@
 {% endblock content %}
 
 
-
+{#16: Comentamos a linha anterior onde era 'if page_obj' por este novo, pois estamos usando class based view. #}
 {# ------------------------------------------------------------------ #}
 {#12: Este conteúdo/página será apresentado quando não houver nada na página inicial, ou seja, sem post algum. #}
 {#13: Esta linha está verificando se a variável page_obj existe e contém objetos (neste caso, posts). Essa variável é normalmente usada para a paginação de resultados em uma página de listagem, como posts de blog. #}

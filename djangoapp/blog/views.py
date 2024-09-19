@@ -11,8 +11,12 @@ from django.views.generic.list import ListView ##
 # posts = list(range(1000)) #4:
 PER_PAGE = 9
 
-class PostListView(ListView):
-    ...
+class PostListView(ListView): ##
+    model = Post ##
+    template_name = 'blog/pages/index.html' ##
+    context_object_name = 'posts' ##
+    ordering = '-pk', ##
+    paginate_by = PER_PAGE ##
 
 # EXPORT⬇: /blog_project/djangoapp/blog/urls.py
 def index(request): #1:
