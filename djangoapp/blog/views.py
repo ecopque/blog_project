@@ -42,8 +42,11 @@ class PostListView(ListView): #35:
 #     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/index.html
 #     return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': 'Home - '}) #2: #10: #27:
 
-class CreatedByListView(PostListView):
-    ...
+class CreatedByListView(PostListView): ##
+    def setup(self, *args, **kwargs):
+        print('This is the CreatedByListView(PostListView) method.')
+        super_setup = super().setup(*args, **kwargs)
+        return super_setup
 
 
 def created_by(request, author_pk):
