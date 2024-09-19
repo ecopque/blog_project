@@ -120,6 +120,7 @@ def post(request, slug): #14:
     page_title = f'{post_obj.title} - Post - '
     return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17:
 
+# ------------------------------------------------------------------
 #35: ListView é uma classe de view genérica no Django que exibe uma lista de objetos. Ela simplifica o processo de exibição de listas de modelos do banco de dados, sem a necessidade de escrever o código de consulta manualmente. PostListView é uma subclasse da classe ListView, que herda sua funcionalidade. Esta view será usada para exibir uma lista de objetos Post. Ao ser acessada na URL, será automaticamente processada e renderizada pelo Django com base no template e no modelo fornecidos.
 #36: A view PostListView está associada ao modelo Post, o que significa que ela exibirá uma lista de objetos do tipo Post a partir do banco de dados.
 #37: Esta linha especifica o template HTML que será usado para renderizar a lista de posts.
