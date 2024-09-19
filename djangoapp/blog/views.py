@@ -14,13 +14,10 @@ PER_PAGE = 9
 class PostListView(ListView): #35:
     model = Post #36:
     template_name = 'blog/pages/index.html' #37:
-
     # EXPORT⬇: /blog_project/djangoapp/templates/blog/pages/index.html
     context_object_name = 'posts' #38:
-
     ordering = '-pk', #39:
     paginate_by = PER_PAGE #40:
-
     # queryset = Post.objects.get_published()
     def get_queryset(self): #41:
         queryset = super().get_queryset() #42:
@@ -44,6 +41,10 @@ class PostListView(ListView): #35:
 #     page_obj = paginator.get_page(page_number) #8:
 #     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/index.html
 #     return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': 'Home - '}) #2: #10: #27:
+
+class CreatedByListView(PostListView):
+    ...
+
 
 def created_by(request, author_pk):
     user = User.objects.filter(pk=author_pk).first() #28:
