@@ -12,7 +12,7 @@
             
             {# IMPORT⬇: /blog_project/djangoapp/blog/views.py #}
             {% comment %} {% if page_obj %} {#13: #} {% endcomment %}
-                {% if posts %} {#16: ##}
+                {% if posts %} {#16: #}
                 <div class="card-grid">                
                 {% comment %} {# {% for i in ""|ljust:"9" %} {#7: #8: #} #} {% endcomment %}
                     {% for post in page_obj %}  {#10: #11: #}
@@ -32,7 +32,6 @@
         </div>
     </main>
 {% endblock content %}
-
 
 {#16: Comentamos a linha anterior onde era 'if page_obj' por este novo, pois estamos usando class based view. Este 'post' está em 'views.py'. #}
 {# ------------------------------------------------------------------ #}

@@ -11,25 +11,25 @@ from django.views.generic.list import ListView ##
 # posts = list(range(1000)) #4:
 PER_PAGE = 9
 
-class PostListView(ListView): ##
-    model = Post ##
-    template_name = 'blog/pages/index.html' ##
+class PostListView(ListView): #35:
+    model = Post #36:
+    template_name = 'blog/pages/index.html' #37:
 
     # EXPORT⬇: /blog_project/djangoapp/templates/blog/pages/index.html
-    context_object_name = 'posts' ##
+    context_object_name = 'posts' #38:
 
-    ordering = '-pk', ##
-    paginate_by = PER_PAGE ##
+    ordering = '-pk', #39:
+    paginate_by = PER_PAGE #40:
 
     # queryset = Post.objects.get_published()
-    def get_queryset(self): ##
-        queryset = super().get_queryset() ##
-        queryset = queryset.filter(is_published=True) ##
+    def get_queryset(self): #41:
+        queryset = super().get_queryset() #42:
+        queryset = queryset.filter(is_published=True) #43:
         return queryset
 
-    def get_context_data(self, **kwargs): ##
-        context = super().get_context_data(**kwargs) ##
-        context.update({'page_title': 'Home - ',}) ##
+    def get_context_data(self, **kwargs): #44:
+        context = super().get_context_data(**kwargs) #45:
+        context.update({'page_title': 'Home - ',}) #46:
         return context
     
 #####: Substituído por class PostListView(ListView):
@@ -120,6 +120,18 @@ def post(request, slug): #14:
     page_title = f'{post_obj.title} - Post - '
     return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17:
 
+#35: ListView é uma classe de view genérica no Django que exibe uma lista de objetos. Ela simplifica o processo de exibição de listas de modelos do banco de dados, sem a necessidade de escrever o código de consulta manualmente. PostListView é uma subclasse da classe ListView, que herda sua funcionalidade. Esta view será usada para exibir uma lista de objetos Post. Ao ser acessada na URL, será automaticamente processada e renderizada pelo Django com base no template e no modelo fornecidos.
+#36: A view PostListView está associada ao modelo Post, o que significa que ela exibirá uma lista de objetos do tipo Post a partir do banco de dados.
+#37: Esta linha especifica o template HTML que será usado para renderizar a lista de posts.
+#38: Esta linha define o nome da variável de contexto que será passada ao template. No template, a lista de posts estará disponível como posts.
+#39: Define a ordem dos objetos Post a serem exibidos. Aqui, os posts são ordenados de forma decrescente pelo campo pk (chave primária). O sinal de menos - indica que a ordenação será decrescente.
+#40: Esta linha ativa a paginação dos resultados, limitando o número de objetos por página. A constante PER_PAGE foi definida como 9, o que significa que a cada página serão exibidos 9 posts.
+#41: o: Esta função é sobrescrita para personalizar o conjunto de consultas (queryset) retornado pela view. Aqui, ela retorna apenas os posts que estão publicados.
+#42: Chama o método get_queryset da superclasse ListView, que busca todos os objetos Post no banco de dados. Esse conjunto de resultados será modificado mais à frente no método.
+#43: Aplica um filtro no queryset, retornando apenas os posts que têm o campo is_published definido como True, ou seja, posts que estão publicados.
+#44: Esta função sobrescreve o método get_context_data da classe ListView. Ela é usada para adicionar dados adicionais ao contexto que será passado ao template. Nesse caso, dados como o título da página serão adicionados.
+#45: Esta linha chama o método get_context_data da superclasse para obter o contexto padrão que a ListView já fornece, como a lista de posts.
+#46: Atualiza o contexto com uma nova chave page_title, que contém o valor 'Home - '. Esse valor será utilizado no template para exibir o título da página.
 # ------------------------------------------------------------------
 #26: O modelo User é usado para representar usuários no sistema de autenticação do Django.
 #27: Este comando utiliza o método render() do Django para renderizar a página HTML index.html, passando como contexto os objetos page_obj e page_title.

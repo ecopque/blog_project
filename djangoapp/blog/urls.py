@@ -8,7 +8,7 @@ app_name = 'blog' #1:
 # IMPORT⬇: /blog_project/djangoapp/blog/views.py
 urlpatterns = [
     # path('', index, name='index'), #2:
-    path('', PostListView.as_view(), name='index'), #:8 #9: ##
+    path('', PostListView.as_view(), name='index'), #:8 #9:
     path('page/<slug:slug>/', page, name='page'),
     path('post/<slug:slug>/', post, name='post'), #3:
     path('created_by/<int:author_pk>/', created_by, name='created_by'), #4:
@@ -18,7 +18,7 @@ urlpatterns = [
 ]
 
 #8: Este é o substituto do 'path('', index, name='index'), #2:';
-#9: 
+#9:  No arquivo de URLs, esta linha define a URL padrão (raiz) do site para chamar a view PostListView. Isso significa que, ao acessar o endereço base do blog, o Django processará e exibirá a view PostListView, que mostrará a lista de posts.
 # ------------------------------------------------------------------
 #7: Esta linha define uma URL específica para a rota de pesquisa. Quando a URL /search/ for acessada, a função search definida em views.py será chamada. O name='search' permite que essa URL seja referenciada facilmente em outras partes do código, como em templates ou redirecionamentos.
 # ------------------------------------------------------------------
