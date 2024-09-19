@@ -18,6 +18,11 @@ class PostListView(ListView): ##
     ordering = '-pk', ##
     paginate_by = PER_PAGE ##
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({'page_title': 'Home - ',})
+        return context
+
 # EXPORT⬇: /blog_project/djangoapp/blog/urls.py
 def index(request): #1:
     # posts = Post.objects.filter(is_published=True).order_by('-pk') #12:
