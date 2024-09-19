@@ -17,26 +17,33 @@ class PostListView(ListView): ##
 
     # EXPORT⬇: /blog_project/djangoapp/templates/blog/pages/index.html
     context_object_name = 'posts' ##
-    
+
     ordering = '-pk', ##
     paginate_by = PER_PAGE ##
+
+    # queryset = Post.objects.get_published()
+    def get_queryset(self): ##
+        queryset = super().get_queryset() ##
+        queryset = queryset.filter(is_published=True) ##
+        return queryset
 
     def get_context_data(self, **kwargs): ##
         context = super().get_context_data(**kwargs) ##
         context.update({'page_title': 'Home - ',}) ##
-        return context ##
-
+        return context
+    
+#####: Substituído por class PostListView(ListView):
 # EXPORT⬇: /blog_project/djangoapp/blog/urls.py
-def index(request): #1:
-    # posts = Post.objects.filter(is_published=True).order_by('-pk') #12:
-    # IMPORT⬇: /blog/project/djangoapp/blog/models.py
-    posts = Post.objects.get_published() #13:
-    paginator = Paginator(posts, PER_PAGE) #5: #6!:
-    # URL⬇: http://127.0.0.1:8000/?page=1
-    page_number = request.GET.get("page") #7: #9:
-    page_obj = paginator.get_page(page_number) #8:
-    # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/index.html
-    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': 'Home - '}) #2: #10: #27:
+# def index(request): #1:
+#     # posts = Post.objects.filter(is_published=True).order_by('-pk') #12:
+#     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
+#     posts = Post.objects.get_published() #13:
+#     paginator = Paginator(posts, PER_PAGE) #5: #6!:
+#     # URL⬇: http://127.0.0.1:8000/?page=1
+#     page_number = request.GET.get("page") #7: #9:
+#     page_obj = paginator.get_page(page_number) #8:
+#     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/index.html
+#     return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': 'Home - '}) #2: #10: #27:
 
 def created_by(request, author_pk):
     user = User.objects.filter(pk=author_pk).first() #28:
