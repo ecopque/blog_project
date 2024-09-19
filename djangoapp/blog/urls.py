@@ -17,6 +17,7 @@ urlpatterns = [
     path('search/', search, name='search') #7:
 ]
 
+# ------------------------------------------------------------------
 #8: Este é o substituto do 'path('', index, name='index'), #2:';
 #9:  No arquivo de URLs, esta linha define a URL padrão (raiz) do site para chamar a view PostListView. Isso significa que, ao acessar o endereço base do blog, o Django processará e exibirá a view PostListView, que mostrará a lista de posts.
 # ------------------------------------------------------------------
