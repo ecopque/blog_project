@@ -6,9 +6,13 @@ from blog.models import Post, Page
 from django.db.models import Q #21:
 from django.contrib.auth.models import User #26:
 from django.http import Http404
+from django.views.generic.list import ListView ##
 
 # posts = list(range(1000)) #4:
 PER_PAGE = 9
+
+class PostListView(ListView):
+    ...
 
 # EXPORT⬇: /blog_project/djangoapp/blog/urls.py
 def index(request): #1:
@@ -21,13 +25,6 @@ def index(request): #1:
     page_obj = paginator.get_page(page_number) #8:
     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/index.html
     return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': 'Home - '}) #2: #10: #27:
-
-# def page(request, slug): # Original
-#     # paginator = Paginator(posts, 9)
-#     # page_number = request.GET.get("page")
-#     # page_obj = paginator.get_page(page_number)
-#     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/page.html
-#     return render(request, 'blog/pages/page.html', {}) #11:
 
 def created_by(request, author_pk):
     user = User.objects.filter(pk=author_pk).first() #28:
@@ -85,6 +82,13 @@ def page(request, slug):
         raise Http404
     page_title = f'{page_obj.title} - Page - '
     return render(request,'blog/pages/page.html',{'page': page_obj, 'page_title': page_title}) #25:
+
+# def page(request, slug): # Original
+#     # paginator = Paginator(posts, 9)
+#     # page_number = request.GET.get("page")
+#     # page_obj = paginator.get_page(page_number)
+#     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/page.html
+#     return render(request, 'blog/pages/page.html', {}) #11:
 
 def post(request, slug): #14:
     post_obj = (Post.objects.get_published().filter(slug=slug).first()) #16:

@@ -1,12 +1,13 @@
 # FILE: /blog_project/djangoapp/blog/urls.py
 
 from django.urls import path
-from blog.views import index, page, post, created_by, category, tag, search
+from blog.views import index, page, post, created_by, category, tag, search, PostListView
 
 app_name = 'blog' #1:
 # IMPORT⬇: /blog_project/djangoapp/blog/views.py
 urlpatterns = [
-    path('', index, name='index'), #2:
+    # path('', index, name='index'), #2:
+    path('', PostListView, name='index'), #:8 ##
     path('page/<slug:slug>/', page, name='page'),
     path('post/<slug:slug>/', post, name='post'), #3:
     path('created_by/<int:author_pk>/', created_by, name='created_by'), #4:
@@ -15,6 +16,7 @@ urlpatterns = [
     path('search/', search, name='search') #7:
 ]
 
+#8: 
 # ------------------------------------------------------------------
 #7: Esta linha define uma URL específica para a rota de pesquisa. Quando a URL /search/ for acessada, a função search definida em views.py será chamada. O name='search' permite que essa URL seja referenciada facilmente em outras partes do código, como em templates ou redirecionamentos.
 # ------------------------------------------------------------------
