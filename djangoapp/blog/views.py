@@ -6,9 +6,9 @@ from blog.models import Post, Page
 from django.db.models import Q #21:
 from django.contrib.auth.models import User #26:
 from django.http import Http404
-from django.views.generic.list import ListView ##
+from django.views.generic.list import ListView #47:
 from typing import Any
-from django.db.models.query import QuerySet ##
+from django.db.models.query import QuerySet #48:
 
 # posts = list(range(1000)) #4:
 PER_PAGE = 9
@@ -44,40 +44,37 @@ class PostListView(ListView): #35:
 #     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/index.html
 #     return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': 'Home - '}) #2: #10: #27:
 
-class CreatedByListView(PostListView): ##
-    def __init__(self, **kwargs: Any) -> None: ##
+class CreatedByListView(PostListView): #49:
+    def __init__(self, **kwargs: Any) -> None: #50:
         super().__init__(**kwargs)
     
-    def get_context_data(self, **kwargs): ##
-        ctx = super().get_context_data(**kwargs) ##
-
-        author_pk = self.kwargs.get('author_pk') ##
-        user = User.objects.filter(pk=author_pk).first() ##
+    def get_context_data(self, **kwargs): #51:
+        ctx = super().get_context_data(**kwargs) #52:
+        author_pk = self.kwargs.get('author_pk') #53:
+        user = User.objects.filter(pk=author_pk).first() #54:
 
         if user is None:
             raise Http404()
         
-        user_full_name = user.username ##
+        user_full_name = user.username #55:
         if user.first_name:
             user_full_name = f'{user.first_name} {user.last_name}'
         
-        page_title = 'Posts by ' + user_full_name + ' - ' ##
-        ctx.update({'page_title': page_title,}) ##
+        page_title = 'Posts by ' + user_full_name + ' - ' #56:
+        ctx.update({'page_title': page_title,}) #57:
         return ctx
     
-    def get_queryset(self) -> QuerySet[Any]: ##
+    def get_queryset(self) -> QuerySet[Any]: #58:
         qs = super().get_queryset()
-        qs = qs.filter(created_by__pk=self.kwargs.get('author_pk')) ##
+        qs = qs.filter(created_by__pk=self.kwargs.get('author_pk')) #59:
         return qs
     
-    def get(self, request, *args, **kwargs): ##
-        author_pk = self.kwargs.get('author_pk')
-        user = User.objects.filter(pk=author_pk).first()
-
+    def get(self, request, *args, **kwargs): #60:
+        author_pk = self.kwargs.get('author_pk') #61:
+        user = User.objects.filter(pk=author_pk).first() #62:
         if user is None:
-            return redirect('blog:index') ##
-            
-        return super().get(request, *args, **kwargs) ##
+            return redirect('blog:index')
+        return super().get(request, *args, **kwargs)
 
 # Substituído por 'CreatedByListView(PostListView)':
 # def created_by(request, author_pk):
@@ -155,6 +152,22 @@ def post(request, slug): #14:
     page_title = f'{post_obj.title} - Post - '
     return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17:
 
+#47: ListView é uma classe genérica baseada em views do Django, usada para exibir listas de objetos de um modelo. Ela facilita a exibição de dados sem a necessidade de escrever código repetitivo para consultas no banco de dados, renderização de templates, etc.
+#48:  QuerySet é um objeto que representa uma coleção de objetos do banco de dados que podem ser filtrados, ordenados e manipulados. É o tipo retornado quando se faz consultas no banco de dados através de métodos como filter(), get(), etc.
+#49: CreatedByListView herda de PostListView e serve para listar posts de um autor específico. Essa classe especializa a lógica de listagem, adicionando um filtro para mostrar apenas os posts criados por um autor em particular.
+#50: O método construtor __init__ inicializa a instância da classe CreatedByListView com os argumentos fornecidos (**kwargs). Ele chama o construtor da classe pai super().__init__(**kwargs) para garantir que a classe base (PostListView) seja devidamente inicializada.
+#51: Esse método adiciona dados adicionais ao contexto que será passado para o template. Aqui ele é sobrescrito para incluir um título de página personalizado.
+#52: Esse trecho chama o método da classe pai get_context_data para obter o contexto padrão (ex.: lista de posts), e depois adiciona mais dados a esse contexto.
+#53: Extrai o valor de author_pk dos parâmetros da URL, que corresponde ao ID do autor cujos posts estão sendo listados.
+#54: Faz uma consulta no modelo User para encontrar o usuário correspondente ao ID author_pk. O método first() retorna o primeiro resultado encontrado ou None se nenhum for encontrado.
+#55: Se o usuário for encontrado, define o nome de exibição do autor com o valor do username do objeto User. Se o usuário tiver um nome e sobrenome, eles serão usados para formar o nome completo.
+#56: Define o título da página concatenando uma string com o nome completo do autor, formatando a frase: "Posts by [Nome do Autor] - ".
+#57: Atualiza o contexto passado para o template, adicionando o título da página (variável page_title) ao dicionário de contexto.
+#58: Esse método retorna o conjunto de dados que será exibido. Aqui ele é sobrescrito para filtrar os posts por autor (author_pk).
+#59: Filtra o conjunto de posts retornado para incluir apenas aqueles criados pelo autor cujo author_pk foi passado na URL.
+#60: O método get é chamado quando uma requisição GET é feita para esta view. Ele substitui o método get padrão da classe ListView para adicionar lógica de verificação do autor antes de renderizar a página.
+#61: Aqui, o método obtém o valor de author_pk a partir dos parâmetros passados na URL, que é armazenado em self.kwargs. kwargs contém os argumentos de keyword (como author_pk) que são passados quando a view é chamada. Neste caso, o ID do autor é extraído da URL.
+#62: Uma consulta ao banco de dados é realizada no modelo User, filtrando o usuário com o pk (primary key) igual ao author_pk obtido da URL. O método first() retorna o primeiro usuário encontrado ou None se nenhum usuário com esse ID for encontrado. O resultado é atribuído à variável user.
 # ------------------------------------------------------------------
 #35: ListView é uma classe de view genérica no Django que exibe uma lista de objetos. Ela simplifica o processo de exibição de listas de modelos do banco de dados, sem a necessidade de escrever o código de consulta manualmente. PostListView é uma subclasse da classe ListView, que herda sua funcionalidade. Esta view será usada para exibir uma lista de objetos Post. Ao ser acessada na URL, será automaticamente processada e renderizada pelo Django com base no template e no modelo fornecidos.
 #36: A view PostListView está associada ao modelo Post, o que significa que ela exibirá uma lista de objetos do tipo Post a partir do banco de dados.
