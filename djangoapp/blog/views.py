@@ -47,11 +47,18 @@ class CreatedByListView(PostListView): ##
         print('Setup: This is the CreatedByListView(PostListView) method.') ##
         super_setup = super().setup(*args, **kwargs) ##
         return super_setup
-    
+
     def dispatch(self, *args, **kwargs): ##
         print('Dispatch: This is the CreatedByListView(PostListView) method.') ##
         super_setup = super().setup(*args, **kwargs) ##
         return super_setup
+    
+    def get(self, *args, **kwargs): ##
+        print('Get: This is the CreatedByListView(PostListView) method.') ##
+        super_setup = super().setup(*args, **kwargs) ##
+        return super_setup
+    
+    
 
 
 def created_by(request, author_pk):
