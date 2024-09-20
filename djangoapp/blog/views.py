@@ -5,8 +5,9 @@ from django.core.paginator import Paginator #3:
 from blog.models import Post, Page
 from django.db.models import Q #21:
 from django.contrib.auth.models import User #26:
-from django.http import Http404
+from django.http import Http404, HttpRequest, HttpResponse
 from django.views.generic.list import ListView ##
+from typing import Any
 
 # posts = list(range(1000)) #4:
 PER_PAGE = 9
@@ -43,29 +44,32 @@ class PostListView(ListView): #35:
 #     return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': 'Home - '}) #2: #10: #27:
 
 class CreatedByListView(PostListView): ##
-    def setup(self, *args, **kwargs): ##
-        print('Setup: This is the CreatedByListView(PostListView) method.') ##
-        super_setup = super().setup(*args, **kwargs) ##
-        return super_setup
-
-    def dispatch(self, *args, **kwargs): ##
-        print('Dispatch: This is the CreatedByListView(PostListView) method.') ##
-        super_setup = super().dispatch(*args, **kwargs) ##
-        return super_setup
+    def __init__(self, **kwargs: Any) -> None: ##
+        super().__init__(**kwargs)
+        self._temp_context: dict[str, Any] = {} ##
     
-    def get(self, *args, **kwargs): ##
-        print('Get: This is the CreatedByListView(PostListView) method.') ##
-        super_setup = super().get(*args, **kwargs) ##
-        return super_setup
+    def get_context_data(self, **kwargs): ##
+        ctx = super().get_context_data(**kwargs) ##
+
+        author_pk = self.kwargs.get('author_pk') ##
+        user = User.objects.filter(pk=author_pk).first() ##
+
+        if user is None:
+            raise Http404()
+        
+        user_full_name = user.username ##
+        if user.first_name:
+            user_full_name = f'{user.first_name} {user.last_name}'
+        
+        page_title = 'Posts by ' + user_full_name + ' - ' ##
+        ctx.update({'page_title': page_title,}) ##
+        return ctx
     
-    def get_queryset(self, *args, **kwargs): ##
-        print('Get Queryset: This is the CreatedByListView(PostListView) method.') ##
-        super_setup = super().get_queryset(*args, **kwargs) ##
-        return super_setup
-    
+    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse: ##
+        
+        return super().get(request, *args, **kwargs) ##
 
-
-
+# Substituído por 'CreatedByListView(PostListView)':
 def created_by(request, author_pk):
     user = User.objects.filter(pk=author_pk).first() #28:
     if user is None: #29:
@@ -81,7 +85,7 @@ def created_by(request, author_pk):
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': page_title}) #33:
+    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': page_title,}) #33:
 
 def category(request, slug):
     posts = Post.objects.get_published().filter(category__slug=slug) #15: #19:
