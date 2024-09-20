@@ -152,6 +152,7 @@ def post(request, slug): #14:
     page_title = f'{post_obj.title} - Post - '
     return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17:
 
+# ------------------------------------------------------------------
 #47: ListView é uma classe genérica baseada em views do Django, usada para exibir listas de objetos de um modelo. Ela facilita a exibição de dados sem a necessidade de escrever código repetitivo para consultas no banco de dados, renderização de templates, etc.
 #48:  QuerySet é um objeto que representa uma coleção de objetos do banco de dados que podem ser filtrados, ordenados e manipulados. É o tipo retornado quando se faz consultas no banco de dados através de métodos como filter(), get(), etc.
 #49: CreatedByListView herda de PostListView e serve para listar posts de um autor específico. Essa classe especializa a lógica de listagem, adicionando um filtro para mostrar apenas os posts criados por um autor em particular.
