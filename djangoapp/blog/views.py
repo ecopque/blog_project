@@ -5,7 +5,7 @@ from django.core.paginator import Paginator #3:
 from blog.models import Post, Page
 from django.db.models import Q #21:
 from django.contrib.auth.models import User #26:
-from django.http import Http404, HttpRequest, HttpResponse
+from django.http import Http404
 from django.views.generic.list import ListView ##
 from typing import Any
 from django.db.models.query import QuerySet ##
