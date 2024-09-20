@@ -1,6 +1,6 @@
 # FILE: /blog_project/djangoapp/blog/views.py
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.paginator import Paginator #3:
 from blog.models import Post, Page
 from django.db.models import Q #21:
@@ -30,7 +30,7 @@ class PostListView(ListView): #35:
         context.update({'page_title': 'Home - ',}) #46:
         return context
     
-#####: Substituído por 'class PostListView(ListView)':
+#Substituído por 'class PostListView(ListView)':
 # EXPORT⬇: /blog_project/djangoapp/blog/urls.py
 # def index(request): #1:
 #     # posts = Post.objects.filter(is_published=True).order_by('-pk') #12:
@@ -65,27 +65,31 @@ class CreatedByListView(PostListView): ##
         ctx.update({'page_title': page_title,}) ##
         return ctx
     
-    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse: ##
-        
+    def get(self, request, *args, **kwargs): ##
+        author_pk = self.kwargs.get('author_pk')
+        user = User.objects.filter(pk=author_pk).first()
+
+        if user is None:
+            return redirect('blog:index')
         return super().get(request, *args, **kwargs) ##
 
 # Substituído por 'CreatedByListView(PostListView)':
-def created_by(request, author_pk):
-    user = User.objects.filter(pk=author_pk).first() #28:
-    if user is None: #29:
-        raise Http404() #30:
+# def created_by(request, author_pk):
+#     user = User.objects.filter(pk=author_pk).first() #28:
+#     if user is None: #29:
+#         raise Http404() #30:
     
-    posts = Post.objects.get_published().filter(created_by__pk=author_pk) #18:
+#     posts = Post.objects.get_published().filter(created_by__pk=author_pk) #18:
     
-    user_full_name = user.username
-    if user.first_name:
-        user_full_name = f'{user.first_name} {user.last_name}' #31:
+#     user_full_name = user.username
+#     if user.first_name:
+#         user_full_name = f'{user.first_name} {user.last_name}' #31:
     
-    page_title = 'Posts by ' + user_full_name + ' - ' #32:
-    paginator = Paginator(posts, PER_PAGE)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': page_title,}) #33:
+#     page_title = 'Posts by ' + user_full_name + ' - ' #32:
+#     paginator = Paginator(posts, PER_PAGE)
+#     page_number = request.GET.get("page")
+#     page_obj = paginator.get_page(page_number)
+#     return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': page_title,}) #33:
 
 def category(request, slug):
     posts = Post.objects.get_published().filter(category__slug=slug) #15: #19:
