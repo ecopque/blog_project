@@ -47,7 +47,6 @@ class PostListView(ListView): #35:
 class CreatedByListView(PostListView): ##
     def __init__(self, **kwargs: Any) -> None: ##
         super().__init__(**kwargs)
-        # self._temp_context: dict[str, Any] = {} ##
     
     def get_context_data(self, **kwargs): ##
         ctx = super().get_context_data(**kwargs) ##
