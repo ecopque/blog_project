@@ -8,6 +8,7 @@ from django.contrib.auth.models import User #26:
 from django.http import Http404, HttpRequest, HttpResponse
 from django.views.generic.list import ListView ##
 from typing import Any
+from django.db.models.query import QuerySet ##
 
 # posts = list(range(1000)) #4:
 PER_PAGE = 9
@@ -46,7 +47,7 @@ class PostListView(ListView): #35:
 class CreatedByListView(PostListView): ##
     def __init__(self, **kwargs: Any) -> None: ##
         super().__init__(**kwargs)
-        self._temp_context: dict[str, Any] = {} ##
+        # self._temp_context: dict[str, Any] = {} ##
     
     def get_context_data(self, **kwargs): ##
         ctx = super().get_context_data(**kwargs) ##
@@ -65,12 +66,18 @@ class CreatedByListView(PostListView): ##
         ctx.update({'page_title': page_title,}) ##
         return ctx
     
+    def get_queryset(self) -> QuerySet[Any]: ##
+        qs = super().get_queryset()
+        qs = qs.filter(created_by__pk=self.kwargs.get('author_pk')) ##
+        return qs
+    
     def get(self, request, *args, **kwargs): ##
         author_pk = self.kwargs.get('author_pk')
         user = User.objects.filter(pk=author_pk).first()
 
         if user is None:
-            return redirect('blog:index')
+            return redirect('blog:index') ##
+            
         return super().get(request, *args, **kwargs) ##
 
 # Substituído por 'CreatedByListView(PostListView)':
