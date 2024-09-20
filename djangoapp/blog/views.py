@@ -58,7 +58,12 @@ class CreatedByListView(PostListView): ##
         super_setup = super().setup(*args, **kwargs) ##
         return super_setup
     
+    def get_queryset(self, *args, **kwargs): ##
+        print('Get Queryset: This is the CreatedByListView(PostListView) method.') ##
+        super_setup = super().setup(*args, **kwargs) ##
+        return super_setup
     
+
 
 
 def created_by(request, author_pk):
