@@ -43,9 +43,14 @@ class PostListView(ListView): #35:
 #     return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': 'Home - '}) #2: #10: #27:
 
 class CreatedByListView(PostListView): ##
-    def setup(self, *args, **kwargs):
-        print('This is the CreatedByListView(PostListView) method.')
-        super_setup = super().setup(*args, **kwargs)
+    def setup(self, *args, **kwargs): ##
+        print('Setup: This is the CreatedByListView(PostListView) method.') ##
+        super_setup = super().setup(*args, **kwargs) ##
+        return super_setup
+    
+    def dispatch(self, *args, **kwargs): ##
+        print('Dispatch: This is the CreatedByListView(PostListView) method.') ##
+        super_setup = super().setup(*args, **kwargs) ##
         return super_setup
 
 
