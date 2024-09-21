@@ -21,6 +21,7 @@ class PostListView(ListView): #35:
     ordering = '-pk', #39:
     paginate_by = PER_PAGE #40:
     # queryset = Post.objects.get_published()
+
     def get_queryset(self): #41:
         queryset = super().get_queryset() #42:
         queryset = queryset.filter(is_published=True) #43:
@@ -28,7 +29,7 @@ class PostListView(ListView): #35:
 
     def get_context_data(self, **kwargs): #44:
         context = super().get_context_data(**kwargs) #45:
-        context.update({'page_title': 'Home - ',}) #46:exi
+        context.update({'page_title': 'Home - ',}) #46:
         return context
     
 #Substituído por 'class PostListView(ListView)':
@@ -101,9 +102,9 @@ class CategoryListView(PostListView): #64:
         return super().get_queryset().filter(category__slug=self.kwargs.get('slug')) #66:
     
     def get_context_data(self, **kwargs): #67:
-        ctx = super().get_context_data(**kwargs) ##
-        page_title = f'{self.object_list[0].category.name} - Category - ' ##
-        ctx.update({'page_title':page_title,}) ##
+        ctx = super().get_context_data(**kwargs) #68:
+        page_title = f'{self.object_list[0].category.name} - Category - ' #69:
+        ctx.update({'page_title':page_title,})
         return ctx
     
 # Substituído por 'CategoryListView(PostListView)':
@@ -119,17 +120,32 @@ class CategoryListView(PostListView): #64:
 #     page_title = f'{page_obj[0].category.name} Category - ' #34:
 #     return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': page_title,})
 
-def tag(request, slug):
-    # IMPORT⬇: /blog/project/djangoapp/blog/models.py
-    posts = Post.objects.get_published().filter(tags__slug=slug) #20:
-    paginator = Paginator(posts, PER_PAGE)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
+class TagListView(PostListView):
+    allow_empty = False
 
-    if len(page_obj) == 0:
-        raise Http404
-    page_title = f'{page_obj[0].tags.first().name} - Tags - '
-    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title':page_title,})
+    def get_queryset(self) -> QuerySet[Any]:
+        return super().get_queryset().filter(tags__slug=self.kwargs.get('slug'))
+    
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        tag_slug = self.kwargs.get('slug') #70:
+        tag_name = self.object_list[0].tags.filter(slug=tag_slug).first() #71:
+        page_title = f'{tag_name} Tag - '
+        ctx.update({'page_title':page_title,})
+        return ctx
+
+# Substituído por 'TagListView(PostListView)':
+# def tag(request, slug):
+#     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
+#     posts = Post.objects.get_published().filter(tags__slug=slug) #20:
+#     paginator = Paginator(posts, PER_PAGE)
+#     page_number = request.GET.get("page")
+#     page_obj = paginator.get_page(page_number)
+
+#     if len(page_obj) == 0:
+#         raise Http404
+#     page_title = f'{page_obj[0].tags.first().name} - Tags - '
+#     return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title':page_title,})
 
 def search(request):
     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
@@ -165,6 +181,10 @@ def post(request, slug): #14:
     page_title = f'{post_obj.title} - Post - '
     return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17:
 
+#68: Aqui, estamos herdando o contexto do método get_context_data da classe pai (PostListView). Isso significa que estamos pegando todas as informações que já foram adicionadas ao contexto e adicionando mais algumas.
+#69: Estamos criando um título para a página, usando a categoria do primeiro post da lista. A ideia é mostrar o nome da categoria no título da página.
+#70: Estamos pegando o slug (identificador único) da tag da URL e armazenando em tag_slug.
+#71: Buscamos o nome da tag correspondente ao slug que pegamos anteriormente. Assumimos que o primeiro post da lista (índice 0) tem a tag que estamos procurando.
 # ------------------------------------------------------------------
 #63: Se estiver como True, receberemos a mensagem de 'Nothing found'. Se estiver False, receberemos erro 404. Mas se estiver como True, deu erro. Imbecil.
 #64: Essa classe é responsável por exibir uma lista de posts que pertencem a uma determinada categoria.
