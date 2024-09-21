@@ -181,6 +181,7 @@ def post(request, slug): #14:
     page_title = f'{post_obj.title} - Post - '
     return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17:
 
+# ------------------------------------------------------------------
 #68: Aqui, estamos herdando o contexto do método get_context_data da classe pai (PostListView). Isso significa que estamos pegando todas as informações que já foram adicionadas ao contexto e adicionando mais algumas.
 #69: Estamos criando um título para a página, usando a categoria do primeiro post da lista. A ideia é mostrar o nome da categoria no título da página.
 #70: Estamos pegando o slug (identificador único) da tag da URL e armazenando em tag_slug.
