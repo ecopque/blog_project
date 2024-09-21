@@ -107,17 +107,17 @@ class CategoryListView(PostListView): #64:
         return ctx
     
 # Substituído por 'CategoryListView(PostListView)':
-def category(request, slug):
-    posts = Post.objects.get_published().filter(category__slug=slug) #15: #19:
+# def category(request, slug):
+#     posts = Post.objects.get_published().filter(category__slug=slug) #15: #19:
 
-    paginator = Paginator(posts, PER_PAGE)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
+#     paginator = Paginator(posts, PER_PAGE)
+#     page_number = request.GET.get("page")
+#     page_obj = paginator.get_page(page_number)
 
-    if len(posts) == 0:
-        raise Http404()
-    page_title = f'{page_obj[0].category.name} Category - ' #34:
-    return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': page_title,})
+#     if len(posts) == 0:
+#         raise Http404()
+#     page_title = f'{page_obj[0].category.name} Category - ' #34:
+#     return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': page_title,})
 
 def tag(request, slug):
     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
@@ -165,6 +165,7 @@ def post(request, slug): #14:
     page_title = f'{post_obj.title} - Post - '
     return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17:
 
+# ------------------------------------------------------------------
 #63: Se estiver como True, receberemos a mensagem de 'Nothing found'. Se estiver False, receberemos erro 404. Mas se estiver como True, deu erro. Imbecil.
 #64: Essa classe é responsável por exibir uma lista de posts que pertencem a uma determinada categoria.
 #65: Sobrescreve o método get_queryset() da classe base PostListView para filtrar os posts.
