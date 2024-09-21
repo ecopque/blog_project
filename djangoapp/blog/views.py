@@ -28,7 +28,7 @@ class PostListView(ListView): #35:
 
     def get_context_data(self, **kwargs): #44:
         context = super().get_context_data(**kwargs) #45:
-        context.update({'page_title': 'Home - ',}) #46:
+        context.update({'page_title': 'Home - ',}) #46:exi
         return context
     
 #Substituído por 'class PostListView(ListView)':
@@ -102,7 +102,7 @@ class CategoryListView(PostListView): #64:
     
     def get_context_data(self, **kwargs): #67:
         ctx = super().get_context_data(**kwargs) ##
-        page_title = f'{self.object_list[0].category.name} - Category -' ##
+        page_title = f'{self.object_list[0].category.name} - Category - ' ##
         ctx.update({'page_title':page_title,}) ##
         return ctx
     
