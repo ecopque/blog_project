@@ -94,10 +94,19 @@ class CreatedByListView(PostListView): #49:
 #     page_obj = paginator.get_page(page_number)
 #     return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': page_title,}) #33:
 
-class CategoryListView(PostListView): ##
-    def get_queryset(self) -> QuerySet[Any]:
-        return super().get_queryset().filter(category__slug=self.kwargs.get('slug'))
+class CategoryListView(PostListView): #64:
+    allow_empty = False #63:
 
+    def get_queryset(self) -> QuerySet[Any]: #65:
+        return super().get_queryset().filter(category__slug=self.kwargs.get('slug')) #66:
+    
+    def get_context_data(self, **kwargs): #67:
+        ctx = super().get_context_data(**kwargs) ##
+        page_title = f'{self.object_list[0].category.name} - Category -' ##
+        ctx.update({'page_title':page_title,}) ##
+        return ctx
+    
+# Substituído por 'CategoryListView(PostListView)':
 def category(request, slug):
     posts = Post.objects.get_published().filter(category__slug=slug) #15: #19:
 
@@ -156,6 +165,11 @@ def post(request, slug): #14:
     page_title = f'{post_obj.title} - Post - '
     return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17:
 
+#63: Se estiver como True, receberemos a mensagem de 'Nothing found'. Se estiver False, receberemos erro 404. Mas se estiver como True, deu erro. Imbecil.
+#64: Essa classe é responsável por exibir uma lista de posts que pertencem a uma determinada categoria.
+#65: Sobrescreve o método get_queryset() da classe base PostListView para filtrar os posts.
+#66: Filtra os posts da categoria atual utilizando o slug (identificador único) da categoria que foi passado na URL. O slug é obtido através de self.kwargs.get('slug').
+#67: Sobrescreve o método get_context_data() para adicionar o nome da categoria ao contexto que será passado para o template.
 # ------------------------------------------------------------------
 #47: ListView é uma classe genérica baseada em views do Django, usada para exibir listas de objetos de um modelo. Ela facilita a exibição de dados sem a necessidade de escrever código repetitivo para consultas no banco de dados, renderização de templates, etc.
 #48:  QuerySet é um objeto que representa uma coleção de objetos do banco de dados que podem ser filtrados, ordenados e manipulados. É o tipo retornado quando se faz consultas no banco de dados através de métodos como filter(), get(), etc.
