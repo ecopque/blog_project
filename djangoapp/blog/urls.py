@@ -14,7 +14,7 @@ urlpatterns = [
     # path('created_by/<int:author_pk>/', created_by, name='created_by'), #4:
     path('created_by/<int:author_pk>/', CreatedByListView.as_view(), name='created_by'),
     # path('category/<slug:slug>/', category, name='category'), #5:
-    path('category/<slug:slug>/', CategoryListView.as_view(), name='category'),
+    path('category/<slug:slug>/', CategoryListView.as_view(), name='category'), ##
     path('tag/<slug:slug>/', tag, name='tag'), #6:
     path('search/', search, name='search') #7:
 ]

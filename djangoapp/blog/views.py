@@ -94,8 +94,9 @@ class CreatedByListView(PostListView): #49:
 #     page_obj = paginator.get_page(page_number)
 #     return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title': page_title,}) #33:
 
-class CategoryListView(PostListView):
-    ...
+class CategoryListView(PostListView): ##
+    def get_queryset(self) -> QuerySet[Any]:
+        return super().get_queryset().filter(category__slug=self.kwargs.get('slug'))
 
 def category(request, slug):
     posts = Post.objects.get_published().filter(category__slug=slug) #15: #19:
