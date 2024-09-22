@@ -147,6 +147,10 @@ class TagListView(PostListView):
 #     page_title = f'{page_obj[0].tags.first().name} - Tags - '
 #     return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title':page_title,})
 
+class SearchListView(PostListView):
+    ...
+    
+# Substituído por 'SearchListView(PostListView)':
 def search(request):
     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
     search_value = request.GET.get('search', '').strip() #22:
