@@ -150,12 +150,22 @@ class TagListView(PostListView):
 class SearchListView(PostListView):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._search_value = ''
+        self._search_value = '' ##
     
-    def setup(self, request, *args, **kwargs):
-        self._search_value = request.GET.get('search', '').strip()
-        return super().setup(request, *args, **kwargs)
+    def setup(self, request, *args, **kwargs): ##
+        self._search_value = request.GET.get('search', '').strip() ##
+        return super().setup(request, *args, **kwargs) ##
+
+    def get_queryset(self) -> QuerySet[Any]: ##
+        search_value = self._search_value
+        return super().get_queryset().filter(Q(title__icontains=search_value) | Q(excerpt__icontains=search_value) | Q(content__icontains=search_value))[0:PER_PAGE] ##
     
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs) ##
+        search_value = self._search_value
+        page_title = f'{search_value[:30]} - Search - ', ##
+        ctx.update({'page_title':page_title, 'search_value':search_value,}) ##
+
 # Substituído por 'SearchListView(PostListView)':
 def search(request):
     # IMPORT⬇: /blog/project/djangoapp/blog/models.py
