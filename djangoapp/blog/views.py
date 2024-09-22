@@ -148,7 +148,13 @@ class TagListView(PostListView):
 #     return render(request, 'blog/pages/index.html', {'page_obj':page_obj, 'page_title':page_title,})
 
 class SearchListView(PostListView):
-    ...
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._search_value = ''
+    
+    def setup(self, request, *args, **kwargs):
+        self._search_value = request.GET.get('search', '').strip()
+        return super().setup(request, *args, **kwargs)
     
 # Substituído por 'SearchListView(PostListView)':
 def search(request):
@@ -167,6 +173,7 @@ def page(request, slug):
     page_title = f'{page_obj.title} - Page - '
     return render(request,'blog/pages/page.html',{'page': page_obj, 'page_title': page_title}) #25:
 
+# Antigo retirado (page acima atual):
 # def page(request, slug): # Original
 #     # paginator = Paginator(posts, 9)
 #     # page_number = request.GET.get("page")
