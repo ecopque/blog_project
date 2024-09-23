@@ -14,14 +14,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-from dotenv import load_dotenv ##
+from dotenv import load_dotenv #2:
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR.parent / 'data' / 'web' # /data/web/static | /data/web/media
 
 # DOTENV
-load_dotenv(BASE_DIR.parent / 'dotenv_files' / '.env', override=True) ##
+load_dotenv(BASE_DIR.parent / 'dotenv_files' / '.env', override=True) #3:
 
 
 # Quick-start development settings - unsuitable for production
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     # IMPORT⬇: /blog_project/djangoapp/site_setup/apps.py
     'site_setup',
     'django_summernote',
-    'axes', ##
+    'axes', #4:
 ]
 
 MIDDLEWARE = [
@@ -63,7 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'axes.middleware.AxesMiddleware', ##
+    'axes.middleware.AxesMiddleware', #5:
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -162,12 +162,12 @@ MEDIA_ROOT = DATA_DIR / 'media' # /data/web/media
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTHENTICATION_BACKENDS = [ ##
+AUTHENTICATION_BACKENDS = [
     # AxesStandaloneBackend should be the first backend in the AUTHENTICATION_BACKENDS list.
-    'axes.backends.AxesStandaloneBackend', ##
+    'axes.backends.AxesStandaloneBackend', #6:
 
     # Django ModelBackend is the default authentication backend.
-    'django.contrib.auth.backends.ModelBackend', ##
+    'django.contrib.auth.backends.ModelBackend', #7:
 ]
 
 # django_summernote
@@ -198,12 +198,22 @@ SUMMERNOTE_CONFIG = { #1:
     'attachment_model': 'blog.PostAttachment',
 }
 
-AXES_ENABLED = True ##
-AXES_FAILURE_LIMIT = 3 ##
-AXES_COOLOFF_TIME = 1  ## # 1 Hora
-AXES_RESET_ON_SUCCESS = True ##
+AXES_ENABLED = True #8:
+AXES_FAILURE_LIMIT = 3 #9:
+AXES_COOLOFF_TIME = 1  #10: 1 Hora
+AXES_RESET_ON_SUCCESS = True #11:
 
 
+#2: Aqui, o módulo os e o pacote dotenv (instalado anteriormente no requirements.txt) são importados. O módulo os permite interagir com o sistema operacional, e o load_dotenv carrega variáveis do arquivo .env para serem usadas no código.
+#3: Esse comando usa o load_dotenv para carregar variáveis do arquivo .env localizado na pasta dotenv_files (fora do diretório do projeto principal) e torná-las disponíveis como variáveis de ambiente. O parâmetro override=True garante que, se já existirem variáveis de ambiente com os mesmos nomes, elas serão sobrescritas pelas do arquivo .env.
+#4: A aplicação axes (do pacote django-axes) é adicionada à lista de aplicativos instalados no Django. Isso permite que o Django reconheça e use as funcionalidades de prevenção de ataques de força bruta fornecidas pelo pacote.
+#5: O middleware AxesMiddleware é adicionado à lista de middlewares do Django. Isso intercepta requisições de autenticação e aplica as regras de limitação de tentativas de login configuradas. Ele bloqueia acessos quando o número máximo de tentativas falhadas é atingido.
+#6: Este backend é responsável por gerenciar a autenticação via o sistema do django-axes, fornecendo controle sobre tentativas de login falhas.
+#7: Este é o backend padrão do Django, usado para autenticação com base no modelo de usuário (User).
+#8: Ativa o sistema de bloqueio do django-axes. Quando True, o pacote começa a monitorar e limitar tentativas de login.
+#9: Define o número de tentativas falhas de login permitidas antes que um bloqueio seja aplicado. No seu caso, está configurado para 3 tentativas.
+#10: Define o tempo de espera antes que um usuário bloqueado possa tentar fazer login novamente. Está configurado para 1 hora.
+#11: Quando definido como True, essa configuração faz com que o contador de tentativas falhas seja resetado após um login bem-sucedido, permitindo novas tentativas de login futuras.
 # ------------------------------------------------------------------
 #1: Este dicionário configura as opções específicas para o editor de texto Summernote, utilizado para criar e editar conteúdo rico no Django. Ele está relacionado ao pacote django-summernote, permitindo customizações como a configuração da toolbar, habilitação de temas para o editor, e definições sobre o comportamento do editor.
 
