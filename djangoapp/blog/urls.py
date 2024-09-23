@@ -18,7 +18,7 @@ urlpatterns = [
     # path('tag/<slug:slug>/', tag, name='tag'), #6:
     path('tag/<slug:slug>/', TagListView.as_view(), name='tag'),
     # path('search/', search, name='search') #7:
-    path('search/', SearchListView.as_view(), name='search'),
+    path('search/', SearchListView.as_view(), name='search')
 ]
 
 # ------------------------------------------------------------------

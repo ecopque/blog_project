@@ -181,13 +181,13 @@ class SearchListView(PostListView):
 #     page_title = f'{search_value[:30]} - Search - '
 #     return render(request, 'blog/pages/index.html', {'page_obj':posts, 'search_value':search_value, 'page_title':page_title,}) #24:
 
-# def page(request, slug):
-#     page_obj = (Page.objects.filter(is_published=True).filter(slug=slug).first())
+def page(request, slug):
+    page_obj = (Page.objects.filter(is_published=True).filter(slug=slug).first())
 
-#     if page_obj is None:
-#         raise Http404
-#     page_title = f'{page_obj.title} - Page - '
-#     return render(request,'blog/pages/page.html',{'page': page_obj, 'page_title': page_title}) #25:
+    if page_obj is None:
+        raise Http404
+    page_title = f'{page_obj.title} - Page - '
+    return render(request,'blog/pages/page.html',{'page': page_obj, 'page_title': page_title}) #25:
 
 # Antigo retirado (page acima atual):
 # def page(request, slug): # Original
