@@ -9,6 +9,7 @@ Pillow>=9.5.0,<9.6 #1: #2:
 
 django-summernote>=0.8.20.0,<0.8.21 #4:
 python-dotenv==1.0.1 #5: ##
+django-axes==6.5.2 #6: ##
 
 
 # ------------------------------------------------------------------
@@ -18,4 +19,4 @@ python-dotenv==1.0.1 #5: ##
 #2: Primeiro vamos no 'pypi.org' e pesquisaremos qual a versão atual do "pillow" para inserir no 'requirements.txt'.
 #3: <= e < significa: Inclusive, exclusive.
 
-# https://linktr.ee/edsoncopque
+# https://linktr.ee/edsoncopquepip 
