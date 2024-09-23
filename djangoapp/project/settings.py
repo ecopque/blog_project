@@ -14,10 +14,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv ##
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR.parent / 'data' / 'web' # /data/web/static | /data/web/media
+
+# DOTENV
+load_dotenv(BASE_DIR.parent / 'dotenv_files' / '.env', override=True) ##
 
 
 # Quick-start development settings - unsuitable for production
@@ -100,7 +104,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # }
 DATABASES = { # /blog_project/dotenv_files/.env
         'default': {
-        'ENGINE': os.getenv('DB_ENGINE', 'change-me'), ##
+        'ENGINE': os.getenv('DB_ENGINE', 'change-me'),
         'NAME': os.getenv('POSTGRES_DB', 'change-me'),
         'USER': os.getenv('POSTGRES_USER', 'change-me'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'change-me'),
