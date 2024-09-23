@@ -225,6 +225,7 @@ def post(request, slug): #14:
     page_title = f'{post_obj.title} - Post - '
     return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17:
 
+# ------------------------------------------------------------------
 #77: Esta linha define a classe PageDetailView, que herda de DetailView. A DetailView é uma view genérica do Django usada para exibir os detalhes de uma única instância de um modelo.
 #78: Especifica que o modelo associado a esta view é Page. Esse modelo está definido em /blog_project/djangoapp/blog/models.py e é utilizado para buscar os dados de uma página específica no banco de dados.
 #79: Define o template que será utilizado para renderizar a página.
