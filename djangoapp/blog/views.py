@@ -165,6 +165,7 @@ class SearchListView(PostListView):
         search_value = self._search_value
         page_title = f'{search_value[:30]} - Search - ', ##
         ctx.update({'page_title':page_title, 'search_value':search_value,}) ##
+        return ctx
 
 # Substituído por 'SearchListView(PostListView)':
 def search(request):
