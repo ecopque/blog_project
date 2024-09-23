@@ -181,8 +181,11 @@ class SearchListView(PostListView):
 #     page_title = f'{search_value[:30]} - Search - '
 #     return render(request, 'blog/pages/index.html', {'page_obj':posts, 'search_value':search_value, 'page_title':page_title,}) #24:
 
-class PageDetailView(DetailView):
-    ...
+class PageDetailView(DetailView): ##
+    model = Page ##
+    template_name = 'blog/pages/page.html' ##
+    slug_field = 'slug' ##
+    context_object_name = 'page' ##
 
 def page(request, slug):
     page_obj = (Page.objects.filter(is_published=True).filter(slug=slug).first())
