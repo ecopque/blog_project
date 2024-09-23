@@ -181,21 +181,21 @@ class SearchListView(PostListView):
 #     page_title = f'{search_value[:30]} - Search - '
 #     return render(request, 'blog/pages/index.html', {'page_obj':posts, 'search_value':search_value, 'page_title':page_title,}) #24:
 
-class PageDetailView(DetailView): ##
-    model = Page ##
-    template_name = 'blog/pages/page.html' ##
-    slug_field = 'slug' ##
-    context_object_name = 'page' ##
+class PageDetailView(DetailView): #77:
+    model = Page #78:
+    template_name = 'blog/pages/page.html' #79:
+    slug_field = 'slug' #80:
+    context_object_name = 'page' #81:
 
-    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        ctx = super().get_context_data(**kwargs)
-        page = self.get_object()
-        page_title = f'{page.title} - Page -'
-        ctx.update({'page_title':page_title,})
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]: #82:
+        ctx = super().get_context_data(**kwargs) #83:
+        page = self.get_object() #84:
+        page_title = f'{page.title} - Page -' #85:
+        ctx.update({'page_title':page_title,}) #86:
         return ctx
     
-    def get_queryset(self) -> QuerySet[Any]:
-        return super().get_queryset().filter(is_published=True)
+    def get_queryset(self) -> QuerySet[Any]: #87:
+        return super().get_queryset().filter(is_published=True) #88:
 
 # Substituído por 'PageDetailView(DetailView)':
 # def page(request, slug):
@@ -225,6 +225,18 @@ def post(request, slug): #14:
     page_title = f'{post_obj.title} - Post - '
     return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17:
 
+#77: Esta linha define a classe PageDetailView, que herda de DetailView. A DetailView é uma view genérica do Django usada para exibir os detalhes de uma única instância de um modelo.
+#78: Especifica que o modelo associado a esta view é Page. Esse modelo está definido em /blog_project/djangoapp/blog/models.py e é utilizado para buscar os dados de uma página específica no banco de dados.
+#79: Define o template que será utilizado para renderizar a página.
+#80: Informa que o campo slug do modelo Page será usado para buscar a instância da página. O slug é uma string amigável para URLs que identifica unicamente a página.
+#81: Especifica o nome que o objeto Page terá dentro do template. No template, o objeto poderá ser acessado como page.
+#82: Esta função sobrescreve o método get_context_data da classe DetailView. Ela permite adicionar ou modificar os dados de contexto que são passados ao template. O método aceita kwargs como argumentos extras e retorna um dicionário de contexto.
+#83: Chama o método get_context_data da superclasse (DetailView) para obter o contexto padrão, e atribui esse contexto à variável ctx.
+#84: Usa o método get_object para obter a instância do modelo Page que está sendo visualizada. Essa instância é armazenada na variável page.
+#85: Cria o título da página a ser exibido no template, concatenando o título da página obtida (page.title) com o texto - Page -.
+#86: Atualiza o contexto (ctx) adicionando o page_title ao dicionário de contexto que será passado para o template.
+#87: Esta função sobrescreve o método get_queryset da DetailView. Ele é responsável por definir o conjunto de dados (queryset) que será utilizado na view.
+#88: Chama o get_queryset da superclasse (DetailView) para obter o conjunto de dados padrão e, em seguida, aplica um filtro para exibir apenas as páginas que estão publicadas (is_published=True).
 # ------------------------------------------------------------------
 #72: Esse valor será usado posteriormente para armazenar o valor da pesquisa inserida pelo usuário.
 #73: Aqui, o método setup da SearchListView é responsável por inicializar o valor de _search_value com o parâmetro search obtido da URL (query string) via request.GET.get('search', ''). Ele utiliza .strip() para remover espaços em branco no início e no fim da string. Após isso, o método setup da classe-pai é chamado.
