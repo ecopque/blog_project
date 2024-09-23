@@ -12,6 +12,8 @@ python-dotenv==1.0.1 #5: ##
 django-axes==6.5.2 #6: ##
 
 
+#5: Este pacote, python-dotenv, é utilizado para carregar variáveis de ambiente a partir de arquivos .env no seu projeto. Isso permite que você mantenha informações sensíveis ou específicas do ambiente, como chaves secretas, senhas e configurações de banco de dados, fora do código fonte. O arquivo .env é carregado automaticamente quando o aplicativo inicia, e o conteúdo dele pode ser acessado através de métodos como os.getenv. No seu código, o módulo dotenv é importado no arquivo settings.py e é utilizado para carregar as variáveis do arquivo .env.
+#6: Este pacote, django-axes, é uma ferramenta para a segurança de autenticação. Ele implementa medidas para prevenir ataques de força bruta, limitando a quantidade de tentativas de login falhadas e bloqueando acessos mal-sucedidos após um determinado número de falhas (configurado em AXES_FAILURE_LIMIT no arquivo settings.py). O módulo axes é referenciado no arquivo settings.py, tanto nos aplicativos instalados (INSTALLED_APPS) quanto no middleware (MIDDLEWARE).
 # ------------------------------------------------------------------
 #4: Esta linha indica que o pacote django-summernote deve ser instalado com uma versão maior ou igual a 0.8.20.0, mas menor que 0.8.21. O django-summernote é um editor de texto WYSIWYG (What You See Is What You Get) integrado ao Django, que permite a edição rica de conteúdos, especialmente útil para formulários e administrações.
 # ------------------------------------------------------------------
