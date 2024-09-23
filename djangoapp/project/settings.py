@@ -203,7 +203,7 @@ AXES_FAILURE_LIMIT = 3 #9:
 AXES_COOLOFF_TIME = 1  #10: 1 Hora
 AXES_RESET_ON_SUCCESS = True #11:
 
-
+# ------------------------------------------------------------------
 #2: Aqui, o módulo os e o pacote dotenv (instalado anteriormente no requirements.txt) são importados. O módulo os permite interagir com o sistema operacional, e o load_dotenv carrega variáveis do arquivo .env para serem usadas no código.
 #3: Esse comando usa o load_dotenv para carregar variáveis do arquivo .env localizado na pasta dotenv_files (fora do diretório do projeto principal) e torná-las disponíveis como variáveis de ambiente. O parâmetro override=True garante que, se já existirem variáveis de ambiente com os mesmos nomes, elas serão sobrescritas pelas do arquivo .env.
 #4: A aplicação axes (do pacote django-axes) é adicionada à lista de aplicativos instalados no Django. Isso permite que o Django reconheça e use as funcionalidades de prevenção de ataques de força bruta fornecidas pelo pacote.
