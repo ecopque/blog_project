@@ -187,6 +187,16 @@ class PageDetailView(DetailView): ##
     slug_field = 'slug' ##
     context_object_name = 'page' ##
 
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        ctx = super().get_context_data(**kwargs)
+        page = self.get_object()
+        page_title = f'{page.title} - Page -'
+        ctx.update({'page_title':page_title,})
+        return ctx
+    
+    def get_queryset(self) -> QuerySet[Any]:
+        return super().get_queryset().filter(is_published=True)
+
 def page(request, slug):
     page_obj = (Page.objects.filter(is_published=True).filter(slug=slug).first())
 
