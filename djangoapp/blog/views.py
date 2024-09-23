@@ -166,6 +166,11 @@ class SearchListView(PostListView):
         page_title = f'{search_value[:30]} - Search - ', ##
         ctx.update({'page_title':page_title, 'search_value':search_value,}) ##
         return ctx
+    
+    def get(self, request, *args, **kwargs): ##
+        if self._search_value == '': ##
+            return redirect('blog:index')
+        return super().get(request, *args, **kwargs) ##
 
 # Substituído por 'SearchListView(PostListView)':
 def search(request):
