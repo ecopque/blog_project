@@ -63,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'axes.middleware.AxesMiddleware', ##
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -196,6 +197,11 @@ SUMMERNOTE_CONFIG = { #1:
     'attachment_filesize_limit': 30 * 1024 * 1024,
     'attachment_model': 'blog.PostAttachment',
 }
+
+AXES_ENABLED = True ##
+AXES_FAILURE_LIMIT = 3 ##
+AXES_COOLOFF_TIME = 1  ## # 1 Hora
+AXES_RESET_ON_SUCCESS = True ##
 
 
 # ------------------------------------------------------------------
