@@ -197,15 +197,16 @@ class PageDetailView(DetailView): ##
     def get_queryset(self) -> QuerySet[Any]:
         return super().get_queryset().filter(is_published=True)
 
-def page(request, slug):
-    page_obj = (Page.objects.filter(is_published=True).filter(slug=slug).first())
+# Substituído por 'PageDetailView(DetailView)':
+# def page(request, slug):
+#     page_obj = (Page.objects.filter(is_published=True).filter(slug=slug).first())
 
-    if page_obj is None:
-        raise Http404
-    page_title = f'{page_obj.title} - Page - '
-    return render(request,'blog/pages/page.html',{'page': page_obj, 'page_title': page_title}) #25:
+#     if page_obj is None:
+#         raise Http404
+#     page_title = f'{page_obj.title} - Page - '
+#     return render(request,'blog/pages/page.html',{'page': page_obj, 'page_title': page_title}) #25:
 
-# Antigo retirado (page acima atual):
+# Antigo removido (page(request, slug):
 # def page(request, slug): # Original
 #     # paginator = Paginator(posts, 9)
 #     # page_number = request.GET.get("page")
