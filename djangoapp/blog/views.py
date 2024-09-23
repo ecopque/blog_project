@@ -6,7 +6,7 @@ from blog.models import Post, Page
 from django.db.models import Q #21:
 from django.contrib.auth.models import User #26:
 from django.http import Http404
-from django.views.generic.list import ListView #47:
+from django.views.generic import ListView, DetailView #47:
 from typing import Any
 from django.db.models.query import QuerySet #48:
 
@@ -180,6 +180,9 @@ class SearchListView(PostListView):
 
 #     page_title = f'{search_value[:30]} - Search - '
 #     return render(request, 'blog/pages/index.html', {'page_obj':posts, 'search_value':search_value, 'page_title':page_title,}) #24:
+
+class PageDetailView(DetailView):
+    ...
 
 def page(request, slug):
     page_obj = (Page.objects.filter(is_published=True).filter(slug=slug).first())
