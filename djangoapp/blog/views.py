@@ -208,6 +208,7 @@ def post(request, slug): #14:
     page_title = f'{post_obj.title} - Post - '
     return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17:
 
+# ------------------------------------------------------------------
 #72: Esse valor será usado posteriormente para armazenar o valor da pesquisa inserida pelo usuário.
 #73: Aqui, o método setup da SearchListView é responsável por inicializar o valor de _search_value com o parâmetro search obtido da URL (query string) via request.GET.get('search', ''). Ele utiliza .strip() para remover espaços em branco no início e no fim da string. Após isso, o método setup da classe-pai é chamado.
 #74: Este é o método get_queryset, que filtra os objetos Post de acordo com o valor de pesquisa armazenado em _search_value. Ele utiliza a função Q do Django (from django.db.models import Q, linha 21) para realizar uma busca em múltiplos campos (title, excerpt, content) usando icontains, que executa uma pesquisa insensível a maiúsculas/minúsculas. O filtro aplica a limitação de resultados com PER_PAGE.
