@@ -214,16 +214,33 @@ class PageDetailView(DetailView): #77:
 #     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/page.html
 #     return render(request, 'blog/pages/page.html', {}) #11:
 
-def post(request, slug): #14:
-    post_obj = (Post.objects.get_published().filter(slug=slug).first()) #16:
-    # paginator = Paginator(posts, 9)
-    # page_number = request.GET.get("page")
-    # page_obj = paginator.get_page(page_number)
-    # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/post.html
-    if post_obj is None:
-        raise Http404
-    page_title = f'{post_obj.title} - Post - '
-    return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17:
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'blog/pages/post.html'
+    slug_field = 'slug'
+    context_object_name = 'post'
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        ctx = super().get_context_data(**kwargs)
+        post = self.get_object()
+        page_title = f'{post.title} - Post - '
+        ctx.update({'page_title':page_title,})
+        return ctx
+    
+    def get_queryset(self) -> QuerySet[Any]:
+        return super().get_queryset().filter(is_published=True)
+    
+# Substituído por 'PostDetailView(DetailView)':
+# def post(request, slug): #14:
+#     post_obj = (Post.objects.get_published().filter(slug=slug).first()) #16:
+#     # paginator = Paginator(posts, 9)
+#     # page_number = request.GET.get("page")
+#     # page_obj = paginator.get_page(page_number)
+#     # IMPORT⬇: /blog_project/djangoapp/templates/blog/pages/post.html
+#     if post_obj is None:
+#         raise Http404
+#     page_title = f'{post_obj.title} - Post - '
+#     return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17:
 
 # ------------------------------------------------------------------
 #77: Esta linha define a classe PageDetailView, que herda de DetailView. A DetailView é uma view genérica do Django usada para exibir os detalhes de uma única instância de um modelo.
