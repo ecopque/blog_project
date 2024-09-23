@@ -51,8 +51,8 @@ INSTALLED_APPS = [
     'blog',
     # IMPORT⬇: /blog_project/djangoapp/site_setup/apps.py
     'site_setup',
-
     'django_summernote',
+    'axes', ##
 ]
 
 MIDDLEWARE = [
@@ -160,6 +160,14 @@ MEDIA_ROOT = DATA_DIR / 'media' # /data/web/media
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTHENTICATION_BACKENDS = [ ##
+    # AxesStandaloneBackend should be the first backend in the AUTHENTICATION_BACKENDS list.
+    'axes.backends.AxesStandaloneBackend', ##
+
+    # Django ModelBackend is the default authentication backend.
+    'django.contrib.auth.backends.ModelBackend', ##
+]
 
 # django_summernote
 SUMMERNOTE_CONFIG = { #1:
