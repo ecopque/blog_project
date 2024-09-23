@@ -150,27 +150,27 @@ class TagListView(PostListView):
 class SearchListView(PostListView):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._search_value = '' ##
+        self._search_value = '' #72:
     
-    def setup(self, request, *args, **kwargs): ##
-        self._search_value = request.GET.get('search', '').strip() ##
-        return super().setup(request, *args, **kwargs) ##
+    def setup(self, request, *args, **kwargs): #73:
+        self._search_value = request.GET.get('search', '').strip() #73:
+        return super().setup(request, *args, **kwargs) #73:
 
-    def get_queryset(self) -> QuerySet[Any]: ##
+    def get_queryset(self) -> QuerySet[Any]: #74:
         search_value = self._search_value
-        return super().get_queryset().filter(Q(title__icontains=search_value) | Q(excerpt__icontains=search_value) | Q(content__icontains=search_value))[0:PER_PAGE] ##
+        return super().get_queryset().filter(Q(title__icontains=search_value) | Q(excerpt__icontains=search_value) | Q(content__icontains=search_value))[0:PER_PAGE] #74:
     
     def get_context_data(self, **kwargs):
-        ctx = super().get_context_data(**kwargs) ##
+        ctx = super().get_context_data(**kwargs) #75:
         search_value = self._search_value
-        page_title = f'{search_value[:30]} - Search - ', ##
-        ctx.update({'page_title':page_title, 'search_value':search_value,}) ##
+        page_title = f'{search_value[:30]} - Search - ', #75:
+        ctx.update({'page_title':page_title, 'search_value':search_value,}) #75:
         return ctx
     
-    def get(self, request, *args, **kwargs): ##
-        if self._search_value == '': ##
+    def get(self, request, *args, **kwargs): #76:
+        if self._search_value == '': #76:
             return redirect('blog:index')
-        return super().get(request, *args, **kwargs) ##
+        return super().get(request, *args, **kwargs) #76:
 
 # Substituído por 'SearchListView(PostListView)':
 # def search(request):
@@ -208,6 +208,11 @@ def post(request, slug): #14:
     page_title = f'{post_obj.title} - Post - '
     return render(request, 'blog/pages/post.html', {'post':post_obj, 'page_title': page_title,}) #17:
 
+#72: Esse valor será usado posteriormente para armazenar o valor da pesquisa inserida pelo usuário.
+#73: Aqui, o método setup da SearchListView é responsável por inicializar o valor de _search_value com o parâmetro search obtido da URL (query string) via request.GET.get('search', ''). Ele utiliza .strip() para remover espaços em branco no início e no fim da string. Após isso, o método setup da classe-pai é chamado.
+#74: Este é o método get_queryset, que filtra os objetos Post de acordo com o valor de pesquisa armazenado em _search_value. Ele utiliza a função Q do Django (from django.db.models import Q, linha 21) para realizar uma busca em múltiplos campos (title, excerpt, content) usando icontains, que executa uma pesquisa insensível a maiúsculas/minúsculas. O filtro aplica a limitação de resultados com PER_PAGE.
+#75: Esse método get_context_data atualiza o contexto que será passado para o template. Ele define page_title como os primeiros 30 caracteres da string de pesquisa (search_value[:30]) e a string "Search", e então adiciona esse valor ao contexto, junto com search_value. Isso é feito para que esses valores possam ser exibidos no template.
+#76: No método get, a lógica verifica se _search_value está vazio. Se estiver, o usuário é redirecionado para a página principal (blog:index). Caso contrário, o método get da classe-pai é chamado para processar normalmente a requisição.
 # ------------------------------------------------------------------
 #68: Aqui, estamos herdando o contexto do método get_context_data da classe pai (PostListView). Isso significa que estamos pegando todas as informações que já foram adicionadas ao contexto e adicionando mais algumas.
 #69: Estamos criando um título para a página, usando a categoria do primeiro post da lista. A ideia é mostrar o nome da categoria no título da página.

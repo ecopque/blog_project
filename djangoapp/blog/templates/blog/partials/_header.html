@@ -31,7 +31,7 @@
                   id="search-input"
                   placeholder="Search"
                   value="{{search_value}}" {#11: #}
-                  required {## #}
+                  required {#12: #}
                 >
                 <button class="search-btn" type="submit" aria-labelledby="search-label">
                   <i class="fa fa-search"></i>
@@ -68,6 +68,7 @@
     </div>
   </header>
 
+{#12: Esse é um atributo required aplicado ao campo de input do formulário de busca no HTML. O atributo required em campos de formulário garante que o campo não seja enviado vazio. Aqui, ele garante que o usuário forneça um valor de pesquisa antes de submeter o formulário. #}
 {# ------------------------------------------------------------------ #}
 {#10: Este formulário HTML permite que os usuários façam uma busca no site. O atributo action="{% url 'blog:search' %}" gera a URL para a rota de busca definida anteriormente (com o nome 'search'). O método get envia os dados de busca através da URL, permitindo que o valor de busca seja capturado pela função search em views.py. #}
 {#11: Este campo de input do tipo search exibe o valor atual de busca. O valor {{search_value}} vem do contexto passado pela função search em views.py. Isso permite que o campo de busca retenha o valor que o usuário digitou, facilitando a edição ou modificação da busca. #}
