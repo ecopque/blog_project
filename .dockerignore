@@ -18,8 +18,10 @@ __pycache__
 dist
 docs
 env
-env-example_cloud
 logs
 stats
 Dockerfile
 __localcode/
+
+env-example_cloud
+gunicorn.env

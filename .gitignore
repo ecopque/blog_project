@@ -108,13 +108,17 @@ celerybeat-schedule.*
 
 # Environments
 .env
-.env-example_cloud
+
 .venv
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+
+# Files
+gunicorn.env
+.env-example_cloud
 
 # mkdocs documentation
 /site
