@@ -23,7 +23,8 @@ stats
 Dockerfile
 __localcode/
 
-env-example_cloud
+# Files ##
 gunicorn.env
+nginx-http.env
 
 # https://linktr.ee/edsoncopque

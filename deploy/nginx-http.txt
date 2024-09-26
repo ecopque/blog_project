@@ -79,3 +79,5 @@ server {
   #access_log  /var/log/nginx/__YOUR_DOMAIN_OR_IP__-access.log;
   error_log   /var/log/nginx/__YOUR_DOMAIN_OR_IP__-error.log;
 }
+
+# https://linktr.ee/edsoncopque
