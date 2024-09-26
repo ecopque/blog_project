@@ -73,3 +73,5 @@ sudo systemctl daemon-reload
 # Debugging
 sudo journalctl -u __GUNICORN_FILE_NAME__.service
 sudo journalctl -u __GUNICORN_FILE_NAME__.socket
+
+# https://linktr.ee/edsoncopque
