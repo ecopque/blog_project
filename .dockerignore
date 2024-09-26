@@ -1,3 +1,5 @@
+# FILE: blog_project/.dockerignore
+
 *.pyc
 *.pyo
 *.mo

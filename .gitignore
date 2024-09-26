@@ -1,4 +1,4 @@
-# blog_project/.gitignore:
+# FILE: blog_project/.gitignore
 
 /venv_blog
 /djangoapp/static/

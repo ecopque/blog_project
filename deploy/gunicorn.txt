@@ -1,3 +1,5 @@
+# /blog_project/dotenv_files/gunicorn.txt
+
 ###############################################################################
 # Replace
 # __GUNICORN_FILE_NAME__ the name of the gunicorn file you want
