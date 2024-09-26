@@ -108,6 +108,7 @@ celerybeat-schedule.*
 
 # Environments
 .env
+.env-example_cloud
 .venv
 env/
 venv/
