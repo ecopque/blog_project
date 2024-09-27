@@ -47,6 +47,7 @@ class Category(models.Model): #7:
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
+    
     name = models.CharField(max_length=15)
     slug = models.SlugField(unique=True, default=None, null=True, blank=True, max_length=255,)
     
@@ -62,6 +63,7 @@ class Page(models.Model):
     class Meta:
         verbose_name = 'Page'
         verbose_name_plural = 'Pages'
+    
     # EXPORT⬇: /blog/project/djangoapp/blog/admin.py
     # URL⬇: http://127.0.0.1:8000/admin/blog/page/add/
     title = models.CharField(max_length=65,) #10:
@@ -143,7 +145,6 @@ class Post(models.Model):
     # def __str__(self):
     #     return self.title
         return super_save
-
 
 # ------------------------------------------------------------------
 #36: O método get_absolute_url é responsável por fornecer a URL absoluta de uma página com base em suas condições de publicação. Este método verifica se a página deve ou não ser exibida publicamente, retornando a URL apropriada.
