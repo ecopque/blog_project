@@ -151,5 +151,6 @@ GitHub.sublime-settings
 .env-example_cloud
 gunicorn.env
 nginx-http.env
+nginx-https.env
 
 # https://linktr.ee/edsoncopque

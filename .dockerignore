@@ -28,5 +28,6 @@ __localcode/
 # Files ##
 gunicorn.env
 nginx-http.env
+nginx-https.env
 
 # https://linktr.ee/edsoncopque
