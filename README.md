@@ -22,3 +22,5 @@ This is a blog project developed in Django, which allows the creation, editing a
   
 ## Deploy
 - http://34.45.91.32/
+
+## Images of the Blog Project
