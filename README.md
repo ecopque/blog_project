@@ -21,7 +21,8 @@ This is a blog project developed in Django, which allows the creation, editing a
 - **Gunicorn**: A Python WSGI HTTP server for serving the Django project in a production environment.
   
 ## Deploy
-- **URL**: http://34.45.91.32/
+- **URL Home**: http://34.45.91.32/
+- **URL Admin**: http://34.45.91.32/admin/login/?next=/admin/
 
 ## Images of the Blog Project
 ![readme](https://github.com/ecopque/blog_project/blob/main/prints/Screenshot%20from%202024-09-01%2021-37-22.png)
